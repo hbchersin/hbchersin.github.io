@@ -21,6 +21,16 @@
  "address": {"@type": "PostalAddress", "streetAddress": "Complexe Futura, rue Romain Rolland", "postalCode": "62530", "addressLocality": "Hersin-Coupigny", "addressRegion": "Hauts-de-France", "addressCountry": "FR"},
  "sameAs": ["https://www.facebook.com/HBCHersin/", "https://www.instagram.com/hbchersin/"]}
 </script>
+<!-- Audience (GoatCounter : gratuit, sans cookies) : une visite par page consultée, y compris en changeant de page dans le site -->
+<script>
+  (function () {
+    function page() { return "/" + (decodeURIComponent(location.hash.slice(1)) || "accueil"); }
+    function count() { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: page() }); }
+    window.addEventListener("hashchange", count);
+    window.addEventListener("load", function () { setTimeout(count, 0); });
+  })();
+</script>
+<script data-goatcounter="https://hbchersin.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="https://gc.zgo.at/count.js"></script>
 <link rel="icon" href="logo-hbch.png">
 <link rel="apple-touch-icon" href="logo-hbch.png">
 <script>
