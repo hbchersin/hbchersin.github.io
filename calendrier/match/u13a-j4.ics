@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U13 A
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u13a-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Club des Handballeurs Auchellois – HBC Hersin U13 A
+DTSTART:20261115T100000Z
+DTEND:20261115T120000Z
+LOCATION:Chez Club des Handballeurs Auchellois
+DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

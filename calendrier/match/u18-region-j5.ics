@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U18 Région
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u18-region-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – HBC Crépy-en-Valois
+DTSTART:20261108T131500Z
+DTEND:20261108T151500Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 5. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

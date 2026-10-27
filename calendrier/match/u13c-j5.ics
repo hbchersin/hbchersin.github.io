@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U13 C
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u13c-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 C – HBC Bully-les-Mines
+DTSTART:20261128T154500Z
+DTEND:20261128T174500Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

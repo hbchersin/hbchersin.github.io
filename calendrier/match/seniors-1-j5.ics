@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – Seniors 1
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:seniors-1-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Houplines SGA – HBC Hersin Seniors 1 (36-38)
+DTSTART:20261010T183000Z
+DTEND:20261010T203000Z
+LOCATION:Chez HBC Houplines SGA
+DESCRIPTION:Prénationale masculine\, journée 5. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

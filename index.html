@@ -44,6 +44,7 @@
 <script>
 /* Copie publique : les données viennent de data/*.json (mises à jour automatiquement), lecture seule */
 (function () {
+  window.HBCH_PUBLIC = true;
   var MEDIA = {};
   window.HBCH_BLOB = function (id) { return "media/" + id + (MEDIA[id] || ".jpg"); };
   function get(url) { return fetch(url, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }); }
@@ -1001,6 +1002,13 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .cal-menu a + a { border-top: 1px solid var(--line); }
 .cal-menu a:hover { color: var(--rose-ink); background: var(--bg); }
 .lg-next .cal-add { justify-self: center; }
+.cal-sub { display: grid; grid-template-columns: 1fr auto; gap: 12px 20px; align-items: center; margin: 16px 0; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--rose); }
+.cal-sub b { display: block; font-size: 16px; }
+.cal-sub span { display: block; font-size: 14px; color: var(--muted); margin-top: 2px; }
+.cal-sub-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.cal-sub-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); font-weight: 600; font-size: 14px; text-decoration: none; color: var(--ink); background: var(--bg); }
+.cal-sub-links a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+@media (max-width: 640px) { .cal-sub { grid-template-columns: 1fr; } .cal-sub-links a { flex: 1 1 100%; justify-content: center; } }
 @media (max-width: 520px) { .lg-match .lg-score.todo { display: none; } .lg-match .cal-add.compact { grid-column: 2; grid-row: 2; justify-self: end; } }
 .ev-h { font: 800 28px var(--font-display); text-transform: uppercase; margin: 0 0 14px; }
 .menu a.item, .menu button.item { white-space: nowrap; }
@@ -2308,7 +2316,7 @@ function eventCard(e, admin) {
       ${lien ? `<a class="news-fb" href="${esc(lien)}" target="_blank" rel="noopener">${isFb(lien) ? "Voir sur Facebook" : "En savoir plus"} ↗<span class="sr-only"> (nouvel onglet)</span></a>` : ""}
       ${e.date && !past ? calButton({ titre: e.titre || "Événement HBC Hersin", debut: e.fin ? e.date : e.heure ? `${e.date}T${e.heure}` : e.date,
         fin: e.fin ? e.fin : e.heure && e.heureFin ? `${e.date}T${e.heureFin}` : "", lieu: VENUE_ADDR[e.lieu] || e.lieu || "",
-        details: [e.fin && e.heure ? evWhen(e) : "", e.texte || ""].filter(Boolean).join("\n") }) : ""}
+        details: [e.fin && e.heure ? evWhen(e) : "", e.texte || ""].filter(Boolean).join("\n"), ics: `calendrier/evenement/${e.id}.ics` }) : ""}
       ${admin ? `<div class="news-admin"><button type="button" data-ev-edit="${esc(e.id)}">Modifier</button><button type="button" data-ev-del="${esc(e.id)}">Supprimer</button></div>` : ""}
     </div>
     ${e.photo ? `<img class="ev-photo" src="${esc(blobSrc(e.photo))}" alt="" loading="lazy">` : ""}</li>`;
@@ -2342,6 +2350,8 @@ function renderEvents() {
       ${eventsState === "loading" ? `<p class="news-empty">Chargement de l'agenda…</p>`
         : `<h2 class="ev-h">À venir</h2>${up.length ? `<ul class="plain ev-list">${up.map(e => eventCard(e, admin)).join("")}</ul>`
           : `<p class="news-empty">Pas d'événement annoncé pour le moment. Suivez <a href="https://www.facebook.com/HBCHersin/" target="_blank" rel="noopener">notre page Facebook ↗</a> pour ne rien manquer.</p>`}
+        ${calSubscribe("agenda.ics", "L'agenda du club dans mon agenda", "Tournois, stages, loto… s'ajoutent tout seuls à votre agenda.")}
+        ${calSubscribe("club.ics", "Tous les matchs du club dans mon agenda", "Toutes les équipes, des U11 aux seniors, plus les événements du club.")}
         ${past.length ? `<details class="ev-past"><summary>Événements passés (${past.length})</summary><ul class="plain ev-list">${past.slice(0, 12).map(e => eventCard(e, admin)).join("")}</ul></details>` : ""}`}`;
   }
   const home = $("#events-home");
@@ -2580,7 +2590,15 @@ const CAL_ICON = `<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="t
 function calButton(ev, compact) {
   const l = calLinks(ev);
   return `<details class="cal-add${compact ? " compact" : ""}"><summary aria-label="Ajouter « ${esc(ev.titre)} » à mon agenda" title="Ajouter à mon agenda">${CAL_ICON}${compact ? "" : "<span>Ajouter à mon agenda</span>"}</summary>
-    <div class="cal-menu"><a href="${esc(l.google)}" target="_blank" rel="noopener">Google Agenda ↗</a><a href="${esc(l.outlook)}" target="_blank" rel="noopener">Outlook ↗</a></div></details>`;
+    <div class="cal-menu">${window.HBCH_PUBLIC && ev.ics ? `<a href="${esc(ev.ics)}">iPhone · Samsung · Mac</a>` : ""}<a href="${esc(l.google)}" target="_blank" rel="noopener">Google Agenda ↗</a><a href="${esc(l.outlook)}" target="_blank" rel="noopener">Outlook ↗</a></div></details>`;
+}
+// Abonnement à un calendrier (site public seulement) : les matchs s'ajoutent et se mettent à jour tout seuls
+function calSubscribe(file, title, sub) {
+  if (!window.HBCH_PUBLIC) return "";
+  const feed = `${location.host}${location.pathname.replace(/[^/]*$/, "")}calendrier/${file}`;
+  return `<div class="cal-sub"><div><b>${esc(title)}</b><span>${esc(sub)}</span></div>
+    <div class="cal-sub-links"><a href="webcal://${esc(feed)}">${CAL_ICON}iPhone · Mac · Outlook</a>
+    <a href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent("webcal://" + feed)}" target="_blank" rel="noopener">${CAL_ICON}Google Agenda · Android ↗</a></div></div>`;
 }
 // Un match d'une équipe du club -> événement d'agenda
 function matchEvent(teamId, m) {
@@ -2588,7 +2606,7 @@ function matchEvent(teamId, m) {
   const v = homeVenue(teamId, m.adv, m.salle) || "";
   const lieu = m.dom ? (VENUE_ADDR[v] || (v ? v.replace(/^à /, "") : "Hersin-Coupigny")) : `Chez ${m.adv}`;
   return { titre: `🤾 ${m.dom ? `${us} – ${m.adv}` : `${m.adv} – ${us}`}`, debut: m.date.length > 10 ? m.date.slice(0, 16) : m.date.slice(0, 10), lieu,
-    details: `${t.comp || ""}${m.j ? `, journée ${m.j}` : ""}. Allez les Tigres !` };
+    details: `${t.comp || ""}${m.j ? `, journée ${m.j}` : ""}. Allez les Tigres !`, ics: m.j ? `calendrier/match/${teamId}-j${m.j}.ics` : "" };
 }
 // Ferme les menus « agenda » ouverts quand on clique ailleurs
 document.addEventListener("click", e => { document.querySelectorAll("details.cal-add[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }); });
@@ -2667,6 +2685,7 @@ function renderLeague(el, id) {
     <div class="card lg-panel" role="tabpanel" id="lg-panel-${id}-calendrier" aria-labelledby="lg-tab-${id}-calendrier"${tab === "calendrier" ? "" : " hidden"}>
       ${upcoming.length ? `<ol class="plain lg-list lg-two">${upcoming.map(matchRow).join("")}</ol>` : `<p class="sub">Aucun match à venir.</p>`}
     </div>
+    ${calSubscribe(`${id}.ics`, `Tous les matchs ${t.name} dans mon agenda`, "Un seul clic : les matchs s'ajoutent à votre agenda, et les dates, horaires et scores se mettent à jour tout seuls.")}
     ${ffhbLink(t)}
   </section>`;
 }

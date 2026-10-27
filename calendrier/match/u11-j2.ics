@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U11
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u11-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U11 – Harnes HBC (35-1)
+DTSTART:20261017T120000Z
+DTEND:20261017T140000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U11\, journée 2. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

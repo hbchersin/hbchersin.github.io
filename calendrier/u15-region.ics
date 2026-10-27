@@ -1,0 +1,106 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U15 Région
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u15-region-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – AS Neuilly-en-Thelle (34-44)
+DTSTART:20260913T090000Z
+DTEND:20260913T110000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 1. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 SO Calais HB – HBC Hersin U15 Région (35-35)
+DTSTART:20260919T123000Z
+DTEND:20260919T143000Z
+LOCATION:Chez SO Calais HB
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 2. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 ASHB Carvin – HBC Hersin U15 Région (26-23)
+DTSTART:20261004T090000Z
+DTEND:20261004T110000Z
+LOCATION:Chez ASHB Carvin
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 3. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Handball Hazebrouck 71 – HBC Hersin U15 Région (24-32)
+DTSTART:20261011T093000Z
+DTEND:20261011T113000Z
+LOCATION:Chez Handball Hazebrouck 71
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 4. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – Sambre Avesnois Handball U15
+DTSTART:20261108T150000Z
+DTEND:20261108T170000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 5. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j6@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Alliance Marcq-la-Madeleine U15 – HBC Hersin U15 Région
+DTSTART:20261115T140000Z
+DTEND:20261115T160000Z
+LOCATION:Chez Alliance Marcq-la-Madeleine U15
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 6. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – Amiens Handball Club
+DTSTART:20261121T163000Z
+DTEND:20261121T183000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 7. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j8@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – HBC Crépy-en-Valois
+DTSTART:20261129T140000Z
+DTEND:20261129T160000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 8. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

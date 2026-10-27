@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U18 France
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u18-france-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 AS Saint-Mandé Handball – HBC Hersin U18 France
+DTSTART:20261115T133000Z
+DTEND:20261115T153000Z
+LOCATION:Chez AS Saint-Mandé Handball
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 7. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – Seniors 1
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:seniors-1-j11@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Tourcoing Hand Ball SG1
+DTSTART:20270123T200000Z
+DTEND:20270123T220000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 11. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR

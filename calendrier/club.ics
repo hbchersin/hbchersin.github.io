@@ -1,0 +1,1045 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – Tous les matchs et événements
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:seniors-1-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Entente Wallers / Saint-Amand – HBC Hersin Seniors 1 (17-32
+ )
+DTSTART:20260913T130000Z
+DTEND:20260913T150000Z
+LOCATION:Chez Entente Wallers / Saint-Amand
+DESCRIPTION:Prénationale masculine\, journée 1. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – HBC Municipal St Polois 1 (36-19)
+DTSTART:20260919T183000Z
+DTEND:20260919T203000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 2. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Compiègne HBC 1 – HBC Hersin Seniors 1 (33-32)
+DTSTART:20260926T183000Z
+DTEND:20260926T203000Z
+LOCATION:Chez Compiègne HBC 1
+DESCRIPTION:Prénationale masculine\, journée 3. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – ASHB Carvin 1 (32-29)
+DTSTART:20261003T183000Z
+DTEND:20261003T203000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 4. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Houplines SGA – HBC Hersin Seniors 1 (36-38)
+DTSTART:20261010T183000Z
+DTEND:20261010T203000Z
+LOCATION:Chez HBC Houplines SGA
+DESCRIPTION:Prénationale masculine\, journée 5. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j6@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Biache Vallée Scarpe
+DTSTART:20261107T193000Z
+DTEND:20261107T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 6. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Bousbecque Wervicq Val de Lys – HBC Hersin Seniors 1
+DTSTART:20261129T160000Z
+DTEND:20261129T180000Z
+LOCATION:Chez Bousbecque Wervicq Val de Lys
+DESCRIPTION:Prénationale masculine\, journée 7. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j8@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Pévèle HBC 1
+DTSTART:20261205T193000Z
+DTEND:20261205T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 8. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j9@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Billy-Montigny 2 – HBC Hersin Seniors 1
+DTSTART:20261213T140000Z
+DTEND:20261213T160000Z
+LOCATION:Chez Billy-Montigny 2
+DESCRIPTION:Prénationale masculine\, journée 9. Allez les Tigres ! Class
+ ement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j11@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Tourcoing Hand Ball SG1
+DTSTART:20270123T200000Z
+DTEND:20270123T220000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 11. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j12@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Entente Wallers / Saint-Amand
+DTSTART:20270130T193000Z
+DTEND:20270130T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 12. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j14@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Compiègne HBC 1
+DTSTART:20270213T200000Z
+DTEND:20270213T220000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 14. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j16@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – HBC Houplines SGA
+DTSTART:20270320T193000Z
+DTEND:20270320T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 16. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j18@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Bousbecque Wervicq Val de Lys
+DTSTART:20270403T183000Z
+DTEND:20270403T203000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 18. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j20@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – Billy-Montigny 2
+DTSTART:20270515T183000Z
+DTEND:20270515T203000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 20. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j21@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 1 – HBC Crépy-en-Valois
+DTSTART:20270522T190000Z
+DTEND:20270522T210000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Prénationale masculine\, journée 21. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-1-j22@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Tourcoing Hand Ball SG1 – HBC Hersin Seniors 1
+DTSTART:20270530T140000Z
+DTEND:20270530T160000Z
+LOCATION:Chez Tourcoing Hand Ball SG1
+DESCRIPTION:Prénationale masculine\, journée 22. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:cdf-seniors-1er-tour@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Douvrin HBC – HBC Hersin Seniors (23-30)
+DTSTART:20261018T150000Z
+DTEND:20261018T170000Z
+LOCATION:Chez Douvrin HBC
+DESCRIPTION:Coupe de France régionale · 1er tour. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-seniors-1
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – HB Longuenesse Maillebois (32-32)
+DTSTART:20260913T150000Z
+DTEND:20260913T170000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 1. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Libercourt HBC – HBC Hersin Seniors 2 (27-29)
+DTSTART:20260920T150000Z
+DTEND:20260920T170000Z
+LOCATION:Chez Libercourt HBC
+DESCRIPTION:Excellence régionale masculine\, journée 2. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Elite Axonaise HB EXCMR (25-29)
+DTSTART:20260926T183000Z
+DTEND:20260926T203000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 3. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Douvrin HBC – HBC Hersin Seniors 2 (31-28)
+DTSTART:20261003T190000Z
+DTEND:20261003T210000Z
+LOCATION:Chez Douvrin HBC
+DESCRIPTION:Excellence régionale masculine\, journée 4. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Caudry HBC (25-36)
+DTSTART:20261010T180000Z
+DTEND:20261010T200000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 5. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Compiègne HBC 2
+DTSTART:20261128T193000Z
+DTEND:20261128T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 7. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j9@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Entente Sud Oise HBC Senlis B
+DTSTART:20261212T193000Z
+DTEND:20261212T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 9. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.github.io/#championnat-sen
+ iors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j11@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – HBC Salouel 1
+DTSTART:20270123T180000Z
+DTEND:20270123T200000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 11. Allez les Tigre
+ s ! Classement et résultats : https://hbchersin.github.io/#championnat-se
+ niors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j13@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Libercourt HBC
+DTSTART:20270206T193000Z
+DTEND:20270206T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 13. Allez les Tigre
+ s ! Classement et résultats : https://hbchersin.github.io/#championnat-se
+ niors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j15@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Douvrin HBC
+DTSTART:20270314T160000Z
+DTEND:20270314T180000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 15. Allez les Tigre
+ s ! Classement et résultats : https://hbchersin.github.io/#championnat-se
+ niors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j16@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Caudry HBC – HBC Hersin Seniors 2
+DTSTART:20270321T160000Z
+DTEND:20270321T180000Z
+LOCATION:Chez Caudry HBC
+DESCRIPTION:Excellence régionale masculine\, journée 16. Allez les Tigre
+ s ! Classement et résultats : https://hbchersin.github.io/#championnat-se
+ niors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j17@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – Grande-Synthe
+DTSTART:20270327T193000Z
+DTEND:20270327T213000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 17. Allez les Tigre
+ s ! Classement et résultats : https://hbchersin.github.io/#championnat-se
+ niors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:seniors-2-j19@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors 2 – SO Calais HB 2
+DTSTART:20270508T183000Z
+DTEND:20270508T203000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Excellence régionale masculine\, journée 19. Allez les Tigre
+ s ! Classement et résultats : https://hbchersin.github.io/#championnat-se
+ niors-2
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Ent. Paris Saint-Germain HB – HBC Hersin U18 France (42-30)
+DTSTART:20260913T140000Z
+DTEND:20260913T160000Z
+LOCATION:Chez Ent. Paris Saint-Germain HB
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 1. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 France – AS Saint-Mandé Handball (38-26)
+DTSTART:20260920T130000Z
+DTEND:20260920T150000Z
+LOCATION:À domicile\, Billy-Montigny
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 2. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Lille Métropole – HBC Hersin U18 France (33-33)
+DTSTART:20261004T140000Z
+DTEND:20261004T160000Z
+LOCATION:Chez Lille Métropole
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 3. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 France – Entente Espoir 91 · Massy (35-28)
+DTSTART:20261011T123000Z
+DTEND:20261011T143000Z
+LOCATION:À domicile\, Billy-Montigny
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 4. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Entente Flandres Littoral · Dunkerque – HBC Hersin U18 Fra
+ nce (29-26)
+DTSTART:20261018T130000Z
+DTEND:20261018T150000Z
+LOCATION:Chez Entente Flandres Littoral · Dunkerque
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 5. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j6@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 France – Ent. Paris Saint-Germain HB
+DTSTART:20261107T171500Z
+DTEND:20261107T191500Z
+LOCATION:À domicile\, Billy-Montigny
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 6. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 AS Saint-Mandé Handball – HBC Hersin U18 France
+DTSTART:20261115T133000Z
+DTEND:20261115T153000Z
+LOCATION:Chez AS Saint-Mandé Handball
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 7. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j8@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 France – Lille Métropole
+DTSTART:20261129T150000Z
+DTEND:20261129T170000Z
+LOCATION:À domicile\, Billy-Montigny
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 8. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j9@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Entente Espoir 91 · Massy – HBC Hersin U18 France
+DTSTART:20261205T170000Z
+DTEND:20261205T190000Z
+LOCATION:Chez Entente Espoir 91 · Massy
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 9. Alle
+ z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
+ mpionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-france-j10@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 France – Entente Flandres Littoral · Dunker
+ que
+DTSTART:20261212T163000Z
+DTEND:20261212T183000Z
+LOCATION:À domicile\, Billy-Montigny
+DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 10. All
+ ez les Tigres ! Classement et résultats : https://hbchersin.github.io/#ch
+ ampionnat-u18-france
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Handball Hazebrouck 71 – HBC Hersin U18 Région (35-28)
+DTSTART:20260912T143000Z
+DTEND:20260912T163000Z
+LOCATION:Chez Handball Hazebrouck 71
+DESCRIPTION:Championnat régional U18\, journée 1. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – Estudiantes HBC Tournai (27-25)
+DTSTART:20260919T163000Z
+DTEND:20260919T183000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 2. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 EAL / AFSB / Ailly-le-Haut-Clocher – HBC Hersin U18 Région
+  (39-34)
+DTSTART:20261003T150000Z
+DTEND:20261003T170000Z
+LOCATION:Chez EAL / AFSB / Ailly-le-Haut-Clocher
+DESCRIPTION:Championnat régional U18\, journée 3. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Sambre Avesnois Handball – HBC Hersin U18 Région
+DTSTART:20261114T153000Z
+DTEND:20261114T173000Z
+LOCATION:Chez Sambre Avesnois Handball
+DESCRIPTION:Championnat régional U18\, journée 4. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – HBC Crépy-en-Valois
+DTSTART:20261108T131500Z
+DTEND:20261108T151500Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 5. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j6@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Laonnois – HBC Hersin U18 Région
+DTSTART:20261122T130000Z
+DTEND:20261122T150000Z
+LOCATION:Chez HBC Laonnois
+DESCRIPTION:Championnat régional U18\, journée 6. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – Elite Axonaise U18 (Soissons)
+DTSTART:20261205T173000Z
+DTEND:20261205T193000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 7. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-departemental-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Départemental – Club des Handballeurs Auche
+ llois (24-29)
+DTSTART:20260926T163000Z
+DTEND:20260926T183000Z
+LOCATION:À domicile\, Béthune
+DESCRIPTION:Championnat départemental U18 (Entente Béthune / Hersin)\, j
+ ournée 1. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u18-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-departemental-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Team Lensoise de Handball – HBC Hersin U18 Départemental (
+ 15-47)
+DTSTART:20261003T123000Z
+DTEND:20261003T143000Z
+LOCATION:Chez Team Lensoise de Handball
+DESCRIPTION:Championnat départemental U18 (Entente Béthune / Hersin)\, j
+ ournée 2. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u18-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-departemental-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Rouvroy – HBC Hersin U18 Départemental (36-35)
+DTSTART:20261010T120000Z
+DTEND:20261010T140000Z
+LOCATION:Chez HBC Rouvroy
+DESCRIPTION:Championnat départemental U18 (Entente Béthune / Hersin)\, j
+ ournée 3. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u18-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-departemental-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Départemental – ASHB Carvin
+DTSTART:20261108T100000Z
+DTEND:20261108T120000Z
+LOCATION:À domicile\, Béthune
+DESCRIPTION:Championnat départemental U18 (Entente Béthune / Hersin)\, j
+ ournée 4. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u18-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-departemental-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Montreuillois U18 – HBC Hersin U18 Départemental
+DTSTART:20261121T153000Z
+DTEND:20261121T173000Z
+LOCATION:Chez HBC Montreuillois U18
+DESCRIPTION:Championnat départemental U18 (Entente Béthune / Hersin)\, j
+ ournée 5. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u18-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – AS Neuilly-en-Thelle (34-44)
+DTSTART:20260913T090000Z
+DTEND:20260913T110000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 1. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 SO Calais HB – HBC Hersin U15 Région (35-35)
+DTSTART:20260919T123000Z
+DTEND:20260919T143000Z
+LOCATION:Chez SO Calais HB
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 2. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 ASHB Carvin – HBC Hersin U15 Région (26-23)
+DTSTART:20261004T090000Z
+DTEND:20261004T110000Z
+LOCATION:Chez ASHB Carvin
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 3. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Handball Hazebrouck 71 – HBC Hersin U15 Région (24-32)
+DTSTART:20261011T093000Z
+DTEND:20261011T113000Z
+LOCATION:Chez Handball Hazebrouck 71
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 4. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – Sambre Avesnois Handball U15
+DTSTART:20261108T150000Z
+DTEND:20261108T170000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 5. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j6@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Alliance Marcq-la-Madeleine U15 – HBC Hersin U15 Région
+DTSTART:20261115T140000Z
+DTEND:20261115T160000Z
+LOCATION:Chez Alliance Marcq-la-Madeleine U15
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 6. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – Amiens Handball Club
+DTSTART:20261121T163000Z
+DTEND:20261121T183000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 7. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-region-j8@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Région – HBC Crépy-en-Valois
+DTSTART:20261129T140000Z
+DTEND:20261129T160000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
+ ée 8. Allez les Tigres ! Classement et résultats : https://hbchersin.git
+ hub.io/#championnat-u15-region
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-departemental-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Départemental – Club des Handballeurs Auche
+ llois (26-21)
+DTSTART:20260926T143000Z
+DTEND:20260926T163000Z
+LOCATION:À domicile\, Béthune
+DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
+ ournée 1. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u15-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-departemental-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 AMS Handball Achicourt – HBC Hersin U15 Départemental (24-
+ 34)
+DTSTART:20261003T123000Z
+DTEND:20261003T143000Z
+LOCATION:Chez AMS Handball Achicourt
+DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
+ ournée 2. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u15-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-departemental-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Départemental – RC d'Arras HB (34-15)
+DTSTART:20261010T143000Z
+DTEND:20261010T163000Z
+LOCATION:À domicile\, Béthune
+DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
+ ournée 3. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u15-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-departemental-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U15 Départemental – Billy-Montigny
+DTSTART:20261107T141500Z
+DTEND:20261107T161500Z
+LOCATION:À domicile\, Béthune
+DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
+ ournée 4. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u15-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-departemental-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Meg'Handball – HBC Hersin U15 Départemental
+DTSTART:20261114T140000Z
+DTEND:20261114T160000Z
+LOCATION:Chez Meg'Handball
+DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
+ ournée 5. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u15-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u15-departemental-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Team Lensoise de Handball – HBC Hersin U15 Départemental
+DTSTART:20261128T173000Z
+DTEND:20261128T193000Z
+LOCATION:Chez Team Lensoise de Handball
+DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
+ ournée 7. Allez les Tigres ! Classement et résultats : https://hbchersin
+ .github.io/#championnat-u15-departemental
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13a-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 A – Association Boulonnaise HB 2 (10-0)
+DTSTART:20261010T134500Z
+DTEND:20261010T154500Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 2. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13a-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 A – Team Lensoise de Handball
+DTSTART:20261108T150000Z
+DTEND:20261108T170000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 3. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13a-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Club des Handballeurs Auchellois – HBC Hersin U13 A
+DTSTART:20261115T100000Z
+DTEND:20261115T120000Z
+LOCATION:Chez Club des Handballeurs Auchellois
+DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13a-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 A – Biache Vallée Scarpe
+DTSTART:20261128T143000Z
+DTEND:20261128T163000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13a-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 A – RC d'Arras HB
+DTSTART:20261219T160000Z
+DTEND:20261219T180000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 7. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13b-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 B – Libercourt HBC (48-11)
+DTSTART:20261003T123000Z
+DTEND:20261003T143000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 1. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13b-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HB Longuenesse Maillebois – HBC Hersin U13 B
+DTSTART:20261121T160000Z
+DTEND:20261121T180000Z
+LOCATION:Chez HB Longuenesse Maillebois
+DESCRIPTION:Championnat départemental U13\, journée 2. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13b-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 B – Biache Vallée Scarpe 2
+DTSTART:20261107T130000Z
+DTEND:20261107T150000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 3. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13b-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 B – SO Calais HB 1
+DTSTART:20261114T140000Z
+DTEND:20261114T160000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13b-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 SBBL Handball Béthune – HBC Hersin U13 B
+DTSTART:20261128T153000Z
+DTEND:20261128T173000Z
+LOCATION:Chez SBBL Handball Béthune
+DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13b-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Douvrin HBC – HBC Hersin U13 B
+DTSTART:20261219T153000Z
+DTEND:20261219T173000Z
+LOCATION:Chez Douvrin HBC
+DESCRIPTION:Championnat départemental U13\, journée 7. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13c-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 C – Billy-Montigny 2 (21-22)
+DTSTART:20261003T134500Z
+DTEND:20261003T154500Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 1. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13c-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Meg'Handball – HBC Hersin U13 C
+DTSTART:20261107T143000Z
+DTEND:20261107T163000Z
+LOCATION:Chez Meg'Handball
+DESCRIPTION:Championnat départemental U13\, journée 3. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13c-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Association Boulonnaise HB 1 – HBC Hersin U13 C
+DTSTART:20261114T153000Z
+DTEND:20261114T173000Z
+LOCATION:Chez Association Boulonnaise HB 1
+DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13c-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 C – HBC Bully-les-Mines
+DTSTART:20261128T154500Z
+DTEND:20261128T174500Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u13c-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U13 C – HBC Courrières
+DTSTART:20261219T144500Z
+DTEND:20261219T164500Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U13\, journée 7. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u11-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U11 – Harnes HBC (35-1)
+DTSTART:20261017T120000Z
+DTEND:20261017T140000Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U11\, journée 2. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u11-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U11 – HBC Courrières
+DTSTART:20261108T100000Z
+DTEND:20261108T120000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U11\, journée 3. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u11-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Montreuillois – HBC Hersin U11
+DTSTART:20261121T134500Z
+DTEND:20261121T154500Z
+LOCATION:Chez HBC Montreuillois
+DESCRIPTION:Championnat départemental U11\, journée 4. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u11-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U11 – HBC Bully-les-Mines
+DTSTART:20261128T131500Z
+DTEND:20261128T151500Z
+LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U11\, journée 5. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u11-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U11 – SO Calais HB 1
+DTSTART:20261219T133000Z
+DTEND:20261219T153000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat départemental U11\, journée 7. Allez les Tigres 
+ ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-stage-u13-2026-10@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:Stage U13
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261030
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Stage · 09h00–17h00
+URL:https://hbchersin.github.io/#agenda
+END:VEVENT
+END:VCALENDAR

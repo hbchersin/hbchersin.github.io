@@ -1,0 +1,95 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – U18 Région
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:u18-region-j1@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Handball Hazebrouck 71 – HBC Hersin U18 Région (35-28)
+DTSTART:20260912T143000Z
+DTEND:20260912T163000Z
+LOCATION:Chez Handball Hazebrouck 71
+DESCRIPTION:Championnat régional U18\, journée 1. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j2@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – Estudiantes HBC Tournai (27-25)
+DTSTART:20260919T163000Z
+DTEND:20260919T183000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 2. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j3@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 EAL / AFSB / Ailly-le-Haut-Clocher – HBC Hersin U18 Région
+  (39-34)
+DTSTART:20261003T150000Z
+DTEND:20261003T170000Z
+LOCATION:Chez EAL / AFSB / Ailly-le-Haut-Clocher
+DESCRIPTION:Championnat régional U18\, journée 3. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j4@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 Sambre Avesnois Handball – HBC Hersin U18 Région
+DTSTART:20261114T153000Z
+DTEND:20261114T173000Z
+LOCATION:Chez Sambre Avesnois Handball
+DESCRIPTION:Championnat régional U18\, journée 4. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j5@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – HBC Crépy-en-Valois
+DTSTART:20261108T131500Z
+DTEND:20261108T151500Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 5. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j6@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Laonnois – HBC Hersin U18 Région
+DTSTART:20261122T130000Z
+DTEND:20261122T150000Z
+LOCATION:Chez HBC Laonnois
+DESCRIPTION:Championnat régional U18\, journée 6. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:u18-region-j7@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin U18 Région – Elite Axonaise U18 (Soissons)
+DTSTART:20261205T173000Z
+DTEND:20261205T193000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Championnat régional U18\, journée 7. Allez les Tigres ! Cla
+ ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
+ n
+URL:https://hbchersin.github.io/
+END:VEVENT
+END:VCALENDAR
