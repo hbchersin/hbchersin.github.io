@@ -3166,6 +3166,19 @@ $("#copy-mail").addEventListener("click", e => {
   });
   setTimeout(() => { btn.textContent = "Copier l'adresse"; }, 2500);
 });
+/* ----- Ne pas compter ses propres visites (audience) : 5 appuis rapides sur le logo du bas de page ----- */
+(() => {
+  if (!window.HBCH_PUBLIC) return;
+  const brand = $("footer .brand"); let taps = [];
+  brand?.addEventListener("click", () => {
+    const now = Date.now(); taps = taps.filter(t => now - t < 3000).concat(now);
+    if (taps.length < 5) return; taps = [];
+    let off = false;
+    try { off = localStorage.getItem("skipgc") === "t"; off ? localStorage.removeItem("skipgc") : localStorage.setItem("skipgc", "t"); } catch (e) { return; }
+    alert(off ? "Audience : les visites de cet appareil sont de nouveau comptées." : "Audience : les visites de cet appareil ne sont plus comptées.");
+  });
+})();
+
 /* ----- Application installable (site public uniquement) ----- */
 (() => {
   if (!window.HBCH_PUBLIC) return;
