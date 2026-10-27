@@ -51,6 +51,8 @@
       }
     }
     window.addEventListener("hashchange", count);
+    // iPhone : l'appli rouverte depuis l'icône reprend souvent la page sans la recharger
+    document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") { person(); app(); } });
     window.addEventListener("load", function () { setTimeout(function () { count(); person(); app(); }, 0); });
   })();
 </script>
