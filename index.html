@@ -34,8 +34,24 @@
       window.goatcounter.count({ path: "personnes-du-jour", title: "Personnes différentes (une fois par jour)", event: true });
       try { localStorage.setItem("hbch-vu", today); } catch (e) {}
     }
+    // Appli installée : « appli-installee » une seule fois par téléphone (première ouverture depuis l'icône),
+    // « appli-ouverte-du-jour » une fois par jour et par téléphone qui l'utilise
+    function app() {
+      var standalone = (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+      if (!standalone || !(window.goatcounter && window.goatcounter.count)) return;
+      var today = new Date().toISOString().slice(0, 10), done = null, day = null;
+      try { done = localStorage.getItem("hbch-installe"); day = localStorage.getItem("hbch-appli-jour"); } catch (e) {}
+      if (!done) {
+        window.goatcounter.count({ path: "appli-installee", title: "Appli installée (une fois par téléphone)", event: true });
+        try { localStorage.setItem("hbch-installe", today); } catch (e) {}
+      }
+      if (day !== today) {
+        window.goatcounter.count({ path: "appli-ouverte-du-jour", title: "Personnes ayant ouvert l'appli (une fois par jour)", event: true });
+        try { localStorage.setItem("hbch-appli-jour", today); } catch (e) {}
+      }
+    }
     window.addEventListener("hashchange", count);
-    window.addEventListener("load", function () { setTimeout(function () { count(); person(); }, 0); });
+    window.addEventListener("load", function () { setTimeout(function () { count(); person(); app(); }, 0); });
   })();
 </script>
 <script data-goatcounter="https://hbchersin.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="https://gc.zgo.at/count.js"></script>
