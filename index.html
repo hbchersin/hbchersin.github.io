@@ -3162,7 +3162,7 @@ $("#copy-mail").addEventListener("click", e => {
   const ADD = `<svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 6.5v7M6.5 10h7" stroke="currentColor" stroke-width="1.7"/></svg>`;
   let deferred = null, lastFocus = null;
   const KEY = "hbch-appli";
-  const later = () => { try { const t = +localStorage.getItem(KEY); return t && Date.now() - t < 21 * 864e5; } catch (e) { return false; } };
+  const later = () => { try { return !!localStorage.getItem(KEY); } catch (e) { return false; } };   // fermé une fois : ne revient plus (bouton en bas de page)
   const remember = () => { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} };
   function showSteps() {
     steps.innerHTML = iosOther

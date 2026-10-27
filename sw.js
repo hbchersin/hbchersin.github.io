@@ -1,7 +1,7 @@
 /* HBC Hersin : service worker de l'application installable.
    Page et données : toujours le réseau d'abord (infos fraîches), la copie seulement hors connexion.
    Photos et logos : la copie d'abord (rapide), rafraîchie en arrière-plan. */
-const CACHE = "hbch-a340f80ea9";
+const CACHE = "hbch-f75ef4eae9";
 const CORE = ["./", "index.html", "manifest.webmanifest", "logo-hbch.png", "icon-192.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {
