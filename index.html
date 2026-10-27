@@ -26,8 +26,16 @@
   (function () {
     function page() { return "/" + (decodeURIComponent(location.hash.slice(1)) || "accueil"); }
     function count() { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: page() }); }
+    // Une seule fois par jour et par appareil : la ligne « personnes-du-jour » donne le nombre de personnes
+    function person() {
+      var today = new Date().toISOString().slice(0, 10), seen = null;
+      try { seen = localStorage.getItem("hbch-vu"); } catch (e) {}
+      if (seen === today || !(window.goatcounter && window.goatcounter.count)) return;
+      window.goatcounter.count({ path: "personnes-du-jour", title: "Personnes différentes (une fois par jour)", event: true });
+      try { localStorage.setItem("hbch-vu", today); } catch (e) {}
+    }
     window.addEventListener("hashchange", count);
-    window.addEventListener("load", function () { setTimeout(count, 0); });
+    window.addEventListener("load", function () { setTimeout(function () { count(); person(); }, 0); });
   })();
 </script>
 <script data-goatcounter="https://hbchersin.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="https://gc.zgo.at/count.js"></script>
