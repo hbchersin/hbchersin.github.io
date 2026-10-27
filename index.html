@@ -40,11 +40,18 @@
 </script>
 <script data-goatcounter="https://hbchersin.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="https://gc.zgo.at/count.js"></script>
 <link rel="icon" href="logo-hbch.png">
-<link rel="apple-touch-icon" href="logo-hbch.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HBC Hersin">
 <script>
 /* Copie publique : les données viennent de data/*.json (mises à jour automatiquement), lecture seule */
 (function () {
   window.HBCH_PUBLIC = true;
+  // Application installable : le service worker garde une copie pour ouvrir l'appli même avec un mauvais réseau
+  if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
   var MEDIA = {};
   window.HBCH_BLOB = function (id) { return "media/" + id + (MEDIA[id] || ".jpg"); };
   function get(url) { return fetch(url, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }); }
@@ -1012,6 +1019,26 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 @media (max-width: 520px) { .lg-match .lg-score.todo { display: none; } .lg-match .cal-add.compact { grid-column: 2; grid-row: 2; justify-self: end; } }
 .ev-h { font: 800 28px var(--font-display); text-transform: uppercase; margin: 0 0 14px; }
 .menu a.item, .menu button.item { white-space: nowrap; }
+/* Application installable (site public) */
+.app-card { position: fixed; z-index: 60; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); max-width: 440px; margin-inline: auto; background: var(--night); color: var(--on-night); border: 1px solid var(--night-line); border-top: 3px solid var(--rose); box-shadow: 0 12px 40px rgba(0,0,0,.45); padding: 16px; display: grid; grid-template-columns: 56px 1fr 44px; gap: 4px 14px; align-items: start; }
+.app-card[hidden] { display: none; }
+.app-card > img { width: 56px; height: 56px; grid-row: 1 / 3; }
+.app-card h2 { font: 800 21px/1.1 var(--font-display); text-transform: uppercase; margin: 2px 0 0; color: var(--on-night); }
+.app-card p { margin: 0; font-size: 14px; color: var(--on-night-muted); }
+.app-card .app-x { grid-column: 3; grid-row: 1; width: 44px; height: 44px; margin: -10px -10px 0 0; background: none; border: 0; color: var(--on-night-muted); font-size: 26px; line-height: 1; cursor: pointer; }
+.app-card .app-x:hover { color: var(--on-night); }
+.app-actions { grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 12px; }
+.app-actions button { flex: 1; min-height: 48px; font: 700 15px var(--font-body); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; border: 2px solid var(--rose); }
+.app-actions .app-go { background: var(--rose); color: var(--night); }
+.app-actions .app-later { background: none; color: var(--on-night); border-color: var(--night-line); }
+.app-steps { grid-column: 1 / -1; margin: 12px 0 0; padding: 0; list-style: none; counter-reset: st; display: grid; gap: 10px; }
+.app-steps li { counter-increment: st; display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--on-night); }
+.app-steps li::before { content: counter(st); flex: none; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--rose); color: var(--night); font-weight: 800; font-size: 14px; }
+.app-steps svg { flex: none; vertical-align: -4px; }
+.app-steps b { color: var(--on-night); }
+.foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
+.foot-app:hover { border-color: var(--rose); color: var(--rose); }
+.foot-app[hidden] { display: none; }
 @media (min-width: 1081px) and (max-width: 1320px) { .menu { gap: 0; } .menu a.item, .menu button.item { padding-inline: 9px; } .menu a.cta { margin-left: 4px; padding-inline: 12px; } }
 .ev { display: grid; grid-template-columns: 84px 1fr; gap: 0; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
 .ev.has-photo { grid-template-columns: 84px 1fr 200px; }
@@ -1531,12 +1558,22 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 
 <a class="fab-scores" id="fab-scores" href="#scores" hidden><span aria-hidden="true">＋</span> Scores</a>
 
+<div class="app-card" id="app-card" role="dialog" aria-labelledby="app-t" hidden>
+  <img src="logo-hbch.png" alt="">
+  <h2 id="app-t">L'appli du HBCH</h2>
+  <button type="button" class="app-x" id="app-x" aria-label="Fermer">×</button>
+  <p id="app-sub">Les résultats, l'agenda et les actus des Tigres en un tap, depuis l'écran d'accueil de votre téléphone.</p>
+  <ol class="app-steps" id="app-steps" hidden></ol>
+  <div class="app-actions" id="app-actions"><button type="button" class="app-later" id="app-later">Plus tard</button><button type="button" class="app-go" id="app-go">Installer</button></div>
+</div>
+
 <footer>
   <div class="wrap">
     <div style="display:grid;gap:14px;align-content:start">
       <span class="brand"><img src="logo-hbch.png" alt="">HBC <b>Hersin</b></span>
       <p>Complexe Futura, rue Romain Rolland<br>62530 Hersin-Coupigny</p>
       <div class="socials" data-socials></div>
+      <button type="button" class="foot-app" id="foot-app" hidden><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><rect x="5" y="1.5" width="10" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 5.5v7M7 9.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Installer l'appli du club</button>
     </div>
     <div><h2>Le club</h2><ul class="plain"><li><a href="#club">Présentation</a></li><li><a href="#histoire">Notre histoire</a></li><li><a href="#bureau">Le bureau</a></li><li><a href="#salles">Nos salles</a></li><li><a href="#partenaires">Nos partenaires</a></li><li><a href="#contact">Contact</a></li></ul></div>
     <div><h2>Saison</h2><ul class="plain"><li><a href="#actualites">Actualités</a></li><li><a href="#agenda">Agenda</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#championnats">Championnats</a></li><li><a href="#entrainements">Entraînements</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
@@ -3111,6 +3148,60 @@ $("#copy-mail").addEventListener("click", e => {
   });
   setTimeout(() => { btn.textContent = "Copier l'adresse"; }, 2500);
 });
+/* ----- Application installable (site public uniquement) ----- */
+(() => {
+  if (!window.HBCH_PUBLIC) return;
+  const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  if (standalone) return;
+  const ua = navigator.userAgent;
+  const ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const iosOther = ios && /CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+  const mobile = ios || /Android/.test(ua);
+  const card = $("#app-card"), steps = $("#app-steps"), go = $("#app-go"), foot = $("#foot-app");
+  const SHARE = `<svg viewBox="0 0 20 20" width="22" height="22" aria-label="Partager" role="img"><path d="M10 2v11M6.5 5.5 10 2l3.5 3.5M6 8.5H4.5v9h11v-9H14" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>`;
+  const ADD = `<svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 6.5v7M6.5 10h7" stroke="currentColor" stroke-width="1.7"/></svg>`;
+  let deferred = null, lastFocus = null;
+  const KEY = "hbch-appli";
+  const later = () => { try { const t = +localStorage.getItem(KEY); return t && Date.now() - t < 21 * 864e5; } catch (e) { return false; } };
+  const remember = () => { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} };
+  function showSteps() {
+    steps.innerHTML = iosOther
+      ? `<li><span>Touchez ${SHARE} <b>Partager</b> (dans la barre d'adresse ou le menu)</span></li><li><span>Choisissez ${ADD} <b>Sur l'écran d'accueil</b></span></li><li><span>Touchez <b>Ajouter</b> : l'icône du tigre apparaît</span></li>`
+      : ios
+      ? `<li><span>Touchez ${SHARE} <b>Partager</b> en bas de Safari</span></li><li><span>Faites défiler et choisissez ${ADD} <b>Sur l'écran d'accueil</b></span></li><li><span>Touchez <b>Ajouter</b> : l'icône du tigre apparaît</span></li>`
+      : `<li><span>Ouvrez le menu <b>⋮</b> du navigateur</span></li><li><span>Choisissez <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b></span></li><li><span>Confirmez : l'icône du tigre apparaît</span></li>`;
+    steps.hidden = false; go.hidden = true; $("#app-later").textContent = "J'ai compris";
+  }
+  function open(fromFooter) {
+    lastFocus = document.activeElement;
+    steps.hidden = true; go.hidden = false; $("#app-later").textContent = "Plus tard";
+    if (!deferred) { go.textContent = "Voir comment"; if (fromFooter) showSteps(); }
+    else go.textContent = "Installer";
+    card.hidden = false;
+    if (fromFooter) (go.hidden ? $("#app-later") : go).focus();
+  }
+  function close() { card.hidden = true; remember(); if (lastFocus && card.contains(document.activeElement)) lastFocus.focus(); }
+  go.addEventListener("click", async () => {
+    if (!deferred) return showSteps();
+    deferred.prompt();
+    const { outcome } = await deferred.userChoice.catch(() => ({}));
+    deferred = null; card.hidden = true;
+    if (outcome === "accepted") foot.hidden = true; else remember();
+  });
+  $("#app-later").addEventListener("click", close);
+  $("#app-x").addEventListener("click", close);
+  card.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+  foot.addEventListener("click", () => open(true));
+  addEventListener("beforeinstallprompt", e => {
+    e.preventDefault(); deferred = e; foot.hidden = false;
+    if (!later() && card.hidden) setTimeout(() => card.hidden && !later() && open(false), 4000);
+  });
+  addEventListener("appinstalled", () => { card.hidden = true; foot.hidden = true; });
+  if (mobile) {
+    foot.hidden = false;
+    if (ios && !later()) setTimeout(() => card.hidden && open(false), 6000);
+  }
+})();
 </script>
 
 </body>
