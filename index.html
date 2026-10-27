@@ -3168,7 +3168,7 @@ $("#copy-mail").addEventListener("click", e => {
     steps.innerHTML = iosOther
       ? `<li><span>Touchez ${SHARE} <b>Partager</b> (dans la barre d'adresse ou le menu)</span></li><li><span>Choisissez ${ADD} <b>Sur l'écran d'accueil</b></span></li><li><span>Touchez <b>Ajouter</b> : l'icône du tigre apparaît</span></li>`
       : ios
-      ? `<li><span>Touchez ${SHARE} <b>Partager</b> en bas de Safari</span></li><li><span>Faites défiler et choisissez ${ADD} <b>Sur l'écran d'accueil</b></span></li><li><span>Touchez <b>Ajouter</b> : l'icône du tigre apparaît</span></li>`
+      ? `<li><span>Touchez <b>•••</b> en bas à droite de Safari</span></li><li><span>Touchez ${SHARE} <b>Partager</b></span></li><li><span>Faites défiler et choisissez ${ADD} <b>Sur l'écran d'accueil</b></span></li><li><span>Touchez <b>Ajouter</b> : l'icône du tigre apparaît</span></li>`
       : `<li><span>Ouvrez le menu <b>⋮</b> du navigateur</span></li><li><span>Choisissez <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b></span></li><li><span>Confirmez : l'icône du tigre apparaît</span></li>`;
     steps.hidden = false; go.hidden = true; $("#app-later").textContent = "J'ai compris";
   }
