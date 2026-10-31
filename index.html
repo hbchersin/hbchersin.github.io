@@ -3298,27 +3298,29 @@ $("#copy-mail").addEventListener("click", e => {
   const isOn = () => !!(os && os.User && os.User.PushSubscription && os.User.PushSubscription.optedIn);
   const band = $("#notif-band");
   const setFoot = () => { label.textContent = isOn() ? "Mes notifications" : "Recevoir les notifications"; band.hidden = isOn(); };
-  // Équipes à suivre : une étiquette OneSignal eq_<id> par équipe choisie
+  // Équipes à suivre (étiquettes OneSignal eq1…eq6, voir TAG_GROUPS)
   const NOTIF_TEAMS = [["seniors-1", "Seniors 1"], ["seniors-2", "Seniors 2"], ["u18-france", "U18 France"], ["u18-region", "U18 Région"],
     ["u18-departemental", "U18 Départ."], ["u15-region", "U15 Région"], ["u15-departemental", "U15 Départ."], ["u13a", "U13 A"], ["u13b", "U13 B"], ["u13c", "U13 C"], ["u11", "U11"]];
   const teamsBox = $("#notif-teams"), teamList = $("#notif-team-list");
+  // OneSignal gratuit : 6 étiquettes maximum. Les 11 équipes sont rangées par 2 dans eq1…eq6 (valeur 1 = 1re équipe, 2 = 2e, 3 = les deux).
+  const TAG_GROUPS = [["seniors-1", "seniors-2"], ["u18-france", "u18-region"], ["u18-departemental", "u15-region"],
+    ["u15-departemental", "u13a"], ["u13b", "u13c"], ["u11"]];
+  const followedFrom = tags => TAG_GROUPS.flatMap((g, i) => { const v = +tags["eq" + (i + 1)] || 0; return g.filter((id, k) => v & (1 << k)); });
   async function fillTeams() {
     let tags = {};
     try { tags = (await ready).User.getTags() || {}; } catch (e) {}
-    const none = !Object.keys(tags).some(k => k.startsWith("eq_"));
-    teamList.innerHTML = NOTIF_TEAMS.map(([id, name]) => `<label><input type="checkbox" value="${id}" ${tags["eq_" + id] === "1" || (none && id === "seniors-1") ? "checked" : ""}>${name}</label>`).join("");
+    const followed = followedFrom(tags), none = !Object.keys(tags).some(k => /^eq\d$/.test(k));
+    teamList.innerHTML = NOTIF_TEAMS.map(([id, name]) => `<label><input type="checkbox" value="${id}" ${followed.includes(id) || (none && id === "seniors-1") ? "checked" : ""}>${name}</label>`).join("");
   }
-  // Enregistre le choix (une étiquette à la fois, pour savoir exactement ce qui est passé) ; renvoie le nombre d'équipes enregistrées
   async function saveTeams() {
     const o = await ready, on = [...teamList.querySelectorAll("input:checked")].map(i => i.value);
-    const off = NOTIF_TEAMS.map(([id]) => id).filter(id => !on.includes(id));
-    let saved = 0, failed = 0;
-    try { if (off.length) await o.User.removeTags(off.map(id => "eq_" + id)); } catch (e) {}
-    for (const id of on) {
-      try { await o.User.addTag("eq_" + id, "1"); saved++; } catch (e) { failed++; }
-    }
+    const set = {}, unset = [];
+    TAG_GROUPS.forEach((g, i) => { const v = g.reduce((acc, id, k) => acc | (on.includes(id) ? 1 << k : 0), 0); v ? set["eq" + (i + 1)] = String(v) : unset.push("eq" + (i + 1)); });
+    let ok = true;
+    try { if (unset.length) await o.User.removeTags(unset); } catch (e) {}
+    try { if (Object.keys(set).length) await o.User.addTags(set); } catch (e) { ok = false; }
     try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (e) {}
-    return { saved, failed, total: on.length };
+    return { saved: ok ? on.length : 0, failed: ok ? 0 : on.length, total: on.length };
   }
   function savedMessage(r) {
     if (!r.total) return "Aucune équipe choisie : vous recevrez seulement les actus et les rappels des matchs des Seniors 1.";
