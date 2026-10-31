@@ -1906,18 +1906,20 @@ function photoCards(list, key, initialOnly) {
     return `<li><a class="pcard" href="${playerHref(key, p)}">
       <span class="pc-photo">${p.photo ? `<img src="${photoSrc(p)}" alt="" loading="lazy">` : `<span class="pc-empty" aria-hidden="true">${esc(initials(p))}</span>`}
         ${num ? `<span class="pc-num" aria-label="Numéro ${esc(p.numero)}">${esc(p.numero)}</span>` : ""}</span>
-      <span class="pc-body"><b>${esc(name)}</b><small>${[p.poste, p.main].filter(Boolean).map(esc).join(" · ")}</small><span class="pc-go">Voir sa fiche <span aria-hidden="true">→</span></span></span>
+      <span class="pc-body"><b>${esc(name)}</b><small>${[hasYear(key) ? genLabel(p) : "", p.poste, p.main].filter(Boolean).map(esc).join(" · ")}</small><span class="pc-go">Voir sa fiche <span aria-hidden="true">→</span></span></span>
     </a></li>`;
   }).join("")}</ul>`;
 }
 function renderRoster(el, id) {
   if (editing && editing.id === id) return renderEditor(el);
-  const r = teamRoster(id), list = sortedPlayers(id), split = hasPostes(id), cards = id === "seniors";
+  const r = teamRoster(id), list = sortedPlayers(id), split = hasPostes(id);
+  // Cartes avec photo : seniors, et toute catégorie dont au moins la moitié des joueurs a sa photo
+  const cards = id === "seniors" || list.filter(p => p.photo).length * 2 >= list.length;
   let html = `<div class="roster-head"><h2>Effectif · ${esc(ROSTER_GROUPS[id])}</h2>${canEditRoster && rosterState === "ready" ? `<button type="button" class="btn-edit" data-edit="${id}">Modifier l'effectif</button>` : ""}</div>`;
   if (rosterState === "loading") html += `<p class="sub">Chargement de l'effectif…</p>`;
   else if (rosterState === "off") html += `<p class="sub">L'effectif n'est pas disponible pour le moment.</p>`;
   else if (!list.length) html += `<p class="sub">${canEditRoster ? "Aucun joueur pour l'instant. Cliquez sur « Modifier l'effectif » pour ajouter le premier." : "L'effectif de cette catégorie sera bientôt publié."}</p>`;
-  else if (!split) html += `<p class="sub">${plural(list.length, "joueur")} · choisissez un joueur pour ouvrir sa fiche</p>${playerCards(list, id, r.initialOnly)}`;
+  else if (!split) html += `<p class="sub">${plural(list.length, "joueur")} · choisissez un joueur pour ouvrir sa fiche</p>${cards ? photoCards(list, id, r.initialOnly) : playerCards(list, id, r.initialOnly)}`;
   else {
     const groups = POSTE_GROUPS.map(([poste, label]) => [label, list.filter(p => (POSTES.includes(p.poste) ? p.poste : "") === poste)]).filter(([, g]) => g.length);
     html += `<p class="sub">${plural(list.length, "joueur")} · choisissez un joueur pour ouvrir sa fiche</p>
