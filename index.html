@@ -1071,6 +1071,17 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* Bandeau « Activez les notifications » en haut de l'accueil (site public, tant qu'elles ne sont pas activées) */
+.notif-band { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 64px; padding: 12px max(16px, calc((100% - 1180px) / 2)); background: var(--rose); color: var(--night); border: 0; text-align: left; cursor: pointer; font: inherit; }
+.notif-band[hidden] { display: none; }
+.notif-band .nb-ico { flex: none; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--night); color: var(--rose); }
+.notif-band .nb-txt { flex: 1; min-width: 0; }
+.notif-band b { display: block; font: 800 20px/1.1 var(--font-display); text-transform: uppercase; letter-spacing: .02em; }
+.notif-band .nb-txt > span { display: block; font-size: 14px; margin-top: 2px; }
+.notif-band .nb-go { flex: none; padding: 10px 16px; background: var(--night); color: var(--on-night); font: 700 14px var(--font-body); text-transform: uppercase; letter-spacing: .04em; }
+.notif-band:hover .nb-go { background: #2a2530; }
+.notif-band:focus-visible { outline: 3px solid var(--night); outline-offset: -6px; }
+@media (max-width: 520px) { .notif-band .nb-go { display: none; } .notif-band .nb-txt > span { font-size: 13px; } }
 @media (min-width: 1081px) and (max-width: 1320px) { .menu { gap: 0; } .menu a.item, .menu button.item { padding-inline: 9px; } .menu a.cta { margin-left: 4px; padding-inline: 12px; } }
 .ev { display: grid; grid-template-columns: 84px 1fr; gap: 0; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
 .ev.has-photo { grid-template-columns: 84px 1fr 200px; }
@@ -1163,6 +1174,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 
   <!-- ACCUEIL -->
   <div data-page="accueil" data-title="Accueil">
+    <button type="button" class="notif-band" id="notif-band" hidden><span class="nb-ico"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nb-txt"><b>Activez les notifications</b><span id="nb-sub">Résultats, actus et rappels des matchs des Tigres sur votre téléphone</span></span><span class="nb-go" aria-hidden="true">Activer →</span></button>
     <section class="page-hero hero">
       <div class="wrap">
         <div style="display:grid;gap:14px">
@@ -3273,7 +3285,8 @@ $("#copy-mail").addEventListener("click", e => {
   let os = null;
   const ready = new Promise(res => { (window.OneSignalDeferred = window.OneSignalDeferred || []).push(o => { os = o; res(o); }); });
   const isOn = () => !!(os && os.User && os.User.PushSubscription && os.User.PushSubscription.optedIn);
-  const setFoot = () => { label.textContent = isOn() ? "Couper les notifications" : "Recevoir les notifications"; };
+  const band = $("#notif-band");
+  const setFoot = () => { label.textContent = isOn() ? "Couper les notifications" : "Recevoir les notifications"; band.hidden = isOn(); };
   let mode = "ask";
   function show(m) {
     mode = m;
@@ -3313,8 +3326,16 @@ $("#copy-mail").addEventListener("click", e => {
     if (Notification.permission === "denied") return show("denied");
     show("ask"); go.focus();
   });
-  if (!supported) { if (ios && !standalone) foot.hidden = false; return; }
-  foot.hidden = false;
+  band.addEventListener("click", () => {
+    if (!supported) return show("install");
+    if (Notification.permission === "denied") return show("denied");
+    activate();
+  });
+  if (!supported) {
+    if (ios && !standalone) { foot.hidden = false; band.hidden = false; $("#nb-sub").textContent = "Installez l'appli du club, puis recevez les résultats et les actus des Tigres"; }
+    return;
+  }
+  foot.hidden = false; band.hidden = isOn();
   ready.then(o => { setFoot(); try { o.User.PushSubscription.addEventListener("change", setFoot); } catch (e) {} });
   // Invitation : dans l'appli installée (ou sur Android), tant que les notifications ne sont pas activées, une fois par jour
   if (standalone || !ios) setTimeout(() => {
