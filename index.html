@@ -3396,7 +3396,8 @@ $("#copy-mail").addEventListener("click", e => {
     if (ios && !standalone) { foot.hidden = false; band.hidden = false; $("#nb-sub").textContent = "Installez l'appli du club, puis recevez les résultats et les actus des Tigres"; }
     return;
   }
-  foot.hidden = false; band.hidden = isOn();
+  // Notifications déjà autorisées : le bandeau reste caché le temps que OneSignal confirme l'abonnement (pas de clignotement)
+  foot.hidden = false; band.hidden = isOn() || Notification.permission === "granted";
   ready.then(o => { setFoot(); try { o.User.PushSubscription.addEventListener("change", setFoot); } catch (e) {} });
   // Invitation : dans l'appli installée (ou sur Android), tant que les notifications ne sont pas activées, une fois par jour
   if (standalone || !ios) setTimeout(() => {
