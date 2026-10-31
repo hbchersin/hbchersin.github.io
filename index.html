@@ -3308,11 +3308,22 @@ $("#copy-mail").addEventListener("click", e => {
     const none = !Object.keys(tags).some(k => k.startsWith("eq_"));
     teamList.innerHTML = NOTIF_TEAMS.map(([id, name]) => `<label><input type="checkbox" value="${id}" ${tags["eq_" + id] === "1" || (none && id === "seniors-1") ? "checked" : ""}>${name}</label>`).join("");
   }
+  // Enregistre le choix (une étiquette à la fois, pour savoir exactement ce qui est passé) ; renvoie le nombre d'équipes enregistrées
   async function saveTeams() {
     const o = await ready, on = [...teamList.querySelectorAll("input:checked")].map(i => i.value);
     const off = NOTIF_TEAMS.map(([id]) => id).filter(id => !on.includes(id));
-    try { if (off.length) await o.User.removeTags(off.map(id => "eq_" + id)); if (on.length) await o.User.addTags(Object.fromEntries(on.map(id => ["eq_" + id, "1"]))); } catch (e) {}
+    let saved = 0, failed = 0;
+    try { if (off.length) await o.User.removeTags(off.map(id => "eq_" + id)); } catch (e) {}
+    for (const id of on) {
+      try { await o.User.addTag("eq_" + id, "1"); saved++; } catch (e) { failed++; }
+    }
     try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (e) {}
+    return { saved, failed, total: on.length };
+  }
+  function savedMessage(r) {
+    if (!r.total) return "Aucune équipe choisie : vous recevrez seulement les actus et les rappels des matchs des Seniors 1.";
+    if (!r.failed) return `C'est enregistré : vous recevrez les résultats de ${r.saved} équipe${r.saved > 1 ? "s" : ""}. 🐯`;
+    return `Seulement ${r.saved} équipe${r.saved > 1 ? "s" : ""} sur ${r.total} ${r.saved > 1 ? "ont" : "a"} pu être enregistrée${r.saved > 1 ? "s" : ""}. Réessayez avec une connexion stable, ou choisissez moins d'équipes.`;
   }
   let mode = "ask";
   function show(m) {
@@ -3348,7 +3359,14 @@ $("#copy-mail").addEventListener("click", e => {
   }
   go.addEventListener("click", async () => {
     if (mode === "install") { card.hidden = true; return $("#foot-app").click(); }
-    if (mode === "done" || mode === "teams") { await saveTeams(); card.hidden = true; return; }
+    if (mode === "done" || mode === "teams") {
+      go.disabled = true; go.textContent = "Enregistrement…";
+      const r = await saveTeams();
+      go.disabled = false;
+      mode = "saved"; teamsBox.hidden = true; txt.textContent = savedMessage(r);
+      go.hidden = true; later.textContent = "OK"; later.focus();
+      return;
+    }
     activate();
   });
   later.addEventListener("click", async () => {
