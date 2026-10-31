@@ -3317,6 +3317,9 @@ $("#copy-mail").addEventListener("click", e => {
     const set = {}, unset = [];
     TAG_GROUPS.forEach((g, i) => { const v = g.reduce((acc, id, k) => acc | (on.includes(id) ? 1 << k : 0), 0); v ? set["eq" + (i + 1)] = String(v) : unset.push("eq" + (i + 1)); });
     let ok = true;
+    // Anciennes étiquettes (une par équipe, eq_<id>) : supprimées d'abord, sinon elles occupent les 6 places autorisées
+    try { const old = Object.keys(o.User.getTags() || {}).filter(k => k.startsWith("eq_")); if (old.length) await o.User.removeTags(old); } catch (e) {}
+    try { await o.User.removeTags(NOTIF_TEAMS.map(([id]) => "eq_" + id)); } catch (e) {}
     try { if (unset.length) await o.User.removeTags(unset); } catch (e) {}
     try { if (Object.keys(set).length) await o.User.addTags(set); } catch (e) { ok = false; }
     try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (e) {}
