@@ -1071,6 +1071,16 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* Choix des équipes suivies (notifications) */
+.notif-teams { grid-column: 1 / -1; border: 0; margin: 12px 0 0; padding: 0; min-width: 0; }
+.notif-teams[hidden] { display: none; }
+.notif-teams legend { font: 800 17px var(--font-display); text-transform: uppercase; letter-spacing: .03em; color: var(--on-night); margin-bottom: 8px; padding: 0; }
+#notif-team-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-height: 42vh; overflow-y: auto; }
+#notif-team-list label { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--night-line); color: var(--on-night); font-size: 15px; cursor: pointer; }
+#notif-team-list label:has(input:checked) { border-color: var(--rose); background: rgba(231,51,125,.14); }
+#notif-team-list input { width: 20px; height: 20px; accent-color: var(--rose); flex: none; margin: 0; }
+.notif-teams .nt-note { margin: 8px 0 0; font-size: 13px; color: var(--on-night-muted); }
+.notif-teams .nt-max { color: var(--rose); }
 /* Bandeau « Activez les notifications » en haut de l'accueil (site public, tant qu'elles ne sont pas activées) */
 .notif-band { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 64px; padding: 12px max(16px, calc((100% - 1180px) / 2)); background: var(--rose); color: var(--night); border: 0; text-align: left; cursor: pointer; font: inherit; }
 .notif-band[hidden] { display: none; }
@@ -1616,6 +1626,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <h2 id="notif-t">Ne ratez rien des Tigres</h2>
   <button type="button" class="app-x" id="notif-x" aria-label="Fermer">×</button>
   <p id="notif-txt">Résultats, actus et rappels des matchs à domicile, directement sur votre téléphone.</p>
+  <fieldset class="notif-teams" id="notif-teams" hidden><legend>Résultats des équipes à suivre</legend><div id="notif-team-list"></div><p class="nt-note">Les actus et les rappels des matchs des Seniors 1 à Futura arrivent à tout le monde.</p></fieldset>
   <div class="app-actions"><button type="button" class="app-later" id="notif-later">Plus tard</button><button type="button" class="app-go" id="notif-go">Activer</button></div>
 </div>
 
@@ -3286,20 +3297,39 @@ $("#copy-mail").addEventListener("click", e => {
   const ready = new Promise(res => { (window.OneSignalDeferred = window.OneSignalDeferred || []).push(o => { os = o; res(o); }); });
   const isOn = () => !!(os && os.User && os.User.PushSubscription && os.User.PushSubscription.optedIn);
   const band = $("#notif-band");
-  const setFoot = () => { label.textContent = isOn() ? "Couper les notifications" : "Recevoir les notifications"; band.hidden = isOn(); };
+  const setFoot = () => { label.textContent = isOn() ? "Mes notifications" : "Recevoir les notifications"; band.hidden = isOn(); };
+  // Équipes à suivre : une étiquette OneSignal eq_<id> par équipe choisie
+  const NOTIF_TEAMS = [["seniors-1", "Seniors 1"], ["seniors-2", "Seniors 2"], ["u18-france", "U18 France"], ["u18-region", "U18 Région"],
+    ["u18-departemental", "U18 Départ."], ["u15-region", "U15 Région"], ["u15-departemental", "U15 Départ."], ["u13a", "U13 A"], ["u13b", "U13 B"], ["u13c", "U13 C"], ["u11", "U11"]];
+  const teamsBox = $("#notif-teams"), teamList = $("#notif-team-list");
+  async function fillTeams() {
+    let tags = {};
+    try { tags = (await ready).User.getTags() || {}; } catch (e) {}
+    const none = !Object.keys(tags).some(k => k.startsWith("eq_"));
+    teamList.innerHTML = NOTIF_TEAMS.map(([id, name]) => `<label><input type="checkbox" value="${id}" ${tags["eq_" + id] === "1" || (none && id === "seniors-1") ? "checked" : ""}>${name}</label>`).join("");
+  }
+  async function saveTeams() {
+    const o = await ready, on = [...teamList.querySelectorAll("input:checked")].map(i => i.value);
+    const off = NOTIF_TEAMS.map(([id]) => id).filter(id => !on.includes(id));
+    try { if (off.length) await o.User.removeTags(off.map(id => "eq_" + id)); if (on.length) await o.User.addTags(Object.fromEntries(on.map(id => ["eq_" + id, "1"]))); } catch (e) {}
+    try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (e) {}
+  }
   let mode = "ask";
   function show(m) {
     mode = m;
     txt.textContent = m === "ask" ? DEFAULT_TXT
       : m === "install" ? "Sur iPhone, les notifications fonctionnent dans l'appli du club : installez-la d'abord sur votre écran d'accueil, puis ouvrez-la et activez-les."
       : m === "denied" ? "Les notifications sont bloquées pour ce site. Autorisez-les dans les réglages de votre téléphone ou du navigateur, puis réessayez."
-      : "C'est fait ! Vous recevrez les résultats, les actus et les rappels des Tigres. 🐯";
-    go.hidden = m === "denied" || m === "done";
-    go.textContent = m === "install" ? "Installer l'appli" : "Activer";
-    later.textContent = m === "ask" || m === "install" ? "Plus tard" : "OK";
+      : m === "teams" ? "Choisissez les équipes dont vous voulez recevoir les résultats."
+      : "C'est fait ! Choisissez les équipes dont vous voulez recevoir les résultats. 🐯";
+    const picking = m === "done" || m === "teams";
+    teamsBox.hidden = !picking; if (picking) fillTeams();
+    go.hidden = m === "denied";
+    go.textContent = m === "install" ? "Installer l'appli" : picking ? "Enregistrer" : "Activer";
+    later.textContent = m === "ask" || m === "install" ? "Plus tard" : m === "teams" ? "Couper les notifs" : m === "done" ? "Plus tard" : "OK";
     card.hidden = false;
   }
-  function close() { card.hidden = true; if (mode === "ask") remember(); }
+  function close() { card.hidden = true; if (mode === "ask") remember(); if (mode === "done") saveTeams(); }
   function counted() {
     try { if (localStorage.getItem("hbch-notif-compte")) return; localStorage.setItem("hbch-notif-compte", "1"); } catch (e) { return; }
     if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "notifs-activees", title: "Notifications activées (une fois par téléphone)", event: true });
@@ -3316,13 +3346,21 @@ $("#copy-mail").addEventListener("click", e => {
     else if (Notification.permission === "denied") show("denied");
     else card.hidden = true;
   }
-  go.addEventListener("click", () => mode === "install" ? (card.hidden = true, $("#foot-app").click()) : activate());
-  later.addEventListener("click", close);
+  go.addEventListener("click", async () => {
+    if (mode === "install") { card.hidden = true; return $("#foot-app").click(); }
+    if (mode === "done" || mode === "teams") { await saveTeams(); card.hidden = true; return; }
+    activate();
+  });
+  later.addEventListener("click", async () => {
+    if (mode === "done") { await saveTeams(); card.hidden = true; return; }   // garde au moins le choix proposé
+    if (mode === "teams") { try { await os.User.PushSubscription.optOut(); } catch (e) {} setFoot(); card.hidden = true; return; }
+    close();
+  });
   $("#notif-x").addEventListener("click", close);
   card.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
   foot.addEventListener("click", async () => {
     if (!supported) return show("install");
-    if (isOn()) { try { await os.User.PushSubscription.optOut(); } catch (e) {} setFoot(); return; }
+    if (isOn()) return show("teams");
     if (Notification.permission === "denied") return show("denied");
     show("ask"); go.focus();
   });
