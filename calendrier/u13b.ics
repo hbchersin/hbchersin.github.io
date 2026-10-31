@@ -15,8 +15,8 @@ DTSTART:20261003T123000Z
 DTEND:20261003T143000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 1. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13b
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13b-j2@hbchersin.github.io
@@ -26,8 +26,8 @@ DTSTART:20261121T160000Z
 DTEND:20261121T180000Z
 LOCATION:Chez HB Longuenesse Maillebois
 DESCRIPTION:Championnat départemental U13\, journée 2. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13b
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13b-j3@hbchersin.github.io
@@ -37,8 +37,8 @@ DTSTART:20261107T130000Z
 DTEND:20261107T150000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 3. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13b
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13b-j4@hbchersin.github.io
@@ -48,19 +48,19 @@ DTSTART:20261114T140000Z
 DTEND:20261114T160000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13b
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13b-j5@hbchersin.github.io
 DTSTAMP:20260101T000000Z
 SUMMARY:🤾 SBBL Handball Béthune – HBC Hersin U13 B
-DTSTART:20261128T153000Z
-DTEND:20261128T173000Z
+DTSTART:20261128T140000Z
+DTEND:20261128T160000Z
 LOCATION:Chez SBBL Handball Béthune
 DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13b
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13b-j7@hbchersin.github.io
@@ -70,7 +70,7 @@ DTSTART:20261219T153000Z
 DTEND:20261219T173000Z
 LOCATION:Chez Douvrin HBC
 DESCRIPTION:Championnat départemental U13\, journée 7. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13b
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13b
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

@@ -15,8 +15,8 @@ DTSTART:20261011T093000Z
 DTEND:20261011T113000Z
 LOCATION:Chez Handball Hazebrouck 71
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 4. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 4. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

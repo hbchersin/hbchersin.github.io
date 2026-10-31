@@ -15,8 +15,8 @@ DTSTART:20261010T134500Z
 DTEND:20261010T154500Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 2. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13a
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13a-j3@hbchersin.github.io
@@ -26,8 +26,8 @@ DTSTART:20261108T150000Z
 DTEND:20261108T170000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 3. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13a
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13a-j4@hbchersin.github.io
@@ -37,8 +37,8 @@ DTSTART:20261115T100000Z
 DTEND:20261115T120000Z
 LOCATION:Chez Club des Handballeurs Auchellois
 DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13a
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13a-j5@hbchersin.github.io
@@ -48,8 +48,8 @@ DTSTART:20261128T143000Z
 DTEND:20261128T163000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13a
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13a-j7@hbchersin.github.io
@@ -59,7 +59,7 @@ DTSTART:20261219T160000Z
 DTEND:20261219T180000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 7. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13a
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13a
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

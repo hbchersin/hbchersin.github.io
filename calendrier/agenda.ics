@@ -15,6 +15,6 @@ DTSTART;VALUE=DATE:20261028
 DTEND;VALUE=DATE:20261030
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Stage · 09h00–17h00
-URL:https://hbchersin.github.io/#agenda
+URL:https://hbchersin.fr/#agenda
 END:VEVENT
 END:VCALENDAR

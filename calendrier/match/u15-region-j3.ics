@@ -15,8 +15,8 @@ DTSTART:20261004T090000Z
 DTEND:20261004T110000Z
 LOCATION:Chez ASHB Carvin
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 3. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 3. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

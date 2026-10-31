@@ -11,12 +11,12 @@ BEGIN:VEVENT
 UID:u18-france-j6@hbchersin.github.io
 DTSTAMP:20260101T000000Z
 SUMMARY:🤾 HBC Hersin U18 France – Ent. Paris Saint-Germain HB
-DTSTART:20261107T171500Z
-DTEND:20261107T191500Z
+DTSTART:20261107T154500Z
+DTEND:20261107T174500Z
 LOCATION:À domicile\, Billy-Montigny
 DESCRIPTION:Championnat de France U18 (Alliance Artois)\, journée 6. Alle
- z les Tigres ! Classement et résultats : https://hbchersin.github.io/#cha
- mpionnat-u18-france
-URL:https://hbchersin.github.io/
+ z les Tigres ! Classement et résultats : https://hbchersin.fr/#championna
+ t-u18-france
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

@@ -15,8 +15,8 @@ DTSTART:20261003T134500Z
 DTEND:20261003T154500Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 1. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13c
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13c-j3@hbchersin.github.io
@@ -26,8 +26,8 @@ DTSTART:20261107T143000Z
 DTEND:20261107T163000Z
 LOCATION:Chez Meg'Handball
 DESCRIPTION:Championnat départemental U13\, journée 3. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13c
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13c-j4@hbchersin.github.io
@@ -37,8 +37,8 @@ DTSTART:20261114T153000Z
 DTEND:20261114T173000Z
 LOCATION:Chez Association Boulonnaise HB 1
 DESCRIPTION:Championnat départemental U13\, journée 4. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13c
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13c-j5@hbchersin.github.io
@@ -48,8 +48,8 @@ DTSTART:20261128T154500Z
 DTEND:20261128T174500Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 5. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13c
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u13c-j7@hbchersin.github.io
@@ -59,7 +59,7 @@ DTSTART:20261219T144500Z
 DTEND:20261219T164500Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U13\, journée 7. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u13c
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u13c
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

@@ -15,9 +15,9 @@ DTSTART:20260913T090000Z
 DTEND:20260913T110000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 1. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 1. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j2@hbchersin.github.io
@@ -27,9 +27,9 @@ DTSTART:20260919T123000Z
 DTEND:20260919T143000Z
 LOCATION:Chez SO Calais HB
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 2. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 2. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j3@hbchersin.github.io
@@ -39,9 +39,9 @@ DTSTART:20261004T090000Z
 DTEND:20261004T110000Z
 LOCATION:Chez ASHB Carvin
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 3. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 3. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j4@hbchersin.github.io
@@ -51,9 +51,9 @@ DTSTART:20261011T093000Z
 DTEND:20261011T113000Z
 LOCATION:Chez Handball Hazebrouck 71
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 4. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 4. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j5@hbchersin.github.io
@@ -63,9 +63,9 @@ DTSTART:20261108T150000Z
 DTEND:20261108T170000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 5. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 5. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j6@hbchersin.github.io
@@ -75,9 +75,9 @@ DTSTART:20261115T140000Z
 DTEND:20261115T160000Z
 LOCATION:Chez Alliance Marcq-la-Madeleine U15
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 6. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 6. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j7@hbchersin.github.io
@@ -87,9 +87,9 @@ DTSTART:20261121T163000Z
 DTEND:20261121T183000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 7. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 7. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j8@hbchersin.github.io
@@ -99,8 +99,8 @@ DTSTART:20261129T140000Z
 DTEND:20261129T160000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 8. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 8. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

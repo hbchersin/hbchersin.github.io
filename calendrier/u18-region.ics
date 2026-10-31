@@ -15,9 +15,8 @@ DTSTART:20260912T143000Z
 DTEND:20260912T163000Z
 LOCATION:Chez Handball Hazebrouck 71
 DESCRIPTION:Championnat régional U18\, journée 1. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j2@hbchersin.github.io
@@ -27,9 +26,8 @@ DTSTART:20260919T163000Z
 DTEND:20260919T183000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U18\, journée 2. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j3@hbchersin.github.io
@@ -40,9 +38,8 @@ DTSTART:20261003T150000Z
 DTEND:20261003T170000Z
 LOCATION:Chez EAL / AFSB / Ailly-le-Haut-Clocher
 DESCRIPTION:Championnat régional U18\, journée 3. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j4@hbchersin.github.io
@@ -52,9 +49,8 @@ DTSTART:20261114T153000Z
 DTEND:20261114T173000Z
 LOCATION:Chez Sambre Avesnois Handball
 DESCRIPTION:Championnat régional U18\, journée 4. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j5@hbchersin.github.io
@@ -64,9 +60,8 @@ DTSTART:20261108T131500Z
 DTEND:20261108T151500Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U18\, journée 5. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j6@hbchersin.github.io
@@ -76,9 +71,8 @@ DTSTART:20261122T130000Z
 DTEND:20261122T150000Z
 LOCATION:Chez HBC Laonnois
 DESCRIPTION:Championnat régional U18\, journée 6. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j7@hbchersin.github.io
@@ -88,8 +82,7 @@ DTSTART:20261205T173000Z
 DTEND:20261205T193000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U18\, journée 7. Allez les Tigres ! Cla
- ssement et résultats : https://hbchersin.github.io/#championnat-u18-regio
- n
-URL:https://hbchersin.github.io/
+ ssement et résultats : https://hbchersin.fr/#championnat-u18-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

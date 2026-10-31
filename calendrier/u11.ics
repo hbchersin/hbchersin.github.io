@@ -15,8 +15,8 @@ DTSTART:20261017T120000Z
 DTEND:20261017T140000Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U11\, journée 2. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u11
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u11-j3@hbchersin.github.io
@@ -26,8 +26,8 @@ DTSTART:20261108T100000Z
 DTEND:20261108T120000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U11\, journée 3. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u11
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u11-j4@hbchersin.github.io
@@ -37,8 +37,8 @@ DTSTART:20261121T134500Z
 DTEND:20261121T154500Z
 LOCATION:Chez HBC Montreuillois
 DESCRIPTION:Championnat départemental U11\, journée 4. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u11
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u11-j5@hbchersin.github.io
@@ -48,8 +48,8 @@ DTSTART:20261128T131500Z
 DTEND:20261128T151500Z
 LOCATION:Salle Vivre\, rue Victor Hugo\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U11\, journée 5. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u11
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u11-j7@hbchersin.github.io
@@ -59,7 +59,7 @@ DTSTART:20261219T133000Z
 DTEND:20261219T153000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat départemental U11\, journée 7. Allez les Tigres 
- ! Classement et résultats : https://hbchersin.github.io/#championnat-u11
-URL:https://hbchersin.github.io/
+ ! Classement et résultats : https://hbchersin.fr/#championnat-u11
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

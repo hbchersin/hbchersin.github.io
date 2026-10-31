@@ -15,8 +15,8 @@ DTSTART:20261121T163000Z
 DTEND:20261121T183000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 7. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 7. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

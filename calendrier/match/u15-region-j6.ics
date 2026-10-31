@@ -15,8 +15,8 @@ DTSTART:20261115T140000Z
 DTEND:20261115T160000Z
 LOCATION:Chez Alliance Marcq-la-Madeleine U15
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 6. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 6. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

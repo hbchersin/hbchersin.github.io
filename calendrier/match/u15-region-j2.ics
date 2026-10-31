@@ -15,8 +15,8 @@ DTSTART:20260919T123000Z
 DTEND:20260919T143000Z
 LOCATION:Chez SO Calais HB
 DESCRIPTION:Championnat régional U15 (Entente Hersin / Béthune)\, journ
- ée 2. Allez les Tigres ! Classement et résultats : https://hbchersin.git
- hub.io/#championnat-u15-region
-URL:https://hbchersin.github.io/
+ ée 2. Allez les Tigres ! Classement et résultats : https://hbchersin.fr/
+ #championnat-u15-region
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR

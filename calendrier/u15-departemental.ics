@@ -17,8 +17,8 @@ DTEND:20260926T163000Z
 LOCATION:À domicile\, Béthune
 DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
  ournée 1. Allez les Tigres ! Classement et résultats : https://hbchersin
- .github.io/#championnat-u15-departemental
-URL:https://hbchersin.github.io/
+ .fr/#championnat-u15-departemental
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-departemental-j2@hbchersin.github.io
@@ -30,8 +30,8 @@ DTEND:20261003T143000Z
 LOCATION:Chez AMS Handball Achicourt
 DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
  ournée 2. Allez les Tigres ! Classement et résultats : https://hbchersin
- .github.io/#championnat-u15-departemental
-URL:https://hbchersin.github.io/
+ .fr/#championnat-u15-departemental
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-departemental-j3@hbchersin.github.io
@@ -42,8 +42,8 @@ DTEND:20261010T163000Z
 LOCATION:À domicile\, Béthune
 DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
  ournée 3. Allez les Tigres ! Classement et résultats : https://hbchersin
- .github.io/#championnat-u15-departemental
-URL:https://hbchersin.github.io/
+ .fr/#championnat-u15-departemental
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-departemental-j4@hbchersin.github.io
@@ -54,8 +54,8 @@ DTEND:20261107T161500Z
 LOCATION:À domicile\, Béthune
 DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
  ournée 4. Allez les Tigres ! Classement et résultats : https://hbchersin
- .github.io/#championnat-u15-departemental
-URL:https://hbchersin.github.io/
+ .fr/#championnat-u15-departemental
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-departemental-j5@hbchersin.github.io
@@ -66,8 +66,8 @@ DTEND:20261114T160000Z
 LOCATION:Chez Meg'Handball
 DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
  ournée 5. Allez les Tigres ! Classement et résultats : https://hbchersin
- .github.io/#championnat-u15-departemental
-URL:https://hbchersin.github.io/
+ .fr/#championnat-u15-departemental
+URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
 UID:u15-departemental-j7@hbchersin.github.io
@@ -78,7 +78,7 @@ DTEND:20261128T193000Z
 LOCATION:Chez Team Lensoise de Handball
 DESCRIPTION:Championnat départemental U15 (Entente Béthune / Hersin)\, j
  ournée 7. Allez les Tigres ! Classement et résultats : https://hbchersin
- .github.io/#championnat-u15-departemental
-URL:https://hbchersin.github.io/
+ .fr/#championnat-u15-departemental
+URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR
