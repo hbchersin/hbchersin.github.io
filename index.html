@@ -3297,7 +3297,16 @@ $("#copy-mail").addEventListener("click", e => {
   const ready = new Promise(res => { (window.OneSignalDeferred = window.OneSignalDeferred || []).push(o => { os = o; res(o); }); });
   const isOn = () => !!(os && os.User && os.User.PushSubscription && os.User.PushSubscription.optedIn);
   const band = $("#notif-band");
-  const setFoot = () => { label.textContent = isOn() ? "Mes notifications" : "Recevoir les notifications"; band.hidden = isOn(); };
+  // Bandeau : caché tout de suite si abonné ; sinon, quand le téléphone a déjà autorisé les notifications, OneSignal met
+  // quelques secondes à confirmer l'abonnement à l'ouverture : on attend avant de l'afficher (pas de clignotement)
+  let bandTimer = null;
+  const setBand = () => {
+    clearTimeout(bandTimer);
+    if (isOn()) { band.hidden = true; return; }
+    if (Notification.permission !== "granted") { band.hidden = false; return; }
+    bandTimer = setTimeout(() => { band.hidden = isOn(); }, 5000);
+  };
+  const setFoot = () => { label.textContent = isOn() ? "Mes notifications" : "Recevoir les notifications"; setBand(); };
   // Équipes à suivre (étiquettes OneSignal eq1…eq6, voir TAG_GROUPS)
   const NOTIF_TEAMS = [["seniors-1", "Seniors 1"], ["seniors-2", "Seniors 2"], ["u18-france", "U18 France"], ["u18-region", "U18 Région"],
     ["u18-departemental", "U18 Départ."], ["u15-region", "U15 Région"], ["u15-departemental", "U15 Départ."], ["u13a", "U13 A"], ["u13b", "U13 B"], ["u13c", "U13 C"], ["u11", "U11"]];
