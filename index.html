@@ -3300,11 +3300,17 @@ $("#copy-mail").addEventListener("click", e => {
   // Bandeau : caché tout de suite si abonné ; sinon, quand le téléphone a déjà autorisé les notifications, OneSignal met
   // quelques secondes à confirmer l'abonnement à l'ouverture : on attend avant de l'afficher (pas de clignotement)
   let bandTimer = null;
+  // Mémorise sur le téléphone que les notifications sont actives : à l'ouverture suivante, aucun bandeau tant que
+  // OneSignal n'a pas répondu (il n'est réaffiché que si, 6 s après, l'abonnement n'est toujours pas confirmé)
+  const NOTIF_ON = "hbch-notif-on";
+  const knownOn = () => { try { return localStorage.getItem(NOTIF_ON) === "1"; } catch (e) { return false; } };
+  const rememberOn = v => { try { localStorage.setItem(NOTIF_ON, v ? "1" : "0"); } catch (e) {} };
   const setBand = () => {
     clearTimeout(bandTimer);
-    if (isOn()) { band.hidden = true; return; }
-    if (Notification.permission !== "granted") { band.hidden = false; return; }
-    bandTimer = setTimeout(() => { band.hidden = isOn(); }, 5000);
+    if (isOn()) { rememberOn(true); band.hidden = true; return; }
+    if (!knownOn() && Notification.permission !== "granted") { band.hidden = false; return; }
+    band.hidden = true;
+    bandTimer = setTimeout(() => { if (isOn()) return; rememberOn(false); band.hidden = false; }, 6000);
   };
   const setFoot = () => { label.textContent = isOn() ? "Mes notifications" : "Recevoir les notifications"; setBand(); };
   // Équipes à suivre (étiquettes OneSignal eq1…eq6, voir TAG_GROUPS)
@@ -3385,7 +3391,7 @@ $("#copy-mail").addEventListener("click", e => {
   });
   later.addEventListener("click", async () => {
     if (mode === "done") { await saveTeams(); card.hidden = true; return; }   // garde au moins le choix proposé
-    if (mode === "teams") { try { await os.User.PushSubscription.optOut(); } catch (e) {} setFoot(); card.hidden = true; return; }
+    if (mode === "teams") { try { await os.User.PushSubscription.optOut(); } catch (e) {} rememberOn(false); setFoot(); card.hidden = true; return; }
     close();
   });
   $("#notif-x").addEventListener("click", close);
@@ -3406,7 +3412,7 @@ $("#copy-mail").addEventListener("click", e => {
     return;
   }
   // Notifications déjà autorisées : le bandeau reste caché le temps que OneSignal confirme l'abonnement (pas de clignotement)
-  foot.hidden = false; band.hidden = isOn() || Notification.permission === "granted";
+  foot.hidden = false; band.hidden = isOn() || knownOn() || Notification.permission === "granted";
   ready.then(o => { setFoot(); try { o.User.PushSubscription.addEventListener("change", setFoot); } catch (e) {} });
   // Invitation : dans l'appli installée (ou sur Android), tant que les notifications ne sont pas activées, une fois par jour
   if (standalone || !ios) setTimeout(() => {
