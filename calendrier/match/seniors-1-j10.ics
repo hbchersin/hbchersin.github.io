@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – Seniors 1
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:seniors-1-j10@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Crépy-en-Valois – HBC Hersin Seniors 1
+DTSTART:20270109T200000Z
+DTEND:20270109T220000Z
+LOCATION:Chez HBC Crépy-en-Valois
+DESCRIPTION:Prénationale masculine\, journée 10. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.fr/#championnat-seniors-1
+URL:https://hbchersin.fr/
+END:VEVENT
+END:VCALENDAR

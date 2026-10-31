@@ -108,6 +108,17 @@ DESCRIPTION:Prénationale masculine\, journée 9. Allez les Tigres ! Class
 URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
+UID:seniors-1-j10@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Crépy-en-Valois – HBC Hersin Seniors 1
+DTSTART:20270109T200000Z
+DTEND:20270109T220000Z
+LOCATION:Chez HBC Crépy-en-Valois
+DESCRIPTION:Prénationale masculine\, journée 10. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.fr/#championnat-seniors-1
+URL:https://hbchersin.fr/
+END:VEVENT
+BEGIN:VEVENT
 UID:seniors-1-j11@hbchersin.github.io
 DTSTAMP:20260101T000000Z
 SUMMARY:🤾 HBC Hersin Seniors 1 – Tourcoing Hand Ball SG1
@@ -204,6 +215,17 @@ DTEND:20261018T170000Z
 LOCATION:Chez Douvrin HBC
 DESCRIPTION:Coupe de France régionale · 1er tour. Allez les Tigres ! Cla
  ssement et résultats : https://hbchersin.fr/#championnat-seniors-1
+URL:https://hbchersin.fr/
+END:VEVENT
+BEGIN:VEVENT
+UID:cdf-seniors-2e-tour@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 HBC Hersin Seniors – HBC Bully les Mines
+DTSTART:20261122T160000Z
+DTEND:20261122T180000Z
+LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
+DESCRIPTION:Coupe de France régionale · 2e tour. Allez les Tigres ! Clas
+ sement et résultats : https://hbchersin.fr/#championnat-seniors-1
 URL:https://hbchersin.fr/
 END:VEVENT
 END:VCALENDAR
