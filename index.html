@@ -1413,6 +1413,21 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .app-home .news-home .news p { -webkit-line-clamp: 2; font-size: 14px; }
 .app-home .sp-band { padding-block: 18px; }
 .app-home .sp-band h2 { font-size: 22px !important; }
+
+/* ----- Effectifs sur téléphone : 3 joueurs par ligne, cartes compactes (toute la carte ouvre la fiche) ----- */
+@media (max-width: 600px) {
+  .roster-card { padding: 16px 12px; }
+  .pcards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .pc-num { left: 4px; top: 4px; min-width: 28px; height: 28px; padding: 0 4px; font-size: 17px; }
+  .pc-empty { font-size: 30px; }
+  .pc-body { padding: 6px 6px 8px; }
+  .pc-body b { font-size: 14px; line-height: 1.05; }
+  .pcard .pc-body small { display: none; }
+  .pcard .pc-go { margin-top: 5px; gap: 3px; font-size: 9.5px; letter-spacing: .03em; white-space: nowrap; }
+  .poste-nav { flex-wrap: nowrap; overflow-x: auto; margin-inline: -12px; padding: 0 12px 4px; scrollbar-width: none; }
+  .poste-nav a { flex: none; }
+  .poste-group { margin-top: 16px; }
+}
 </style>
 </head>
 <body>
