@@ -1356,7 +1356,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .app-home [data-page="accueil"] > section:has(.mosaic) .head { margin-bottom: 12px; }
 .app-home [data-page="accueil"] > section:has(.mosaic) .head h2 { font-size: 26px; }
 .app-home .mosaic .main, .app-home .mosaic .quote { display: none; }
-.app-home .mosaic { grid-template-columns: 1fr; }
+.app-home .mosaic { grid-template-columns: 1fr; max-width: 680px; }
 .app-home .mc { padding-block: 14px 16px; }
 .app-home .mc-head { margin-bottom: 10px; }
 .app-home .mc-head h2 { font-size: 24px; }
@@ -3202,8 +3202,15 @@ const hhmm = d => `${String(d.getHours()).padStart(2, "0")}h${String(d.getMinute
 const teamLabel = t => `${t.big}${t.suffix ? " " + t.suffix : ""}`;
 
 /* ----- Accueil « appli » : version compacte à l'ouverture de l'application ----- */
-const APP_HOME = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true || /[?&]apercu=appli\b/.test(location.search);
+// Dans l'appli installée, et sur le site pour les habitués qui ont choisi leurs équipes dans « Mon club »
+const IS_APP = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true || /[?&]apercu=appli\b/.test(location.search);
+const hasMyTeams = () => { try { return !!(localStorage.getItem("hbch-equipes") || "").trim(); } catch (e) { return false; } };
+let APP_HOME = IS_APP || hasMyTeams();
 document.documentElement.classList.toggle("app-home", APP_HOME);
+function syncAppHome() {
+  const on = IS_APP || hasMyTeams(); if (on === APP_HOME) return;
+  APP_HOME = on; document.documentElement.classList.toggle("app-home", on); renderWeekend();
+}
 function compactProg(box) {
   const prog = box.querySelector(".wk-prog"); if (!prog) return;
   const rows = [...prog.querySelectorAll(".wk-prog-day li")], KEEP = 3;
@@ -3751,6 +3758,7 @@ function mcCard(id) {
 }
 function renderMonClub() {
   const el = $("#mon-club"); if (!el) return;
+  syncAppHome();
   const mine = mcGet();
   el.hidden = false;
   const picker = mcPicking ? `<form class="mc-pick" id="mc-pick"><fieldset><legend>Choisissez vos équipes : elles s'afficheront ici en premier</legend>
