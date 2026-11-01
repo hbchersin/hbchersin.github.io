@@ -2180,7 +2180,7 @@ renderWeek("all");
 
 /* ----- Carrousel des équipes (accueil) ----- */
 // Une photo par équipe ; les seniors sont déjà en grande photo à côté
-const SLIDES = [["u11", "U11"], ["u13a", "U13"], ["u15-region", "U15 Région"], ["u15-departemental", "U15 Départemental"],
+const SLIDES = [["seniors-1", "Seniors"], ["u11", "U11"], ["u13a", "U13"], ["u15-region", "U15 Région"], ["u15-departemental", "U15 Départemental"],
   ["u18-region", "U18 Région"], ["u18-departemental", "U18 Départemental"], ["u18-france", "U18 France"], ["loisirs", "Loisirs"]]
   .filter(([id]) => PHOTOS[id]);
 $("#slides").innerHTML = SLIDES.map(([id, label], i) => `
