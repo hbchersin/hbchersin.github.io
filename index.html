@@ -472,9 +472,9 @@ figure { margin: 0; }
 }
 .ph-struct { position: relative; display: inline-flex; align-items: center; gap: 10px; justify-self: start; padding: 8px 14px 8px 10px; background: rgba(231,51,125,.12); border-left: 3px solid var(--rose); color: var(--on-night); font: 700 15px/1.25 var(--font-body); }
 .ph-struct > span:first-child { font-size: 22px; }
-.ph-struct img { flex: none; width: 52px; height: 52px; object-fit: contain; background: #fff; border-radius: 6px; padding: 2px; }
-.ph-struct img.wide { width: auto; height: 40px; max-width: 150px; }
-@media (max-width: 420px) { .ph-struct { flex-wrap: wrap; } }
+.ph-struct img { flex: none; width: auto; height: 50px; max-width: 50px; object-fit: contain; border-radius: 4px; }
+.ph-struct img.wide { height: 34px; max-width: 132px; }
+@media (max-width: 420px) { .ph-struct { gap: 8px; font-size: 14px; } .ph-struct img { height: 44px; } .ph-struct img.wide { height: 28px; max-width: 108px; } }
 .ph-struct small { display: block; font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .1em; color: var(--rose); }
 .pl-sen { display: inline-block; white-space: nowrap; margin-top: 6px; font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .08em; color: var(--rose-ink); border: 1px solid var(--rose-ink); padding: 2px 7px; }
 a.player { text-decoration: none; color: inherit; }
