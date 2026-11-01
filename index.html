@@ -1091,6 +1091,13 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .gal-card small { color: var(--rose-ink); font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .08em; }
 .gal-card b { font: 800 22px/1.1 var(--font-display); text-transform: uppercase; }
 .gal-card span.gc-date { color: var(--muted); font-size: 14px; }
+.gal-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.gal-filter a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 700; font-size: 15px; }
+.gal-filter a span { font-weight: 600; color: var(--muted); font-size: 13px; }
+.gal-filter a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+.gal-filter a[aria-current] { background: var(--rose); border-color: var(--rose); color: var(--night); }
+.gal-filter a[aria-current] span { color: var(--night); }
+.gal-card b { overflow-wrap: anywhere; }
 .gal-head { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-bottom: 20px; }
 .gal-head a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 15px; background: var(--surface); }
 .gal-head a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
@@ -1445,7 +1452,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
     <section class="page-hero"><div class="wrap">
       <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="#accueil">Accueil</a></li><li><a href="#actualites">Actualités</a></li><li aria-current="page">Photos</li></ol></nav>
       <h1 tabindex="-1" id="photos-h1">Les <em>photos</em></h1>
-      <p class="lead" id="photos-lead">Les matchs des Seniors en images, repris des albums de notre page Facebook.</p>
+      <p class="lead" id="photos-lead">Les matchs de toutes nos équipes en images, repris des albums de notre page Facebook.</p>
     </div></section>
     <section class="block"><div class="wrap" id="photos-page"></div></section>
   </div>
@@ -1873,6 +1880,8 @@ function renderTeam(t) {
       ${t.url ? "" : `<p class="sub" style="margin-top:16px">Cette équipe ne dispute pas de championnat.</p>`}
       <div class="card roster-card" data-roster="${rosterKey(t.id)}"></div>
       ${t.url ? `<a class="champ-cta" href="#championnat-${t.id}"><span><span class="eyebrow">Championnat</span><b>Classement, résultats et calendrier</b><span class="sub" data-rank="${t.id}"></span></span><span class="arrow" aria-hidden="true">→</span></a>` : ""}
+      ${(() => { const gid = ["seniors-1", "seniors-2"].includes(t.id) ? t.id : t.cat; const n = Object.values(GALERIES()).filter(g => (g.photos || []).length && galTeamsOf(g).includes(gid)).length;
+        return n ? `<a class="champ-cta" href="#photos-equipe-${esc(gid)}"><span><span class="eyebrow">Photos</span><b>📸 ${plural(n, "album")} de nos ${esc(gid.startsWith("seniors") ? t.name : t.cat.toUpperCase())}</b><span class="sub">Les matchs en images</span></span><span class="arrow" aria-hidden="true">→</span></a>` : ""; })()}
       <nav class="pager" aria-label="Autres équipes">
         ${prev ? `<a href="#${prev.id}"><small>← Équipe précédente</small><b>${esc(prev.name)}</b></a>` : ""}
         ${next ? `<a class="next" href="#${next.id}"><small>Équipe suivante →</small><b>${esc(next.name)}</b></a>` : ""}
@@ -2665,7 +2674,8 @@ let assetsCap = null;
   db.collection("competitions").onSnapshot(snap => {
     LEAGUE = {}; snap.docs.forEach(d => LEAGUE[d.id] = d.data());
     refreshLeagues();
-    { const k = decodeURIComponent(location.hash.slice(1)); if ((k === "photos" || k.startsWith("photos-")) && $("#lb").hidden) renderPhotosPage(k); }
+    { const k = decodeURIComponent(location.hash.slice(1)); if ((k === "photos" || k.startsWith("photos-")) && $("#lb").hidden) renderPhotosPage(k);
+      if (byId[k] && !$("#team-page").closest("[data-page]").hidden && !$("#team-page").querySelector("[href^='#photos-equipe-']")) { renderTeam(byId[k]); refreshRosters(); refreshLeagues(); } }
     if (!$("#scores-page").contains(document.activeElement)) renderScores();
   }, () => {});
   db.collection("rosters").onSnapshot(snap => {
@@ -3243,26 +3253,37 @@ function galOf(key) { const g = GALERIES()[key]; return g && (g.photos || []).le
 const galScore = g => g.dom ? `Hersin ${g.nous}–${g.eux} ${g.adv}` : `${g.adv} ${g.eux}–${g.nous} Hersin`;
 const galOutcome = g => +g.nous > +g.eux ? "Victoire" : +g.nous < +g.eux ? "Défaite" : "Match nul";
 let galCurrent = null, lbIndex = 0, lbReturn = null;
+// Filtre par équipe : #photos-equipe-<id> (lien partageable)
+const GAL_TEAMS = [["seniors-1", "Seniors 1"], ["seniors-2", "Seniors 2"], ["u18", "U18"], ["u15", "U15"], ["u13", "U13"], ["u11", "U11"], ["ecole", "École de hand"], ["loisirs", "Loisirs"]];
+const galTeamsOf = g => g.equipes || [g.equipe || "seniors-1"];
+const galTeamLabel = g => galTeamsOf(g).map(id => (GAL_TEAMS.find(t => t[0] === id) || [, "Club"])[1]).join(" · ");
 function renderPhotosPage(key) {
   const el = $("#photos-page"), h1 = $("#photos-h1"), lead = $("#photos-lead");
-  const list = Object.entries(GALERIES()).filter(([, g]) => (g.photos || []).length).sort((a, b) => String(b[1].date).localeCompare(String(a[1].date)));
-  const albumKey = key.startsWith("photos-") ? key.slice(7) : null, g = albumKey ? galOf(albumKey) : null;
+  const all = Object.entries(GALERIES()).filter(([, g]) => (g.photos || []).length).sort((a, b) => String(b[1].date).localeCompare(String(a[1].date)));
+  const filter = key.startsWith("photos-equipe-") ? key.slice(14) : "";
+  const albumKey = key.startsWith("photos-") && !filter ? key.slice(7) : null, g = albumKey ? galOf(albumKey) : null;
   if (albumKey && g) {
     galCurrent = g;
-    h1.innerHTML = `${esc(g.titre)}`;
-    lead.textContent = `${galScore(g)} · ${galOutcome(g)} · ${longDate(g.date)}`;
-    el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les matchs en photos</a>${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`}</div>
+    const isMatch = !!g.adv;
+    h1.textContent = isMatch ? g.titre : galTeamLabel(g);
+    lead.textContent = isMatch ? `${galScore(g)} · ${galOutcome(g)} · ${longDate(g.date)}` : `${g.titre} · ${longDate(g.date)}`;
+    const team = galTeamsOf(g)[0];
+    el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les albums</a>${GAL_TEAMS.some(t => t[0] === team) ? `<a href="#photos-equipe-${esc(team)}">Les albums ${esc(galTeamLabel({ equipes: [team] }))}</a>` : ""}${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${isMatch ? (g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`) : ""}</div>
       <p class="sub" style="margin-bottom:12px">${plural(g.photos.length, "photo")} · touchez une photo pour l'agrandir</p>
       <ul class="gal-thumbs">${g.photos.map((p, i) => `<li><button type="button" data-lb="${i}" aria-label="Agrandir la photo ${i + 1} sur ${g.photos.length}"><img src="${blobSrc(p.photo)}" alt="" loading="lazy" decoding="async"></button></li>`).join("")}</ul>`;
     return;
   }
   galCurrent = null;
-  h1.innerHTML = `Les <em>photos</em>`;
-  lead.textContent = "Les matchs des Seniors en images, repris des albums de notre page Facebook.";
-  el.innerHTML = !list.length ? `<p class="sub">Les premiers albums arrivent bientôt.</p>`
-    : `<ul class="gal-grid">${list.map(([k, g]) => `<li><a class="gal-card" href="#photos-${esc(k)}">
+  const label = filter ? (GAL_TEAMS.find(t => t[0] === filter) || [, "Club"])[1] : "";
+  h1.innerHTML = filter ? `Photos <em>${esc(label)}</em>` : `Les <em>photos</em>`;
+  lead.textContent = "Les matchs de toutes nos équipes en images, repris des albums de notre page Facebook.";
+  const list = filter ? all.filter(([, g]) => galTeamsOf(g).includes(filter)) : all;
+  const chips = GAL_TEAMS.filter(([id]) => all.some(([, g]) => galTeamsOf(g).includes(id)));
+  const nav = `<nav class="gal-filter" aria-label="Choisir une équipe"><a href="#photos"${filter ? "" : ' aria-current="page"'}>Toutes</a>${chips.map(([id, name]) => `<a href="#photos-equipe-${id}"${filter === id ? ' aria-current="page"' : ""}>${esc(name)} <span>${all.filter(([, g]) => galTeamsOf(g).includes(id)).length}</span></a>`).join("")}</nav>`;
+  el.innerHTML = nav + (!list.length ? `<p class="sub">Pas encore d'album pour cette équipe : ils arrivent dès que le club publie les photos sur Facebook.</p>`
+    : `<p class="sub" style="margin-bottom:14px">${plural(list.length, "album")}</p><ul class="gal-grid">${list.map(([k, g]) => `<li><a class="gal-card" href="#photos-${esc(k)}">
         <span class="gc-img"><img src="${blobSrc(g.photos[0].photo)}" alt="" loading="lazy"><span class="gc-n">📸 ${g.photos.length}</span></span>
-        <span class="gc-body"><small>${esc(g.titre)}</small><b>${esc(galScore(g))}</b><span class="gc-date">${esc(galOutcome(g))} · ${esc(longDate(g.date))}</span></span></a></li>`).join("")}</ul>`;
+        <span class="gc-body"><small>${esc(g.adv ? g.titre : galTeamLabel(g))}</small><b>${esc(g.adv ? galScore(g) : g.titre)}</b><span class="gc-date">${g.adv ? esc(galOutcome(g)) + " · " : ""}${esc(longDate(g.date))}</span></span></a></li>`).join("")}</ul>`);
 }
 function lbShow(i) {
   const ph = galCurrent.photos, n = ph.length;
