@@ -204,7 +204,7 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; b
 .mega .panel a small { display: inline; margin-left: 6px; }
 .burger { display: none; min-height: 44px; padding: 8px 14px; background: none; border: 1px solid #4a434c; color: var(--on-night); font: 600 14px var(--font-body); text-transform: uppercase; letter-spacing: .06em; cursor: pointer; align-items: center; gap: 8px; }
 .burger svg { width: 18px; height: 18px; }
-@media (max-width: 1080px) {
+@media (max-width: 1140px) {
   .burger { display: inline-flex; }
   .top .wrap { flex-wrap: wrap; }
   #nav { flex-basis: 100%; }
@@ -1087,12 +1087,29 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* Bouton « Partager » */
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 700 14px var(--font-body); cursor: pointer; }
+.share-btn:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.page-hero .share-btn, .hero-share .share-btn { background: transparent; color: var(--on-night); border-color: #4a434c; }
+.page-hero .share-btn:hover { border-color: var(--rose); color: var(--rose); }
+.hero-share { margin-top: 14px; }
+.news-share { margin-top: 10px; }
+.news-share .share-btn { min-height: 40px; padding: 6px 12px; }
+.wr-bilan .share-btn { margin-left: auto; }
+.share-pop { position: fixed; z-index: 96; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--rose); box-shadow: 0 14px 40px rgba(0,0,0,.3); min-width: 230px; padding: 6px; }
+.share-pop[hidden] { display: none; }
+.share-pop a, .share-pop button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 46px; padding: 8px 12px; border: 0; background: none; color: var(--ink); font: 600 15px var(--font-body); text-decoration: none; cursor: pointer; text-align: left; }
+.share-pop a:hover, .share-pop button:hover, .share-pop a:focus-visible, .share-pop button:focus-visible { background: var(--bg); color: var(--rose-ink); outline: none; }
+.share-pop .ico { width: 24px; text-align: center; font-size: 18px; }
+.news.flash { outline: 3px solid var(--rose); outline-offset: 4px; transition: outline-color 1.5s; }
 /* Recherche */
 .srch-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; min-width: 44px; justify-content: center; padding: 8px 12px; background: none; border: 1px solid #4a434c; color: var(--on-night); font: 600 14px var(--font-body); text-transform: uppercase; letter-spacing: .06em; cursor: pointer; order: 3; }
 .srch-btn:hover { border-color: var(--rose); color: var(--rose); }
 #nav { order: 2; }
-@media (max-width: 1080px) { .srch-btn { order: 0; margin-left: auto; } .srch-btn span { display: none; } #burger { order: 1; } #nav { order: 4; } }
-@media (min-width: 1081px) and (max-width: 1240px) { .srch-btn span { display: none; } }
+@media (max-width: 1140px) { .srch-btn { order: 0; margin-left: auto; } .srch-btn span { display: none; } #burger { order: 1; } #nav { order: 4; } }
+.srch-btn span { display: none; }
+.srch-btn { padding: 8px; flex: none; }
 .srch { position: fixed; inset: 0; z-index: 95; background: rgba(5,4,6,.72); display: flex; justify-content: center; align-items: flex-start; padding: calc(12px + env(safe-area-inset-top)) 12px 12px; }
 .srch[hidden] { display: none; }
 .srch-box { width: 100%; max-width: 680px; max-height: calc(100dvh - 40px); display: flex; flex-direction: column; background: var(--surface); border-top: 4px solid var(--rose); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
@@ -1285,7 +1302,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .notif-band:hover .nb-go { background: #2a2530; }
 .notif-band:focus-visible { outline: 3px solid var(--night); outline-offset: -6px; }
 @media (max-width: 520px) { .notif-band .nb-go { display: none; } .notif-band .nb-txt > span { font-size: 13px; } }
-@media (min-width: 1081px) and (max-width: 1320px) { .menu { gap: 0; } .menu a.item, .menu button.item { padding-inline: 9px; } .menu a.cta { margin-left: 4px; padding-inline: 12px; } }
+@media (min-width: 1141px) and (max-width: 1320px) { .menu { gap: 0; } .menu a.item, .menu button.item { padding-inline: 9px; } .menu a.cta { margin-left: 4px; padding-inline: 12px; } }
 .ev { display: grid; grid-template-columns: 84px 1fr; gap: 0; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
 .ev.has-photo { grid-template-columns: 84px 1fr 200px; }
 .ev-date { background: var(--night); color: var(--on-night); display: grid; align-content: center; justify-items: center; padding: 12px 6px; text-align: center; border-right: 4px solid var(--rose); }
@@ -1836,6 +1853,8 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <div class="app-actions"><button type="button" class="app-later" id="notif-later">Plus tard</button><button type="button" class="app-go" id="notif-go">Activer</button></div>
 </div>
 
+<div class="share-pop" id="share-pop" role="menu" aria-label="Partager" hidden></div>
+
 <div class="srch" id="srch" role="dialog" aria-modal="true" aria-labelledby="srch-label" hidden>
   <div class="srch-box">
     <div class="srch-bar"><label id="srch-label" for="srch-in" class="sr-only">Rechercher</label>
@@ -2025,6 +2044,7 @@ function renderTeam(t) {
         <h1 tabindex="-1">${esc(t.big)}${t.suffix ? ` <em>${esc(t.suffix)}</em>` : ""}</h1>
         <div class="meta">${tagsHtml(t)}</div>
         ${t.note ? `<p class="lead">${esc(t.note)}</p>` : ""}
+        <div class="hero-share">${shareBtn(`${t.name} · HBC Hersin-Coupigny`, "#" + t.id, "Partager")}</div>
       </div>${t.badge ? `<figure><img src="${BADGES[t.badge][0]}" width="120" height="120" alt="${BADGES[t.badge][2]}"><figcaption>${BADGES[t.badge][1]}</figcaption></figure>` : ""}</div>
     </div></section>
     <section class="block"><div class="wrap">
@@ -2332,6 +2352,7 @@ function renderPlayerPage(hashKey) {
             ${p.main ? `<span class="tag">${esc(p.main)}</span>` : ""}
           </div>
           ${rankText ? `<p class="ph-rank">${rankText}</p>` : ""}
+          <div class="hero-share">${shareBtn(`${playerName(p, r.initialOnly)} · HBC Hersin-Coupigny`, "#" + hashKey, "Partager la fiche")}</div>
         </div>
       </div>
     </div></section>
@@ -2531,7 +2552,7 @@ const fmtNewsDate = d => { const t = new Date(d + "T12:00:00"); return isNaN(t) 
 const sortedNews = () => NEWS.slice().sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.createdAt || "").localeCompare(a.createdAt || ""));
 function newsCard(n, admin) {
   const lien = safeUrl(n.lien);
-  return `<li class="news">
+  return `<li class="news" data-actu="${esc(n.id || "")}">
     ${n.photo ? `<img class="news-photo" src="${esc(blobSrc(n.photo))}" alt="" loading="lazy">` : /^photos\/[\w.-]+$/.test(n.image || "") ? `<img class="news-photo" src="${esc(n.image)}" alt="" loading="lazy">` : `<div class="news-photo empty"><img src="logo-hbch.png" alt=""></div>`}
     <div class="news-body">
       ${n.date ? `<time class="news-date" datetime="${esc(n.date)}">${fmtNewsDate(n.date)}</time>` : ""}
@@ -2542,6 +2563,7 @@ function newsCard(n, admin) {
         <b>${esc(r.equipe || "")}</b><span class="nr-adv">${r.dom ? "contre" : "à"} ${esc(r.adv || "")}</span>
         <span class="nr-score">${r.fo ? "forfait" : `${esc(r.nous)}–${esc(r.eux)}`}</span></li>`).join("")}</ul>` : ""}
       ${lien ? `<a class="news-fb" href="${esc(lien)}" target="_blank" rel="noopener">${isFb(lien) ? "Voir sur Facebook" : /ffhandball\.fr/i.test(lien) ? "Voir sur la FFHandball" : "En savoir plus"} ↗<span class="sr-only"> (nouvel onglet)</span></a>` : ""}
+      ${n.id && !admin ? `<div class="news-share">${shareBtn(n.titre || "Actu des Tigres", "#actu-" + n.id, "Partager l'actu")}</div>` : ""}
       ${admin ? `<div class="news-admin"><button type="button" data-news-edit="${esc(n.id)}">Modifier</button><button type="button" data-news-del="${esc(n.id)}">Supprimer</button></div>` : ""}
     </div></li>`;
 }
@@ -2971,7 +2993,7 @@ function renderLeague(el, id) {
   <section class="lg" aria-labelledby="lg-title-${id}">
     <div class="lg-head">
       <div><p class="eyebrow">${esc(L.saison || "Saison 2026-2027")}</p><h2 id="lg-title-${id}">${esc(L.titre || t.comp)}</h2></div>
-      <div class="lg-head-actions">${L.majLe ? `<span class="sub">Mis à jour le ${esc(new Date(L.majLe).toLocaleDateString("fr-FR", { day: "numeric", month: "long" }))}</span>` : ""}
+      <div class="lg-head-actions">${shareBtn(`${t.name} · ${L.titre || t.comp} : classement et résultats`, "#championnat-" + id, "Partager")}${L.majLe ? `<span class="sub">Mis à jour le ${esc(new Date(L.majLe).toLocaleDateString("fr-FR", { day: "numeric", month: "long" }))}</span>` : ""}
         ${canEditRoster ? `<button type="button" class="btn-edit" data-lg-edit="${id}">Mettre à jour</button>` : ""}</div>
     </div>
     ${ours ? `<div class="lg-band">
@@ -3206,6 +3228,7 @@ function renderResultsPage() {
       <span class="N"><strong>${cnt("N")}</strong> nul${cnt("N") > 1 ? "s" : ""}</span>
       <span class="D"><strong>${cnt("D")}</strong> défaite${cnt("D") > 1 ? "s" : ""}</span>
       ${list.length > played.length ? `<span><strong>${list.length - played.length}</strong> à venir ou en attente du score</span>` : ""}
+      ${played.length ? shareBtn(`Le week-end des Tigres : ${cnt("V")} victoire${cnt("V") > 1 ? "s" : ""} sur ${played.length} match${played.length > 1 ? "s" : ""}`, "#resultats", "Partager") : ""}
     </div>
     ${days.map(d => `<h3 class="wr-day">${esc(d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }))}</h3>
       <ul class="plain wr-grid">${list.filter(m => m.when.toDateString() === d.toDateString()).map(card).join("")}</ul>`).join("")}
@@ -3317,7 +3340,7 @@ $("#p-champ").innerHTML = CHAMP_GROUPS.map(([g, cats]) => `<div class="col"><p>$
 const drops = [...document.querySelectorAll("button.drop")];
 const setOpen = (btn, open) => { btn.setAttribute("aria-expanded", String(open)); document.getElementById(btn.getAttribute("aria-controls")).hidden = !open; };
 const closeAll = except => drops.forEach(b => b !== except && setOpen(b, false));
-const mobile = () => matchMedia("(max-width: 1080px)").matches;
+const mobile = () => matchMedia("(max-width: 1140px)").matches;
 const hoverMenus = () => !mobile() && matchMedia("(hover: hover)").matches;
 drops.forEach(btn => {
   let closeTimer;
@@ -3439,6 +3462,49 @@ function faceToFace(id, next, table, ours, matches) {
   </details>`;
 }
 
+/* ----- Bouton « Partager » : partage du téléphone (WhatsApp, Messenger, SMS…), sinon petit menu ----- */
+const SHARE_BASE = "https://hbchersin.fr/";
+const SHARE_ICON = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5v10M6.5 6 10 2.5 13.5 6M5.5 9H4v8.5h12V9h-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
+const shareBtn = (title, hash, label = "Partager") => `<button type="button" class="share-btn" data-share-title="${esc(title)}" data-share-hash="${esc(hash)}" aria-label="${esc(label)} : ${esc(title)}">${SHARE_ICON}<span>${esc(label)}</span></button>`;
+let shareFrom = null;
+function shareClose() { const pop = $("#share-pop"); if (pop.hidden) return; pop.hidden = true; shareFrom?.focus(); }
+async function shareGo(btn) {
+  const title = btn.dataset.shareTitle, url = SHARE_BASE + btn.dataset.shareHash, text = `${title} 🐯`;
+  if (navigator.share) {
+    try { await navigator.share({ title, text, url }); return; } catch (e) { if (e && e.name === "AbortError") return; }
+  }
+  shareFrom = btn;
+  const pop = $("#share-pop"), msg = encodeURIComponent(`${text}\n${url}`);
+  pop.innerHTML = `<a role="menuitem" href="https://wa.me/?text=${msg}" target="_blank" rel="noopener"><span class="ico">💬</span>WhatsApp</a>
+    <a role="menuitem" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}" target="_blank" rel="noopener"><span class="ico">📘</span>Facebook</a>
+    <a role="menuitem" href="mailto:?subject=${encodeURIComponent(title)}&body=${msg}"><span class="ico">✉️</span>E-mail</a>
+    <button type="button" role="menuitem" data-share-copy="${esc(url)}"><span class="ico">🔗</span>Copier le lien</button>`;
+  pop.hidden = false;
+  const r = btn.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+  pop.style.left = Math.max(8, Math.min(innerWidth - w - 8, r.left)) + "px";
+  pop.style.top = (r.bottom + h + 8 < innerHeight ? r.bottom + 6 : Math.max(8, r.top - h - 6)) + "px";
+  pop.querySelector("a, button").focus();
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-share-hash]"); if (b) { e.preventDefault(); return shareGo(b); }
+  const c = e.target.closest("[data-share-copy]");
+  if (c) {
+    const done = () => { c.innerHTML = `<span class="ico">✅</span>Lien copié`; setTimeout(shareClose, 900); };
+    navigator.clipboard?.writeText(c.dataset.shareCopy).then(done, () => { prompt("Copiez le lien :", c.dataset.shareCopy); shareClose(); }) ?? (prompt("Copiez le lien :", c.dataset.shareCopy), shareClose());
+    return;
+  }
+  if (!e.target.closest("#share-pop")) shareClose(); else if (e.target.closest("a")) setTimeout(shareClose, 50);
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") shareClose(); });
+addEventListener("scroll", () => { if (!$("#share-pop").hidden) shareClose(); }, { passive: true });
+
+// Lien partagé vers une actu : on l'affiche et on la met en évidence (les actus peuvent arriver après la page)
+function focusActu(key, tries = 0) {
+  const el = [...document.querySelectorAll("#news-page [data-actu]")].find(x => "actu-" + x.dataset.actu === key);
+  if (!el) { if (tries < 20) setTimeout(() => focusActu(key, tries + 1), 300); return; }
+  el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 2500);
+}
 /* ----- Recherche : joueurs, équipes, adversaires, pages ----- */
 const srchNorm = t => String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
 const SRCH_PAGES = [
@@ -3653,7 +3719,7 @@ function renderPhotosPage(key) {
     h1.textContent = isMatch ? g.titre : galTeamLabel(g);
     lead.textContent = isMatch ? `${galScore(g)} · ${galOutcome(g)} · ${longDate(g.date)}` : `${g.titre} · ${longDate(g.date)}`;
     const team = galTeamsOf(g)[0];
-    el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les albums</a>${GAL_TEAMS.some(t => t[0] === team) ? `<a href="#photos-equipe-${esc(team)}">Les albums ${esc(galTeamLabel({ equipes: [team] }))}</a>` : ""}${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${isMatch ? (g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`) : ""}</div>
+    el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les albums</a>${shareBtn(`📸 ${isMatch ? g.titre + " · " + galScore(g) : g.titre}`, "#photos-" + albumKey, "Partager l'album")}${GAL_TEAMS.some(t => t[0] === team) ? `<a href="#photos-equipe-${esc(team)}">Les albums ${esc(galTeamLabel({ equipes: [team] }))}</a>` : ""}${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${isMatch ? (g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`) : ""}</div>
       <p class="sub" style="margin-bottom:12px">${plural(g.photos.length, "photo")} · touchez une photo pour l'agrandir</p>
       <ul class="gal-thumbs">${g.photos.map((p, i) => `<li><button type="button" data-lb="${i}" aria-label="Agrandir la photo ${i + 1} sur ${g.photos.length}"><img src="${blobSrc(p.photo)}" alt="" loading="lazy" decoding="async"></button></li>`).join("")}</ul>`;
     return;
@@ -3703,8 +3769,8 @@ function route() {
   const key = decodeURIComponent(location.hash.slice(1)) || "accueil";
   const team = byId[key], isPlayer = key.startsWith("joueur-");
   const champ = key.startsWith("championnat-") && byId[key.slice(12)]?.url ? byId[key.slice(12)] : null;
-  const isPhotos = key === "photos" || key.startsWith("photos-");
-  const name = team ? "team" : isPlayer ? "joueur" : champ ? "championnat" : isPhotos ? "photos" : pages.some(p => p.dataset.page === key) ? key : "accueil";
+  const isPhotos = key === "photos" || key.startsWith("photos-"), isActu = key.startsWith("actu-");
+  const name = team ? "team" : isPlayer ? "joueur" : champ ? "championnat" : isPhotos ? "photos" : isActu ? "actualites" : pages.some(p => p.dataset.page === key) ? key : "accueil";
   if (isPhotos) renderPhotosPage(key);
   if (champ) renderChampPage(champ.id);
   if (team) { renderTeam(team); refreshRosters(); refreshLeagues(); }
@@ -3720,6 +3786,7 @@ function route() {
   closeAll(); setMenu(false);
   window.scrollTo(0, 0);
   if (!first) page.querySelector("h1")?.focus();
+  if (isActu) focusActu(key);
   first = false;
 }
 addEventListener("hashchange", route);
