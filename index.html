@@ -2420,7 +2420,7 @@ function renderPlayerPage(hashKey) {
   // Rang dans l'effectif : buts (joueurs de champ) ou arrêts (gardiens)
   const metric = keeper ? "a" : "b", peers = list.filter(q => withStats(key, q) && (q.poste === "Gardien") === keeper);
   const rank = 1 + peers.filter(q => totalOf(q)[metric] > tot[metric]).length;
-  const rankText = any && tot[metric] ? `${rank === 1 ? "1<sup>er</sup>" : rank + "<sup>e</sup>"} ${keeper ? "gardien aux arrêts" : "buteur"} de l'effectif ${esc(ROSTER_GROUPS[key])}` : "";
+  const rankText = key !== "u18" && any && tot[metric] ? `${rank === 1 ? "1<sup>er</sup>" : rank + "<sup>e</sup>"} ${keeper ? "gardien aux arrêts" : "buteur"} de l'effectif ${esc(ROSTER_GROUPS[key])}` : "";
   const tiles = keeper
     ? [["Matchs joués", tot.m], ["Arrêts", tot.a], ["Arrêts par match", tot.m ? fmtNum(tot.a / tot.m) : "–"], ["Buts", tot.b]]
     : [["Matchs joués", tot.m], ["Buts", tot.b], ["Buts par match", tot.m ? fmtNum(tot.b / tot.m) : "–"], ["Tirs", tot.t]];
