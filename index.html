@@ -122,6 +122,7 @@
 })();
 </script>
 <title>HBC Hersin-Coupigny · Handball Club Hersin-Coupigny</title>
+<script>try { if (matchMedia("(display-mode: standalone)").matches || navigator.standalone === true || /[?&]apercu=appli\b/.test(location.search) || (localStorage.getItem("hbch-equipes") || "").trim()) document.documentElement.classList.add("app-home", "app-wait"); } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,800&family=Archivo:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
@@ -1357,6 +1358,10 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .app-home [data-page="accueil"] > section:has(.mosaic) .head h2 { font-size: 26px; }
 .app-home .mosaic .main, .app-home .mosaic .quote { display: none; }
 .app-home .mosaic { grid-template-columns: 1fr; max-width: 680px; }
+.app-wait [data-page="accueil"] > section:has(.mosaic), .app-wait [data-page="accueil"] > .sp-band, .app-wait [data-page="accueil"] > .mc { display: none; }
+.app-wait [data-page="accueil"]::before { content: ""; display: block; height: calc(100vh - 70px); background: url(logo-hbch.png) center 38% / 88px no-repeat; animation: appwait 1.2s ease-in-out infinite alternate; }
+@keyframes appwait { from { opacity: .35; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .app-wait [data-page="accueil"]::before { animation: none; } }
 .app-home .mc { padding-block: 14px 16px; }
 .app-home .mc-head { margin-bottom: 10px; }
 .app-home .mc-head h2 { font-size: 24px; }
@@ -3207,6 +3212,7 @@ const IS_APP = matchMedia("(display-mode: standalone)").matches || navigator.sta
 const hasMyTeams = () => { try { return !!(localStorage.getItem("hbch-equipes") || "").trim(); } catch (e) { return false; } };
 let APP_HOME = IS_APP || hasMyTeams();
 document.documentElement.classList.toggle("app-home", APP_HOME);
+setTimeout(() => document.documentElement.classList.remove("app-wait"), 6000);
 function syncAppHome() {
   const on = IS_APP || hasMyTeams(); if (on === APP_HOME) return;
   APP_HOME = on; document.documentElement.classList.toggle("app-home", on); renderWeekend();
@@ -3334,6 +3340,7 @@ document.addEventListener("click", e => {
 });
 function refreshLeagues() {
   renderWeekend(); renderResultsPage(); renderMonClub(); renderLive();
+  if (allMatches().length) document.documentElement.classList.remove("app-wait");
   setTimeout(tickCountdowns, 0);
   document.querySelectorAll("[data-league]").forEach(el => renderLeague(el, el.dataset.league));
   document.querySelectorAll("[data-cup]").forEach(el => renderCup(el, el.dataset.cup));
