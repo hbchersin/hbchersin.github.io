@@ -14,7 +14,7 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET" || url.origin !== location.origin || url.pathname.endsWith(".ics")) return;
   const fresh = req.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname.endsWith("/") || url.pathname.includes("/data/");
   if (fresh) {
-    e.respondWith(fetch(req).then(r => { if (r.ok) { const copy = r.clone(); caches.open(CACHE).then(c => c.put(req, copy)); } return r; })
+    e.respondWith(fetch(req, { cache: "no-cache" }).then(r => { if (r.ok) { const copy = r.clone(); caches.open(CACHE).then(c => c.put(req, copy)); } return r; })
       .catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match("index.html"))));
     return;
   }
