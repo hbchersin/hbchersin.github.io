@@ -787,6 +787,11 @@ h3.roster-group::after { content: ""; flex: 1; height: 1px; background: var(--li
 .ad-val { font: 700 14px var(--font-data); text-align: right; font-variant-numeric: tabular-nums; }
 @media (max-width: 420px) { .ad-list li { grid-template-columns: 20px 24px minmax(0, 1fr) 36px; } .ad-bar { display: none; } }
 @media (min-width: 900px) { .lg-two { grid-template-columns: 1fr 1fr; column-gap: 32px; } .lg-two .lg-match:nth-child(2) { border-top: 0; } }
+.ffhb-band { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: var(--night); border: 1px solid var(--night-line); border-left: 4px solid var(--rose); color: var(--on-night); text-decoration: none; }
+.ffhb-band small { display: block; font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .1em; color: var(--on-night-muted); }
+.ffhb-band b { font: 800 18px/1.15 var(--font-display); text-transform: uppercase; }
+.ffhb-band .go { font: 800 20px var(--font-body); color: var(--rose); }
+.ffhb-band:hover b { color: var(--rose); }
 .ffhb-link { font-size: 14px; color: var(--on-night-muted); text-underline-offset: 3px; justify-self: start; }
 .ffhb-link:hover { color: var(--rose); }
 .lg .ffhb-link { color: var(--muted); }
@@ -2106,6 +2111,7 @@ const slotsOf = id => Object.entries(WEEK).flatMap(([day, s]) => s.filter(x => x
 const tagsHtml = t => `${t.lvl ? `<span class="tag lvl">${esc(t.lvl)}</span>` : ""}${t.tags.map(x => `<span class="tag">${esc(x)}</span>`).join("")}`;
 const tierHtml = t => `<div class="tier" role="img" aria-label="Niveau de compétition : ${TIERS[t.tier - 1]}">${TIERS.map((l, i) => `<span class="${i < t.tier ? "on" : ""}${i === t.tier - 1 ? " here" : ""}">${l}</span>`).join("")}</div>`;
 const ffhbHtml = t => `<a class="ffhb" href="#championnat-${t.id}">Classement et calendrier<span class="sr-only"> des ${esc(t.name)}</span> <span aria-hidden="true">→</span></a>`;
+const ffhbBand = t => `<a class="ffhb-band" href="${t.url}" target="_blank" rel="noopener"><span><small>Fiche officielle FFHandball</small><b>${esc(t.comp || "Championnat")}</b></span><span class="go" aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>`;
 const ffhbLink = t => `<a class="ffhb-link" href="${t.url}" target="_blank" rel="noopener">Voir sur le site de la FFHandball<span class="sr-only"> (nouvel onglet)</span> ↗</a>`;
 const poster = (t, H, withTeamLink) => `
   <article class="poster" data-tier="${t.tier}">
@@ -2161,9 +2167,9 @@ function renderTeam(t) {
       ${PHOTOS[t.id] ? `
       <div class="team-top">
         <div class="col"><figure class="team-photo">${photoImg(t.id, false)}</figure>${training}</div>
-        <div class="col">${t.url ? poster(t, "h2", false) : ""}${staff}</div>
+        <div class="col">${t.url ? ffhbBand(t) : ""}${staff}</div>
       </div>` : `
-      <div class="team-layout">${t.url ? poster(t, "h2", false) : ""}${staff}${training}</div>`}
+      <div class="team-layout">${t.url ? ffhbBand(t) : ""}${staff}${training}</div>`}
       ${t.url ? "" : `<p class="sub" style="margin-top:16px">Cette équipe ne dispute pas de championnat.</p>`}
       ${t.url ? `<div class="card season-card" data-season="${t.id}" hidden></div>` : ""}
       <div class="card roster-card" data-roster="${rosterKey(t.id)}"></div>
