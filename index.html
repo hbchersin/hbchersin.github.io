@@ -1087,6 +1087,32 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* Recherche */
+.srch-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; min-width: 44px; justify-content: center; padding: 8px 12px; background: none; border: 1px solid #4a434c; color: var(--on-night); font: 600 14px var(--font-body); text-transform: uppercase; letter-spacing: .06em; cursor: pointer; order: 3; }
+.srch-btn:hover { border-color: var(--rose); color: var(--rose); }
+#nav { order: 2; }
+@media (max-width: 1080px) { .srch-btn { order: 0; margin-left: auto; } .srch-btn span { display: none; } #burger { order: 1; } #nav { order: 4; } }
+@media (min-width: 1081px) and (max-width: 1240px) { .srch-btn span { display: none; } }
+.srch { position: fixed; inset: 0; z-index: 95; background: rgba(5,4,6,.72); display: flex; justify-content: center; align-items: flex-start; padding: calc(12px + env(safe-area-inset-top)) 12px 12px; }
+.srch[hidden] { display: none; }
+.srch-box { width: 100%; max-width: 680px; max-height: calc(100dvh - 40px); display: flex; flex-direction: column; background: var(--surface); border-top: 4px solid var(--rose); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.srch-bar { display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.srch-bar input { flex: 1; min-width: 0; min-height: 48px; border: 0; background: none; color: var(--ink); font: 500 18px var(--font-body); outline: none; }
+.srch-bar input::-webkit-search-cancel-button { display: none; }
+.srch-x { min-height: 44px; padding: 6px 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 700 14px var(--font-body); cursor: pointer; }
+.srch-count { margin: 0; padding: 8px 16px 0; font-size: 13px; color: var(--muted); }
+.srch-res { list-style: none; margin: 0; padding: 6px 8px 10px; overflow-y: auto; }
+.srch-res a { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; min-height: 58px; padding: 8px; color: var(--ink); text-decoration: none; }
+.srch-res a:hover, .srch-res a:focus-visible, .srch-res a[aria-selected="true"] { background: var(--bg); outline: 2px solid var(--rose); outline-offset: -2px; }
+.srch-res .ic { width: 44px; height: 44px; display: grid; place-items: center; background: var(--bg); overflow: hidden; font-size: 20px; }
+.srch-res .ic img { width: 100%; height: 100%; object-fit: cover; }
+.srch-res .ic.logo img { object-fit: contain; padding: 4px; }
+.srch-res b { display: block; font-size: 16px; }
+.srch-res small { display: block; color: var(--muted); font-size: 13px; }
+.srch-res .tag { font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--rose-ink); }
+.srch-res mark { background: color-mix(in srgb, var(--rose) 28%, transparent); color: inherit; }
+.srch-hint { padding: 14px 16px 18px; color: var(--muted); font-size: 14px; }
+.srch-hint button { margin: 6px 6px 0 0; min-height: 40px; padding: 6px 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 600 14px var(--font-body); cursor: pointer; }
 /* Fiche face-à-face */
 .ff { width: 100%; max-width: 680px; margin-top: 8px; text-align: left; border: 1px solid var(--line); background: var(--bg); }
 .ff summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; min-height: 52px; padding: 10px 16px; }
@@ -1292,6 +1318,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#accueil" aria-label="HBC Hersin-Coupigny, accueil"><img src="logo-hbch.png" alt="">HBC <b>Hersin</b></a>
+    <button class="srch-btn" id="srch-btn" type="button" aria-haspopup="dialog" aria-label="Rechercher un joueur, une équipe, un adversaire"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12.6 12.6 17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Rechercher</span></button>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2"/></svg>Menu
     </button>
@@ -1788,6 +1815,17 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <p id="notif-txt">Résultats, actus et rappels des matchs à domicile, directement sur votre téléphone.</p>
   <fieldset class="notif-teams" id="notif-teams" hidden><legend>Résultats des équipes à suivre</legend><div id="notif-team-list"></div><p class="nt-note">Les actus et les rappels des matchs des Seniors 1 à Futura arrivent à tout le monde.</p></fieldset>
   <div class="app-actions"><button type="button" class="app-later" id="notif-later">Plus tard</button><button type="button" class="app-go" id="notif-go">Activer</button></div>
+</div>
+
+<div class="srch" id="srch" role="dialog" aria-modal="true" aria-labelledby="srch-label" hidden>
+  <div class="srch-box">
+    <div class="srch-bar"><label id="srch-label" for="srch-in" class="sr-only">Rechercher</label>
+      <svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12.6 12.6 17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="srch-in" type="search" autocomplete="off" enterkeyhint="search" placeholder="Un joueur, une équipe, un adversaire…" aria-controls="srch-res" aria-describedby="srch-count">
+      <button type="button" class="srch-x" id="srch-x" aria-label="Fermer la recherche">Fermer</button></div>
+    <p class="srch-count" id="srch-count" aria-live="polite"></p>
+    <ul class="srch-res" id="srch-res"></ul>
+  </div>
 </div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand" hidden>
@@ -3381,6 +3419,86 @@ function faceToFace(id, next, table, ours, matches) {
     </div>
   </details>`;
 }
+
+/* ----- Recherche : joueurs, équipes, adversaires, pages ----- */
+const srchNorm = t => String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+const SRCH_PAGES = [
+  ["entrainements", "Entraînements", "horaires creneaux jours heures planning"], ["rejoindre", "Nous rejoindre", "inscription licence essai gratuit inscrire"],
+  ["agenda", "Agenda", "evenements stage tournoi calendrier"], ["resultats", "Résultats du week-end", "scores resultats weekend"],
+  ["photos", "Photos des matchs", "albums galerie images"], ["actualites", "Actualités", "actus news"], ["coupe-de-france", "Coupe de France", "coupe cdf"],
+  ["salles", "Nos salles", "futura vivre adresse gymnase"], ["partenaires", "Nos partenaires", "sponsors mecenes"], ["contact", "Contact", "email telephone mail"],
+  ["bureau", "Le bureau", "president secretaire tresoriere dirigeants"], ["histoire", "Notre histoire", "historique 1968"], ["club", "Présentation du club", "club ententes"],
+  ["effectifs", "Effectifs", "joueurs effectif"], ["championnats", "Championnats", "classements"]];
+function srchIndex() {
+  const out = [];
+  Object.entries(ROSTERS).forEach(([key, r]) => (r.players || []).forEach(p => {
+    const name = playerName(p, r.initialOnly);
+    out.push({ kind: "Joueur", title: name, sub: [ROSTER_GROUPS[key], p.poste, p.numero !== "" && p.numero != null ? "n° " + p.numero : ""].filter(Boolean).join(" · "),
+      href: playerHref(key, p), img: p.photo ? photoSrc(p) : "", txt: srchNorm(r.initialOnly ? `${p.prenom} ${name}` : `${p.prenom} ${p.nom}`), w: 3 });
+  }));
+  TEAMS.forEach(t => out.push({ kind: "Équipe", title: t.name, sub: [t.comp || t.lvl, t.group].filter(Boolean).join(" · "), href: "#" + t.id, logo: teamLogo(t),
+    txt: srchNorm(`${t.name} ${t.big || ""} ${t.suffix || ""} ${t.cat} ${t.group}`), extra: srchNorm((t.staff || []).join(" ")), staff: t.staff || [], w: 4 }));
+  const opp = {};
+  Object.entries(LEAGUE).forEach(([id, L]) => { if (!byId[id] || isCup(L)) return;
+    const table = sortStandings(L.classement || []);
+    table.forEach((r, i) => { if (r.nous) return; (opp[r.club] = opp[r.club] || []).push({ id, rank: i + 1 }); }); });
+  Object.entries(opp).forEach(([club, list]) => list.forEach(({ id, rank }) => out.push({ kind: "Adversaire", title: club,
+    sub: `${byId[id].name} · ${rank}${rank === 1 ? "er" : "e"} du classement`, href: "#championnat-" + id, logo: clubLogo(club) || "", txt: srchNorm(club), w: 2 })));
+  SRCH_PAGES.forEach(([h, title, kw]) => out.push({ kind: "Page", title, sub: "", href: "#" + h, txt: srchNorm(title + " " + kw), w: 1, icon: "📄" }));
+  return out;
+}
+let srchItems = [], srchSel = -1, srchReturn = null;
+const srchMark = (text, words) => { let h = esc(text); words.forEach(w => { if (w.length < 2) return; const n = srchNorm(text); const i = n.indexOf(w); if (i >= 0 && n.length === String(text).length) h = esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + w.length)) + "</mark>" + esc(text.slice(i + w.length)); }); return h; };
+function srchRun() {
+  const q = srchNorm($("#srch-in").value), words = q.split(" ").filter(Boolean), res = $("#srch-res"), count = $("#srch-count");
+  srchSel = -1;
+  if (!words.length) {
+    res.innerHTML = `<li class="srch-hint">Tapez le nom d'un joueur, d'une équipe ou d'un club adversaire.<br>${["Seniors 1", "U13", "Futura", "Entraînements"].map(x => `<button type="button" data-srch-q="${esc(x)}">${esc(x)}</button>`).join("")}</li>`;
+    count.textContent = ""; return;
+  }
+  const all = srchItems.length ? srchItems : (srchItems = srchIndex());
+  const has = (t, w) => t.split(" ").some(x => x.startsWith(w)) || t.includes(w);
+  const hits = all.map(it => {
+    const t = it.txt, tw = t.split(" ");
+    if (words.every(w => has(t, w))) {
+      const starts = words.filter(w => tw.some(x => x.startsWith(w))).length;
+      return { it, score: it.w * 10 + starts * 5 + (t.startsWith(words[0]) ? 8 : 0) };
+    }
+    // Équipe trouvée par le nom d'un membre du staff : après les joueurs, avec le nom du coach en sous-titre
+    if (it.extra && words.every(w => has(t + " " + it.extra, w))) {
+      const coach = it.staff.find(n => words.some(w => srchNorm(n).includes(w)));
+      return { it: { ...it, sub: coach ? `Encadrement : ${coach}` : it.sub }, score: 5 };
+    }
+    return null;
+  }).filter(Boolean).sort((a, b) => b.score - a.score || a.it.title.localeCompare(b.it.title, "fr")).slice(0, 30).map(x => x.it);
+  count.textContent = hits.length ? `${hits.length >= 30 ? "30 premiers" : plural(hits.length, "résultat")}` : "";
+  res.innerHTML = hits.length ? hits.map((it, i) => `<li><a href="${esc(it.href)}" id="srch-r${i}" data-srch-go>
+      <span class="ic${it.logo ? " logo" : ""}">${it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy">` : it.logo ? `<img src="${esc(it.logo)}" alt="">` : it.icon || esc(String(it.title)[0] || "?")}</span>
+      <span><b>${srchMark(it.title, words)}</b>${it.sub ? `<small>${esc(it.sub)}</small>` : ""}</span><span class="tag">${esc(it.kind)}</span></a></li>`).join("")
+    : `<li class="srch-hint">Aucun résultat pour « ${esc($("#srch-in").value)} ».</li>`;
+}
+function srchOpen() { srchReturn = document.activeElement; srchItems = []; $("#srch").hidden = false; document.body.style.overflow = "hidden"; $("#srch-in").value = ""; srchRun(); setTimeout(() => $("#srch-in").focus(), 30); }
+function srchClose(back = true) { $("#srch").hidden = true; document.body.style.overflow = ""; if (back) srchReturn?.focus(); }
+$("#srch-btn").addEventListener("click", srchOpen);
+$("#srch-x").addEventListener("click", () => srchClose());
+$("#srch").addEventListener("click", e => {
+  if (e.target.id === "srch") return srchClose();
+  const q = e.target.closest("[data-srch-q]"); if (q) { $("#srch-in").value = q.dataset.srchQ; srchRun(); $("#srch-in").focus(); return; }
+  if (e.target.closest("[data-srch-go]")) srchClose(false);
+});
+$("#srch-in").addEventListener("input", srchRun);
+$("#srch").addEventListener("keydown", e => {
+  const links = [...$("#srch-res").querySelectorAll("a")];
+  if (e.key === "Escape") { e.preventDefault(); srchClose(); }
+  else if ((e.key === "ArrowDown" || e.key === "ArrowUp") && links.length) {
+    e.preventDefault(); srchSel = (srchSel + (e.key === "ArrowDown" ? 1 : links.length - 1)) % links.length;
+    links.forEach((a, i) => a.setAttribute("aria-selected", i === srchSel)); links[srchSel].scrollIntoView({ block: "nearest" });
+  } else if (e.key === "Enter" && e.target.id === "srch-in" && links.length) { e.preventDefault(); location.hash = links[Math.max(0, srchSel)].getAttribute("href"); srchClose(false); }
+  else if (e.key === "Tab") { const f = [...$("#srch").querySelectorAll("input, button, a")].filter(x => x.offsetParent); const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); } }
+});
+// Raccourci clavier : « / » ouvre la recherche
+document.addEventListener("keydown", e => { if (e.key === "/" && !/input|textarea|select/i.test(document.activeElement.tagName) && $("#srch").hidden) { e.preventDefault(); srchOpen(); } });
 
 /* ----- Bandeau « Aujourd'hui » : matchs du jour, en cours, terminés (score en attente) et scores finaux ----- */
 function renderLive() {
