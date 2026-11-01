@@ -1077,6 +1077,31 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* Fiche face-à-face */
+.ff { width: 100%; max-width: 680px; margin-top: 8px; text-align: left; border: 1px solid var(--line); background: var(--bg); }
+.ff summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; min-height: 52px; padding: 10px 16px; }
+.ff summary::-webkit-details-marker { display: none; }
+.ff summary span { font: 800 20px var(--font-display); text-transform: uppercase; }
+.ff summary span::after { content: " ▾"; color: var(--rose-ink); }
+.ff[open] summary span::after { content: " ▴"; }
+.ff summary small { color: var(--muted); font-size: 14px; }
+.ff summary:focus-visible { outline: 3px solid var(--rose); outline-offset: -3px; }
+.ff-body { padding: 4px 16px 16px; }
+.ff-head, .ff-row { display: grid; grid-template-columns: 1fr minmax(120px, auto) 1fr; gap: 10px; align-items: center; }
+.ff-head { padding: 6px 0 10px; border-bottom: 2px solid var(--rose); }
+.ff-head b { font: 800 18px/1.1 var(--font-display); text-transform: uppercase; }
+.ff-head b:last-child { text-align: right; }
+.ff-row { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.ff-l { text-align: center; font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.ff-v { font: 700 16px var(--font-data); }
+.ff-row .ff-v:last-child { text-align: right; }
+.ff-v.best { color: var(--rose-ink); }
+.ff-form { display: inline-flex; gap: 3px; }
+.ff-form i { font-style: normal; width: 20px; height: 20px; font-size: 11px; display: inline-grid; place-items: center; }
+.ff-row .ff-v:last-child .ff-form { justify-content: flex-end; }
+.ff-aller { margin: 12px 0 0; font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ff-aller b { color: var(--ink); }
+@media (max-width: 520px) { .ff-head, .ff-row { grid-template-columns: 1fr 96px 1fr; gap: 6px; } .ff-v { font-size: 14px; } .ff-l { font-size: 10px; } .ff-form i { width: 17px; height: 17px; font-size: 10px; } }
 /* « Mon club » : les équipes choisies, en tête de l'accueil */
 .mc { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 20px 24px; }
 .mc[hidden] { display: none; }
@@ -2882,6 +2907,7 @@ function renderLeague(el, id) {
       ${id === "seniors-1" && next.date ? countdownHtml(next.date, "Coup d'envoi dans") : ""}
       <p class="lg-next-when">${esc(fmtMatchDate(next.date))} · ${esc(venueOf(id, next.dom, next.adv, next.salle))}</p>
       ${next.date ? calButton(matchEvent(id, next)) : ""}
+      ${faceToFace(id, next, table, ours, matches)}
     </div>` : ""}
     <div class="lg-tabs" role="tablist" aria-label="Contenu du championnat">
       ${[["classement", "Classement"], ["attaque", "Attaque · défense"], ["resultats", `Résultats <span>${played.length}</span>`], ["calendrier", `Calendrier <span>${upcoming.length}</span>`]].map(([k, l]) =>
@@ -3291,6 +3317,40 @@ function renderSponsors() {
   $("#sp-marquee").innerHTML = SPONSORS.map(p => item(p)).join("") + SPONSORS.map(p => item(p, true)).join("");
 }
 renderSponsors();
+/* ----- Fiche « face-à-face » avant le prochain match ----- */
+function faceToFace(id, next, table, ours, matches) {
+  const opp = table.find(r => !r.nous && r.club === next.adv);
+  if (!ours || !opp) return "";
+  const rk = r => table.indexOf(r) + 1, avg = (n, j) => j ? (n / j).toFixed(1).replace(".", ",") : "–";
+  const form = f => f ? `<span class="ff-form">${[...f].map(x => `<i class="lg-res ${x}">${x}</i>`).join("")}</span>` : "–";
+  const rec = a => a ? `${a[0]}-${a[1]}-${a[2]}` : "–";
+  const winPct = a => a && a[0] + a[1] + a[2] ? a[0] / (a[0] + a[1] + a[2]) : -1;
+  const formPts = f => [...(f || "")].reduce((t, x) => t + (x === "V" ? 3 : x === "N" ? 1 : 0), 0);
+  // [libellé, valeur Hersin, valeur adversaire, qui est devant : 1 = Hersin, -1 = adversaire, 0 = égalité]
+  const sign = (a, b) => a > b ? 1 : a < b ? -1 : 0;
+  const usVenue = next.dom ? ours.dom : ours.ext, themVenue = next.dom ? opp.ext : opp.dom;
+  const rows = [
+    ["Classement", ordinal(rk(ours)), ordinal(rk(opp)), sign(rk(opp), rk(ours))],
+    ["Points", ours.pts, opp.pts, sign(ours.pts, opp.pts)],
+    ["Bilan (V-N-D)", `${ours.g}-${ours.n}-${ours.p}`, `${opp.g}-${opp.n}-${opp.p}`, 0],
+    ["Forme (5 derniers)", form(ours.forme), form(opp.forme), sign(formPts(ours.forme), formPts(opp.forme))],
+    [next.dom ? "Hersin à dom. · eux à l'ext." : "Hersin à l'ext. · eux à dom.", rec(usVenue), rec(themVenue), sign(winPct(usVenue), winPct(themVenue))],
+    ["Buts marqués / match", avg(ours.bp, ours.j), avg(opp.bp, opp.j), sign(ours.bp / (ours.j || 1), opp.bp / (opp.j || 1))],
+    ["Buts encaissés / match", avg(ours.bc, ours.j), avg(opp.bc, opp.j), sign(opp.bc / (opp.j || 1), ours.bc / (ours.j || 1))],
+  ];
+  const aller = matches.find(m => m !== next && m.adv === next.adv && isPlayed(m));
+  const gap = ours.pts - opp.pts;
+  const enjeu = gap === 0 ? "Même nombre de points : le vainqueur passe devant" : gap > 0 ? `Hersin compte ${gap} point${gap > 1 ? "s" : ""} d'avance` : `Hersin compte ${-gap} point${gap < -1 ? "s" : ""} de retard`;
+  return `<details class="ff">
+    <summary><span>⚔️ Le face-à-face</span><small>${esc(enjeu)}</small></summary>
+    <div class="ff-body">
+      <div class="ff-head"><b>Hersin</b><span></span><b>${esc(next.adv)}</b></div>
+      ${rows.map(([l, a, b, w]) => `<div class="ff-row"><span class="ff-v${w > 0 ? " best" : ""}">${a}</span><span class="ff-l">${esc(l)}</span><span class="ff-v${w < 0 ? " best" : ""}">${b}</span></div>`).join("")}
+      ${aller ? `<p class="ff-aller">Match aller (J${esc(aller.j)}) : <b>${aller.dom ? `Hersin ${esc(aller.nous)}–${esc(aller.eux)} ${esc(aller.adv)}` : `${esc(aller.adv)} ${esc(aller.eux)}–${esc(aller.nous)} Hersin`}</b> <span class="lg-res ${outcomeOf(aller)}">${outcomeOf(aller)}</span></p>` : `<p class="ff-aller">Première confrontation de la saison</p>`}
+    </div>
+  </details>`;
+}
+
 /* ----- « Mon club » : les équipes choisies, en tête de l'accueil ----- */
 const MC_TEAMS = ["seniors-1", "seniors-2", "u18-france", "u18-region", "u18-departemental", "u15-region", "u15-departemental", "u13a", "u13b", "u13c", "u11"];
 const mcGet = () => { try { return (localStorage.getItem("hbch-equipes") || "").split(",").filter(id => MC_TEAMS.includes(id)); } catch (e) { return []; } };
