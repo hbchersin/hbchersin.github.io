@@ -1158,6 +1158,25 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .live-item .lv-sc { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--on-night-muted); }
 .live-item .lv-sc strong { font: 700 20px var(--font-data); color: var(--on-night); }
 .live-item .lg-res { width: 24px; height: 24px; font-size: 13px; }
+/* « Mon week-end » (dans « Mon club ») */
+.mw { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--rose); margin-bottom: 14px; }
+.mw-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.mw-head h3 { font: 800 22px/1 var(--font-display); text-transform: uppercase; margin: 0; }
+.mw-head span { color: var(--muted); font-size: 14px; }
+.mw-list { list-style: none; margin: 0; padding: 0; }
+.mw-list li { display: grid; grid-template-columns: 84px 1fr; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.mw-list li:last-child { border-bottom: 0; }
+.mw-when { font: 800 15px/1.2 var(--font-body); color: var(--rose-ink); text-transform: capitalize; }
+.mw-when small { display: block; font: 700 22px/1.1 var(--font-data); color: var(--ink); text-transform: none; margin-top: 2px; }
+.mw-what b { display: block; font-size: 16px; line-height: 1.25; }
+.mw-what .mw-team { display: block; font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.mw-what .where { display: block; font-size: 14px; color: var(--muted); margin-top: 3px; }
+.mw-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.mw-acts a, .mw-acts .cal-add summary { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 12px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 700 14px var(--font-body); background: var(--bg); }
+.mw-acts a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+.mw-acts a.go { background: var(--rose); border-color: var(--rose); color: var(--night); }
+.mw-empty { padding: 14px 16px; color: var(--muted); font-size: 15px; }
+@media (max-width: 520px) { .mw-list li { grid-template-columns: 70px 1fr; gap: 10px; } }
 /* « Mon club » : les équipes choisies, en tête de l'accueil */
 .mc { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 20px 24px; }
 .mc[hidden] { display: none; }
@@ -3529,6 +3548,40 @@ function renderLive() {
 }
 setInterval(() => { if (document.visibilityState === "visible") renderLive(); }, 60000);
 
+/* ----- « Mon week-end » : les matchs du week-end de mes équipes, avec le lieu et l'itinéraire ----- */
+function weekendBounds(now = new Date()) {
+  // Du lundi au jeudi : le week-end qui arrive ; du vendredi au dimanche : ce week-end
+  const d = new Date(now); d.setHours(0, 0, 0, 0);
+  const dow = (d.getDay() + 6) % 7;              // 0 = lundi … 6 = dimanche
+  const fri = new Date(d); fri.setDate(d.getDate() + (dow <= 3 ? 4 - dow : -(dow - 4)));
+  const end = new Date(fri); end.setDate(fri.getDate() + 3);
+  return [fri, end];
+}
+function mwVenue(m) {
+  const id = m.t.id, l = m.lieu || {};
+  const home = m.dom && playsInHersin(id, m.dom, m.adv, m.salle);
+  const v = home ? homeVenue(id, m.adv, m.salle) : "";
+  const name = home && v ? v.replace(/^salle /, "Salle ") : l.nom ? `Salle ${l.nom}` : m.dom ? "À domicile" : `Chez ${m.adv}`;
+  const addr = home && VENUE_ADDR[v] ? VENUE_ADDR[v].replace(/^(Complexe Futura|Salle Vivre), /, "") : [l.rue, [l.cp, l.ville].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+  const dest = home && VENUE_ADDR[v] ? VENUE_ADDR[v] : l.lat && l.lon ? `${l.lat},${l.lon}` : addr;
+  return { name, addr, route: dest ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}` : "", home };
+}
+function monWeekend(mine) {
+  if (!mine.length) return "";
+  const [from, to] = weekendBounds(), now = Date.now();
+  const list = allMatches().filter(m => mine.includes(m.t.id) && m.when >= from && m.when < to && m.when.getTime() > now - 3 * 3600e3 && !isPlayed(m));
+  const label = `${from.toLocaleDateString("fr-FR", { day: "numeric", month: "long" })} – ${new Date(to - 1).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}`;
+  const items = list.map(m => {
+    const v = mwVenue(m), hasTime = m.date.length > 10;
+    return `<li><span class="mw-when">${esc(m.when.toLocaleDateString("fr-FR", { weekday: "long" }))}<small>${hasTime ? esc(hhmm(m.when)) : "–"}</small></span>
+      <span class="mw-what"><span class="mw-team">${esc(m.t.name)} · ${m.dom ? "Domicile" : "Extérieur"}</span><b>${m.dom ? "Hersin – " + esc(m.adv) : esc(m.adv) + " – Hersin"}</b>
+        <span class="where">📍 ${esc(v.name)}${v.addr ? " · " + esc(v.addr) : ""}</span>
+        <span class="mw-acts">${v.route && !v.home ? `<a class="go" href="${esc(v.route)}" target="_blank" rel="noopener">🚗 Itinéraire<span class="sr-only"> vers ${esc(v.name)} (nouvel onglet)</span></a>` : v.route ? `<a href="${esc(v.route)}" target="_blank" rel="noopener">📍 Plan<span class="sr-only"> (nouvel onglet)</span></a>` : ""}${hasTime ? calButton(matchEvent(m.t.cup ? m.t.id : m.t.id, m), true) : ""}<a href="${matchHref(m)}">Le match →</a></span></span></li>`;
+  });
+  return `<div class="mw"><div class="mw-head"><h3>📅 Mon week-end</h3><span>${esc(label)}</span></div>
+    ${items.length ? `<ul class="mw-list">${items.join("")}</ul>` : `<p class="mw-empty">Pas de match ce week-end pour vos équipes. Profitez-en pour venir encourager les autres Tigres !</p>`}</div>`;
+}
+
 /* ----- « Mon club » : les équipes choisies, en tête de l'accueil ----- */
 const MC_TEAMS = ["seniors-1", "seniors-2", "u18-france", "u18-region", "u18-departemental", "u15-region", "u15-departemental", "u13a", "u13b", "u13c", "u11"];
 const mcGet = () => { try { return (localStorage.getItem("hbch-equipes") || "").split(",").filter(id => MC_TEAMS.includes(id)); } catch (e) { return []; } };
@@ -3562,7 +3615,7 @@ function renderMonClub() {
     return;
   }
   el.innerHTML = `<div class="wrap"><div class="mc-head"><h2 id="mc-title">⭐ Mon <em>club</em></h2>${mcPicking ? "" : `<button type="button" class="mc-edit" data-mc-edit>Modifier mes équipes</button>`}</div>
-    ${picker}${mine.length ? `<ul class="mc-grid">${mine.map(mcCard).join("")}</ul>` : ""}</div>`;
+    ${picker}${mine.length && !mcPicking ? monWeekend(mine) : ""}${mine.length ? `<ul class="mc-grid">${mine.map(mcCard).join("")}</ul>` : ""}</div>`;
 }
 document.addEventListener("click", e => {
   if (e.target.closest("[data-mc-edit]")) { mcPicking = true; renderMonClub(); $("#mc-pick input")?.focus(); }
