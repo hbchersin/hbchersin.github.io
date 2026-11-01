@@ -99,10 +99,20 @@
   var db = {
     collection: function (name) {
       return { onSnapshot: function (cb, err) {
-        load(name).then(function (docs) {
+        var last = "";
+        function emit(docs) {
+          var txt = JSON.stringify(docs); if (txt === last) return; last = txt;
           cb({ docs: Object.keys(docs).map(function (id) { return { id: id, exists: true, data: function () { return docs[id]; } }; }) });
-        }, function (e) { if (err) err(e); });
-        return function () {};
+        }
+        load(name).then(emit, function (e) { if (err) err(e); });
+        // Scores du jour : les championnats sont relus toutes les 5 minutes tant que l'appli est ouverte
+        var timer = name === "competitions" ? setInterval(function () {
+          if (document.visibilityState === "visible") get("data/competitions.json").then(function (d) { if (d && Object.keys(d).length) emit(d); });
+        }, 300000) : null;
+        if (timer) document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "visible") get("data/competitions.json").then(function (d) { if (d && Object.keys(d).length) emit(d); });
+        });
+        return function () { if (timer) clearInterval(timer); };
       } };
     },
     doc: function () { return { set: function () { return Promise.reject(new Error("lecture seule")); }, delete: function () { return Promise.reject(new Error("lecture seule")); } }; }
@@ -1102,6 +1112,26 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .ff-aller { margin: 12px 0 0; font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .ff-aller b { color: var(--ink); }
 @media (max-width: 520px) { .ff-head, .ff-row { grid-template-columns: 1fr 96px 1fr; gap: 6px; } .ff-v { font-size: 14px; } .ff-l { font-size: 10px; } .ff-form i { width: 17px; height: 17px; font-size: 10px; } }
+/* Bandeau « Aujourd'hui / En direct » sur l'accueil */
+.live { background: var(--night); color: var(--on-night); padding-block: 16px 18px; border-bottom: 3px solid var(--rose); }
+.live[hidden] { display: none; }
+.live-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.live-head h2 { font: 800 24px/1 var(--font-display); text-transform: uppercase; margin: 0; color: var(--on-night); }
+.live-dot { width: 12px; height: 12px; border-radius: 50%; background: #ff3b30; box-shadow: 0 0 0 0 rgba(255,59,48,.7); animation: livepulse 1.6s infinite; flex: none; }
+@keyframes livepulse { 70% { box-shadow: 0 0 0 10px rgba(255,59,48,0); } 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0); } }
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+.live-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
+.live-list li { flex: 0 0 auto; scroll-snap-align: start; }
+.live-item { display: grid; gap: 4px; width: 250px; min-height: 92px; padding: 10px 14px; background: #1c191e; border: 1px solid var(--night-line); border-left: 4px solid var(--night-line); color: var(--on-night); text-decoration: none; }
+.live-item:hover { border-color: var(--rose); }
+.live-item.now { border-left-color: #ff3b30; } .live-item.wait { border-left-color: #f2c14e; } .live-item.fin { border-left-color: var(--rose); }
+.live-item .st { font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .08em; color: var(--on-night-muted); display: flex; align-items: center; gap: 6px; }
+.live-item.now .st { color: #ff6b62; } .live-item.wait .st { color: #f2c14e; } .live-item.fin .st { color: var(--rose); }
+.live-item .st .live-dot { width: 8px; height: 8px; }
+.live-item b { font: 800 18px/1.15 var(--font-display); text-transform: uppercase; }
+.live-item .lv-sc { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--on-night-muted); }
+.live-item .lv-sc strong { font: 700 20px var(--font-data); color: var(--on-night); }
+.live-item .lg-res { width: 24px; height: 24px; font-size: 13px; }
 /* « Mon club » : les équipes choisies, en tête de l'accueil */
 .mc { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 20px 24px; }
 .mc[hidden] { display: none; }
@@ -1303,6 +1333,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <!-- ACCUEIL -->
   <div data-page="accueil" data-title="Accueil">
     <button type="button" class="notif-band" id="notif-band" hidden><span class="nb-ico"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nb-txt"><b>Activez les notifications</b><span id="nb-sub">Résultats, actus et rappels des matchs des Tigres sur votre téléphone</span></span><span class="nb-go" aria-hidden="true">Activer →</span></button>
+    <section class="live" id="live" aria-labelledby="live-title" hidden></section>
     <section class="mc" id="mon-club" aria-labelledby="mc-title" hidden></section>
     <section class="page-hero hero">
       <div class="wrap">
@@ -3134,7 +3165,7 @@ document.addEventListener("click", e => {
   wkrOffset = Math.round((target - defaultWeek()) / (7 * 864e5)); renderResultsPage();
 });
 function refreshLeagues() {
-  renderWeekend(); renderResultsPage(); renderMonClub();
+  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive();
   setTimeout(tickCountdowns, 0);
   document.querySelectorAll("[data-league]").forEach(el => renderLeague(el, el.dataset.league));
   document.querySelectorAll("[data-cup]").forEach(el => renderCup(el, el.dataset.cup));
@@ -3351,6 +3382,35 @@ function faceToFace(id, next, table, ours, matches) {
   </details>`;
 }
 
+/* ----- Bandeau « Aujourd'hui » : matchs du jour, en cours, terminés (score en attente) et scores finaux ----- */
+function renderLive() {
+  const el = $("#live"); if (!el) return;
+  const now = Date.now(), H = 3600e3, mine = mcGet();
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const items = allMatches().filter(m => m.date && m.date.length > 10).map(m => {
+    const k = m.when.getTime(), played = isPlayed(m);
+    const st = played ? (now - k < 14 * H && now >= k ? "fin" : null)
+      : now >= k && now < k + 1.5 * H ? "now"
+      : now >= k + 1.5 * H && now < k + 10 * H ? "wait"
+      : k > now && k < today.getTime() + 24 * H && k >= today.getTime() ? "soon" : null;
+    return st && { m, st };
+  }).filter(Boolean);
+  if (!items.length) { el.hidden = true; el.innerHTML = ""; return; }
+  const order = { now: 0, wait: 1, fin: 2, soon: 3 };
+  items.sort((a, b) => (mine.includes(b.m.t.id) - mine.includes(a.m.t.id)) || order[a.st] - order[b.st] || a.m.when - b.m.when);
+  const anyLive = items.some(x => x.st === "now");
+  const label = { now: `<span class="live-dot" aria-hidden="true"></span>En cours`, wait: "Terminé · score bientôt", fin: "Score final", soon: "Aujourd'hui" };
+  el.hidden = false;
+  el.innerHTML = `<div class="wrap"><div class="live-head">${anyLive ? `<span class="live-dot" aria-hidden="true"></span>` : ""}<h2 id="live-title">${anyLive ? "En direct" : "Aujourd'hui"}</h2></div>
+    <ul class="live-list">${items.map(({ m, st }) => `<li><a class="live-item ${st}" href="${matchHref(m)}">
+      <span class="st">${label[st]} · ${esc(m.t.name)}</span>
+      <b>${m.dom ? "Hersin – " + esc(m.adv) : esc(m.adv) + " – Hersin"}</b>
+      <span class="lv-sc">${st === "fin" ? `<strong>${m.dom ? `${esc(m.nous)} – ${m.forfait ? "FO" : esc(m.eux)}` : `${m.forfait ? "FO" : esc(m.eux)} – ${esc(m.nous)}`}</strong><span class="lg-res ${outcomeOf(m)}">${outcomeOf(m)}</span>`
+        : `<span>${st === "soon" ? "Coup d'envoi " : "Coup d'envoi à "}${hhmm(m.when)} · ${m.dom ? "à domicile" : "à l'extérieur"}</span>`}</span>
+    </a></li>`).join("")}</ul></div>`;
+}
+setInterval(() => { if (document.visibilityState === "visible") renderLive(); }, 60000);
+
 /* ----- « Mon club » : les équipes choisies, en tête de l'accueil ----- */
 const MC_TEAMS = ["seniors-1", "seniors-2", "u18-france", "u18-region", "u18-departemental", "u15-region", "u15-departemental", "u13a", "u13b", "u13c", "u11"];
 const mcGet = () => { try { return (localStorage.getItem("hbch-equipes") || "").split(",").filter(id => MC_TEAMS.includes(id)); } catch (e) { return []; } };
@@ -3399,7 +3459,7 @@ document.addEventListener("submit", e => {
   if (window.HBCH_NOTIF_TEAMS) window.HBCH_NOTIF_TEAMS(on);
   $("#mon-club .mc-edit")?.focus();
 });
-addEventListener("hbch-equipes", () => { if (!mcPicking) renderMonClub(); });
+addEventListener("hbch-equipes", () => { if (!mcPicking) renderMonClub(); renderLive(); });
 
 /* ----- Galeries photos par match : #photos (liste) et #photos-<clé> (album) ----- */
 function GALERIES() { return (LEAGUE.galeries && LEAGUE.galeries.matchs) || {}; }
