@@ -1351,8 +1351,12 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .app-home [data-page="accueil"] > .page-hero.hero,
 .app-home [data-page="accueil"] > .facts,
 .app-home [data-page="accueil"] > section:has(.tiles),
-.app-home [data-page="accueil"] > section:has(.mosaic),
 .app-home [data-page="accueil"] > section:has(#home-teams) { display: none; }
+.app-home [data-page="accueil"] > section:has(.mosaic) { padding-block: 22px; }
+.app-home [data-page="accueil"] > section:has(.mosaic) .head { margin-bottom: 12px; }
+.app-home [data-page="accueil"] > section:has(.mosaic) .head h2 { font-size: 26px; }
+.app-home .mosaic .main, .app-home .mosaic .quote { display: none; }
+.app-home .mosaic { grid-template-columns: 1fr; }
 .app-home .mc { padding-block: 14px 16px; }
 .app-home .mc-head { margin-bottom: 10px; }
 .app-home .mc-head h2 { font-size: 24px; }
