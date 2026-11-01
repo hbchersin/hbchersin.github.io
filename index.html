@@ -836,10 +836,10 @@ h3.roster-group::after { content: ""; flex: 1; height: 1px; background: var(--li
 
 footer { background: var(--night); color: var(--on-night-muted); padding-block: 40px; font-size: 14px; border-top: 3px solid var(--rose); }
 footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
-@media (max-width: 760px) { footer .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { footer .wrap { grid-template-columns: 1fr 1fr; gap: 24px 16px; } footer .wrap > :first-child { grid-column: 1 / -1; } footer ul a[href] { min-height: 0; padding-block: 3px; } }
 footer .brand { color: var(--on-night); }
 footer h2 { font-size: 18px; color: var(--on-night); margin-bottom: 8px; }
-footer ul a { display: inline-block; padding-block: 4px; color: var(--on-night-muted); text-decoration: none; }
+footer ul a { display: inline-block; min-height: 0; padding-block: 4px; color: var(--on-night-muted); text-decoration: none; }
 footer ul a:hover { color: var(--rose); }
 footer .socials a { color: var(--on-night); border-color: #4a434c; }
 footer .socials a:hover { color: var(--rose); border-color: var(--rose); }
