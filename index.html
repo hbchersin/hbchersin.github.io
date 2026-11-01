@@ -1077,6 +1077,49 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* « Mon club » : les équipes choisies, en tête de l'accueil */
+.mc { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 20px 24px; }
+.mc[hidden] { display: none; }
+.mc-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 14px; }
+.mc-head h2 { font: 800 30px/1 var(--font-display); text-transform: uppercase; margin: 0; }
+.mc-head h2 em { color: var(--rose-ink); font-style: normal; }
+.mc-edit { min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 700 14px var(--font-body); cursor: pointer; }
+.mc-edit:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+.mc-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.mc-card { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--rose); display: grid; }
+.mc-top { display: flex; align-items: center; gap: 12px; padding: 14px 16px 10px; text-decoration: none; color: var(--ink); }
+.mc-top img { width: 44px; height: 44px; flex: none; }
+.mc-top b { display: block; font: 800 22px/1 var(--font-display); text-transform: uppercase; }
+.mc-top small { display: block; color: var(--muted); font-size: 14px; margin-top: 3px; }
+.mc-top small strong { color: var(--rose-ink); }
+.mc-row { display: grid; grid-template-columns: 74px 1fr auto; gap: 10px; align-items: center; padding: 10px 16px; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); min-height: 56px; }
+.mc-row:hover { background: var(--bg); }
+.mc-row .k { font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.mc-row .v { min-width: 0; }
+.mc-row .v b { display: block; font-size: 15px; line-height: 1.25; overflow-wrap: anywhere; }
+.mc-row .v span { display: block; font-size: 13px; color: var(--muted); }
+.mc-res { font: 800 13px var(--font-body); width: 30px; height: 30px; display: grid; place-items: center; color: #fff; }
+.mc-res.V { background: #1f8a4c; } .mc-res.N { background: #6b6470; } .mc-res.D { background: #b3261e; }
+.mc-when { font: 700 13px/1.3 var(--font-body); color: var(--rose-ink); text-align: right; max-width: 92px; }
+.mc-links { display: flex; gap: 8px; padding: 10px 16px 14px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.mc-links a { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 700; font-size: 14px; }
+.mc-links a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+.mc-invite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--rose); padding: 14px 16px; }
+.mc-invite b { display: block; font: 800 20px/1.1 var(--font-display); text-transform: uppercase; }
+.mc-invite span { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+.mc-pick { background: var(--surface); border: 1px solid var(--line); padding: 16px; margin-bottom: 14px; }
+.mc-pick fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.mc-pick legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+.mc-pick .opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.mc-pick label { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--line); cursor: pointer; font-size: 15px; }
+.mc-pick label:has(input:checked) { border-color: var(--rose-ink); background: color-mix(in srgb, var(--rose) 12%, transparent); }
+.mc-pick input { width: 20px; height: 20px; accent-color: var(--rose); margin: 0; flex: none; }
+.mc-pick .acts { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+.mc-pick .acts button { min-height: 44px; padding: 8px 18px; font: 700 15px var(--font-body); cursor: pointer; border: 2px solid var(--rose); }
+.mc-pick .acts .go { background: var(--rose); color: var(--night); }
+.mc-pick .acts .no { background: none; color: var(--ink); border-color: var(--line); }
+.mc-pick .note { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+@media (max-width: 520px) { .mc-grid { grid-template-columns: 1fr; } .mc-head h2 { font-size: 26px; } }
 /* Galeries photos */
 .photos-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 16px; padding: 8px 16px; border: 2px solid var(--rose); color: var(--on-night); font: 700 15px var(--font-body); text-decoration: none; }
 .photos-cta:hover { background: var(--rose); color: var(--night); }
@@ -1235,6 +1278,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <!-- ACCUEIL -->
   <div data-page="accueil" data-title="Accueil">
     <button type="button" class="notif-band" id="notif-band" hidden><span class="nb-ico"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nb-txt"><b>Activez les notifications</b><span id="nb-sub">Résultats, actus et rappels des matchs des Tigres sur votre téléphone</span></span><span class="nb-go" aria-hidden="true">Activer →</span></button>
+    <section class="mc" id="mon-club" aria-labelledby="mc-title" hidden></section>
     <section class="page-hero hero">
       <div class="wrap">
         <div style="display:grid;gap:14px">
@@ -3064,7 +3108,7 @@ document.addEventListener("click", e => {
   wkrOffset = Math.round((target - defaultWeek()) / (7 * 864e5)); renderResultsPage();
 });
 function refreshLeagues() {
-  renderWeekend(); renderResultsPage();
+  renderWeekend(); renderResultsPage(); renderMonClub();
   setTimeout(tickCountdowns, 0);
   document.querySelectorAll("[data-league]").forEach(el => renderLeague(el, el.dataset.league));
   document.querySelectorAll("[data-cup]").forEach(el => renderCup(el, el.dataset.cup));
@@ -3247,6 +3291,56 @@ function renderSponsors() {
   $("#sp-marquee").innerHTML = SPONSORS.map(p => item(p)).join("") + SPONSORS.map(p => item(p, true)).join("");
 }
 renderSponsors();
+/* ----- « Mon club » : les équipes choisies, en tête de l'accueil ----- */
+const MC_TEAMS = ["seniors-1", "seniors-2", "u18-france", "u18-region", "u18-departemental", "u15-region", "u15-departemental", "u13a", "u13b", "u13c", "u11"];
+const mcGet = () => { try { return (localStorage.getItem("hbch-equipes") || "").split(",").filter(id => MC_TEAMS.includes(id)); } catch (e) { return []; } };
+let mcPicking = false;
+function mcCard(id) {
+  const t = byId[id]; if (!t) return "";
+  const L = LEAGUE[id], table = L ? sortStandings(L.classement || []) : [], ours = table.find(r => r.nous);
+  const ms = allMatches().filter(m => m.t.id === id), now = Date.now();
+  const last = ms.filter(isPlayed).pop(), next = ms.find(m => !isPlayed(m) && m.when.getTime() > now - 3 * 3600e3);
+  const gid = ["seniors-1", "seniors-2"].includes(id) ? id : t.cat;
+  const albums = Object.values(GALERIES()).filter(g => (g.photos || []).length && galTeamsOf(g).includes(gid)).length;
+  const score = m => m.dom ? `Hersin ${m.nous}–${m.forfait ? "FO" : m.eux} ${m.adv}` : `${m.adv} ${m.forfait ? "FO" : m.eux}–${m.nous} Hersin`;
+  const when = d => `${d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" })}${d.getHours() ? " · " + hhmm(d) : ""}`;
+  return `<li class="mc-card">
+    <a class="mc-top" href="#${esc(id)}"><img src="${teamLogo(t)}" alt=""><span><b>${esc(t.name)}</b><small>${ours ? `<strong>${ordinal(table.indexOf(ours) + 1)}</strong> sur ${table.length} · ${ours.pts} pts` : esc(t.comp || t.lvl || "")}</small></span></a>
+    ${last ? `<a class="mc-row" href="${matchHref(last)}"><span class="k">Dernier</span><span class="v"><b>${esc(score(last))}</b><span>${esc(last.t.cup ? last.tour : "J" + last.j)} · ${esc(longDate(last.date))}</span></span><span class="mc-res ${outcomeOf(last)}" title="${OUTCOME_LABEL[outcomeOf(last)]}">${outcomeOf(last)}</span></a>` : ""}
+    ${next ? `<a class="mc-row" href="${matchHref(next)}"><span class="k">Prochain</span><span class="v"><b>${next.dom ? "vs" : "à"} ${esc(next.adv)}</b><span>${next.dom ? "À domicile" : "À l'extérieur"}${next.t.cup ? " · " + esc(next.tour) : ""}</span></span><span class="mc-when">${esc(when(next.when))}</span></a>` : `<div class="mc-row"><span class="k">Prochain</span><span class="v"><span>Pas de match programmé pour l'instant</span></span><span></span></div>`}
+    <div class="mc-links">${t.url ? `<a href="#championnat-${esc(id)}">Classement</a>` : ""}<a href="#${esc(id)}">L'équipe</a>${albums ? `<a href="#photos-equipe-${esc(gid)}">📸 ${albums}</a>` : ""}</div>
+  </li>`;
+}
+function renderMonClub() {
+  const el = $("#mon-club"); if (!el) return;
+  const mine = mcGet();
+  el.hidden = false;
+  const picker = mcPicking ? `<form class="mc-pick" id="mc-pick"><fieldset><legend>Choisissez vos équipes : elles s'afficheront ici en premier</legend>
+      <div class="opts">${MC_TEAMS.map(id => `<label><input type="checkbox" value="${id}" ${mine.includes(id) ? "checked" : ""}>${esc(byId[id] ? byId[id].name : id)}</label>`).join("")}</div></fieldset>
+      <div class="acts"><button type="submit" class="go">Enregistrer</button><button type="button" class="no" id="mc-cancel">Annuler</button></div>
+      ${window.HBCH_PUBLIC ? `<p class="note">Si vous avez activé les notifications, vous recevrez aussi les résultats de ces équipes.</p>` : ""}</form>` : "";
+  if (!mine.length && !mcPicking) {
+    el.innerHTML = `<div class="wrap"><div class="mc-invite"><div><b>⭐ Mon club</b><span>Choisissez vos équipes : résultats, prochains matchs et classements en un coup d'œil, dès l'ouverture.</span></div><button type="button" class="mc-edit" data-mc-edit>Choisir mes équipes</button></div></div>`;
+    return;
+  }
+  el.innerHTML = `<div class="wrap"><div class="mc-head"><h2 id="mc-title">⭐ Mon <em>club</em></h2>${mcPicking ? "" : `<button type="button" class="mc-edit" data-mc-edit>Modifier mes équipes</button>`}</div>
+    ${picker}${mine.length ? `<ul class="mc-grid">${mine.map(mcCard).join("")}</ul>` : ""}</div>`;
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-mc-edit]")) { mcPicking = true; renderMonClub(); $("#mc-pick input")?.focus(); }
+  else if (e.target.closest("#mc-cancel")) { mcPicking = false; renderMonClub(); }
+});
+document.addEventListener("submit", e => {
+  if (e.target.id !== "mc-pick") return;
+  e.preventDefault();
+  const on = [...e.target.querySelectorAll("input:checked")].map(i => i.value);
+  try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (err) {}
+  mcPicking = false; renderMonClub();
+  if (window.HBCH_NOTIF_TEAMS) window.HBCH_NOTIF_TEAMS(on);
+  $("#mon-club .mc-edit")?.focus();
+});
+addEventListener("hbch-equipes", () => { if (!mcPicking) renderMonClub(); });
+
 /* ----- Galeries photos par match : #photos (liste) et #photos-<clé> (album) ----- */
 function GALERIES() { return (LEAGUE.galeries && LEAGUE.galeries.matchs) || {}; }
 function galOf(key) { const g = GALERIES()[key]; return g && (g.photos || []).length ? g : null; }
@@ -3467,8 +3561,8 @@ $("#copy-mail").addEventListener("click", e => {
     const followed = followedFrom(tags), none = !Object.keys(tags).some(k => /^eq\d$/.test(k));
     teamList.innerHTML = NOTIF_TEAMS.map(([id, name]) => `<label><input type="checkbox" value="${id}" ${followed.includes(id) || (none && id === "seniors-1") ? "checked" : ""}>${name}</label>`).join("");
   }
-  async function saveTeams() {
-    const o = await ready, on = [...teamList.querySelectorAll("input:checked")].map(i => i.value);
+  async function saveTeams(list) {
+    const o = await ready, on = list || [...teamList.querySelectorAll("input:checked")].map(i => i.value);
     const set = {}, unset = [];
     TAG_GROUPS.forEach((g, i) => { const v = g.reduce((acc, id, k) => acc | (on.includes(id) ? 1 << k : 0), 0); v ? set["eq" + (i + 1)] = String(v) : unset.push("eq" + (i + 1)); });
     let ok = true;
@@ -3478,8 +3572,11 @@ $("#copy-mail").addEventListener("click", e => {
     try { if (unset.length) await o.User.removeTags(unset); } catch (e) {}
     try { if (Object.keys(set).length) await o.User.addTags(set); } catch (e) { ok = false; }
     try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (e) {}
+    dispatchEvent(new Event("hbch-equipes"));   // « Mon club » suit les mêmes équipes
     return { saved: ok ? on.length : 0, failed: ok ? 0 : on.length, total: on.length };
   }
+  // « Mon club » : quand on change ses équipes depuis l'accueil, les notifications suivent (si elles sont activées)
+  window.HBCH_NOTIF_TEAMS = list => isOn() ? saveTeams(list) : null;
   function savedMessage(r) {
     if (!r.total) return "Aucune équipe choisie : vous recevrez seulement les actus et les rappels des matchs des Seniors 1.";
     if (!r.failed) return `C'est enregistré : vous recevrez les résultats de ${r.saved} équipe${r.saved > 1 ? "s" : ""}. 🐯`;
