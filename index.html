@@ -1355,6 +1355,31 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   .marquee li[aria-hidden] { display: none; }
 }
 
+/* Notre saison (page équipe) */
+.season-card[hidden] { display: none; }
+.season-card { margin-top: 16px; }
+.ss-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 14px; }
+.ss-head span { color: var(--muted); font-size: 14px; }
+.ss-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.ss-tile { display: grid; gap: 2px; align-content: start; padding: 12px 14px; background: var(--bg); border: 1px solid var(--line); border-top: 3px solid var(--rose); min-width: 0; }
+.ss-tile small { font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.ss-tile > b { font: 800 30px/1.05 var(--font-display); font-variant-numeric: tabular-nums; }
+.ss-tile > b i { font-style: normal; color: var(--muted); font-weight: 600; }
+.ss-tile > span { font-size: 13px; color: var(--muted); }
+.ss-vnd { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font: 700 14px var(--font-body); color: var(--muted); }
+.ss-vnd b { font: 800 26px/1.05 var(--font-display); margin-right: 1px; font-variant-numeric: tabular-nums; }
+.ss-vnd b.V { color: #1f8a4c; } .ss-vnd b.N { color: #6b6f80; } .ss-vnd b.D { color: #c0392b; }
+.ss-list { display: grid; margin: 0; }
+.ss-list > div { display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); }
+.ss-list dt { font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.ss-list dd { margin: 0; font-size: 15px; }
+.ss-list dd a { color: var(--ink); text-underline-offset: 3px; }
+.ss-list dd .ss-vnd b { font-size: 20px; }
+.ss-forme { display: flex; gap: 6px; }
+.ss-forme { align-items: center; flex-wrap: wrap; }
+.ss-forme a.lg-res { text-decoration: none; color: #fff; }
+.ss-forme small { color: var(--muted); font-size: 12px; margin-left: 4px; }
+@media (max-width: 760px) { .ss-grid { grid-template-columns: 1fr 1fr; } .ss-list > div { grid-template-columns: 112px 1fr; } .card.season-card { padding: 16px; } }
 /* ----- Accueil « appli » : version compacte quand le site est ouvert comme application ----- */
 .app-home [data-page="accueil"] > .page-hero.hero,
 .app-home [data-page="accueil"] > .facts,
@@ -2140,6 +2165,7 @@ function renderTeam(t) {
       </div>` : `
       <div class="team-layout">${t.url ? poster(t, "h2", false) : ""}${staff}${training}</div>`}
       ${t.url ? "" : `<p class="sub" style="margin-top:16px">Cette équipe ne dispute pas de championnat.</p>`}
+      ${t.url ? `<div class="card season-card" data-season="${t.id}" hidden></div>` : ""}
       <div class="card roster-card" data-roster="${rosterKey(t.id)}"></div>
       ${t.url ? `<a class="champ-cta" href="#championnat-${t.id}"><span><span class="eyebrow">Championnat</span><b>Classement, résultats et calendrier</b><span class="sub" data-rank="${t.id}"></span></span><span class="arrow" aria-hidden="true">→</span></a>` : ""}
       ${(() => { const gid = ["seniors-1", "seniors-2"].includes(t.id) ? t.id : t.cat; const n = Object.values(GALERIES()).filter(g => (g.photos || []).length && galTeamsOf(g).includes(gid)).length;
@@ -3356,9 +3382,44 @@ document.addEventListener("click", e => {
   if (target == null) return;
   wkrOffset = Math.round((target - defaultWeek()) / (7 * 864e5)); renderResultsPage();
 });
+/* ----- « Notre saison » : bilan du championnat sur la page de chaque équipe ----- */
+function renderSeason(el, id) {
+  const ms = allMatches().filter(m => m.t.id === id && !m.t.cup && isPlayed(m));
+  if (!ms.length) { el.hidden = true; el.innerHTML = ""; return; }
+  const count = list => ({ V: list.filter(m => outcomeOf(m) === "V").length, N: list.filter(m => outcomeOf(m) === "N").length, D: list.filter(m => outcomeOf(m) === "D").length });
+  const all = count(ms), dom = count(ms.filter(m => m.dom)), ext = count(ms.filter(m => !m.dom));
+  const real = ms.filter(m => !m.forfait && +m.nous + +m.eux > 0);
+  const bp = real.reduce((a, m) => a + +m.nous, 0), bc = real.reduce((a, m) => a + +m.eux, 0);
+  let best = 0, run = 0; ms.forEach(m => { run = outcomeOf(m) === "V" ? run + 1 : 0; best = Math.max(best, run); });
+  const last = outcomeOf(ms[ms.length - 1]); let cur = 0;
+  for (let i = ms.length - 1; i >= 0 && outcomeOf(ms[i]) === last; i--) cur++;
+  const big = real.filter(m => +m.nous > +m.eux).sort((a, b) => (b.nous - b.eux) - (a.nous - a.eux))[0];
+  const L = LEAGUE[id], table = L ? sortStandings(L.classement || []) : [], ours = table.find(r => r.nous);
+  const vnd = c => `<span class="ss-vnd"><b class="V">${c.V}</b>V <b class="N">${c.N}</b>N <b class="D">${c.D}</b>D</span>`;
+  const fmt = x => x.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+  const serie = cur >= 2 ? (last === "V" ? `🔥 ${cur} victoires de suite` : last === "D" ? `${cur} défaites de suite : on se relève !` : `${cur} nuls de suite`) : "";
+  const forme = ms.slice(-5).map(m => `<a class="lg-res ${outcomeOf(m)}" href="${matchHref(m)}" title="${esc(m.dom ? "Hersin – " + m.adv : m.adv + " – Hersin")} : ${esc(m.nous)}–${m.forfait ? "FO" : esc(m.eux)}">${outcomeOf(m)}</a>`).join("");
+  el.hidden = false;
+  el.innerHTML = `<div class="ss-head"><h2>Notre saison</h2><span>${esc(L && L.comp || byId[id].comp || "Championnat")} · ${plural(ms.length, "match")} joué${ms.length > 1 ? "s" : ""}</span></div>
+    <div class="ss-grid">
+      <div class="ss-tile"><small>Bilan</small>${vnd(all)}</div>
+      ${ours ? `<div class="ss-tile"><small>Classement</small><b>${ordinal(table.indexOf(ours) + 1)}</b><span>sur ${table.length} · ${plural(ours.pts, "pt")}</span></div>` : ""}
+      ${real.length ? `<div class="ss-tile"><small>Buts</small><b>${bp} <i>/</i> ${bc}</b><span>marqués / encaissés · ${bp - bc >= 0 ? "+" : ""}${bp - bc}</span></div>
+      <div class="ss-tile"><small>Par match</small><b>${fmt(bp / real.length)}</b><span>buts marqués en moyenne</span></div>` : ""}
+    </div>
+    <dl class="ss-list">
+      <div><dt>Forme</dt><dd class="ss-forme">${forme}${ms.length > 1 ? `<small>dernier match à droite</small>` : ""}</dd></div>
+      <div><dt>À domicile</dt><dd>${dom.V + dom.N + dom.D ? vnd(dom) : "Pas encore de match"}</dd></div>
+      <div><dt>À l'extérieur</dt><dd>${ext.V + ext.N + ext.D ? vnd(ext) : "Pas encore de match"}</dd></div>
+      ${best >= 2 && !(last === "V" && cur === best) ? `<div><dt>Meilleure série</dt><dd>${best} victoires de suite</dd></div>` : ""}
+      ${serie ? `<div><dt>En ce moment</dt><dd>${serie}</dd></div>` : ""}
+      ${big ? `<div><dt>Plus large victoire</dt><dd><a href="${matchHref(big)}">${esc(big.nous)}–${esc(big.eux)} ${big.dom ? "contre" : "à"} ${esc(big.adv)}</a> (+${big.nous - big.eux})</dd></div>` : ""}
+    </dl>`;
+}
 function refreshLeagues() {
   renderWeekend(); renderResultsPage(); renderMonClub(); renderLive();
   if (allMatches().length) document.documentElement.classList.remove("app-wait");
+  document.querySelectorAll("[data-season]").forEach(el => renderSeason(el, el.dataset.season));
   setTimeout(tickCountdowns, 0);
   document.querySelectorAll("[data-league]").forEach(el => renderLeague(el, el.dataset.league));
   document.querySelectorAll("[data-cup]").forEach(el => renderCup(el, el.dataset.cup));
