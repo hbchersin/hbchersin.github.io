@@ -1077,6 +1077,43 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .foot-app { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; margin-top: 4px; border: 1px solid #4a434c; background: none; color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; justify-self: start; }
 .foot-app:hover { border-color: var(--rose); color: var(--rose); }
 .foot-app[hidden] { display: none; }
+/* Galeries photos */
+.photos-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 16px; padding: 8px 16px; border: 2px solid var(--rose); color: var(--on-night); font: 700 15px var(--font-body); text-decoration: none; }
+.photos-cta:hover { background: var(--rose); color: var(--night); }
+.gal-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.gal-card { display: grid; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); height: 100%; }
+.gal-card:hover { border-color: var(--rose-ink); }
+.gal-card .gc-img { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--night); border-bottom: 3px solid var(--rose); }
+.gal-card .gc-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.gal-card:hover .gc-img img { transform: scale(1.04); }
+.gal-card .gc-n { position: absolute; right: 10px; bottom: 10px; background: rgba(11,10,12,.82); color: #fff; font: 700 13px var(--font-body); padding: 4px 10px; }
+.gal-card .gc-body { padding: 14px 16px 16px; display: grid; gap: 4px; }
+.gal-card small { color: var(--rose-ink); font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .08em; }
+.gal-card b { font: 800 22px/1.1 var(--font-display); text-transform: uppercase; }
+.gal-card span.gc-date { color: var(--muted); font-size: 14px; }
+.gal-head { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-bottom: 20px; }
+.gal-head a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 15px; background: var(--surface); }
+.gal-head a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
+.gal-thumbs { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+.gal-thumbs button { display: block; width: 100%; aspect-ratio: 3 / 2; padding: 0; border: 0; background: var(--night); cursor: zoom-in; overflow: hidden; }
+.gal-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
+.gal-thumbs button:hover img { opacity: .85; }
+.gal-thumbs button:focus-visible { outline: 3px solid var(--rose); outline-offset: 2px; }
+@media (max-width: 520px) { .gal-thumbs { grid-template-columns: repeat(2, 1fr); gap: 4px; } .gal-grid { grid-template-columns: 1fr; } }
+.lb { position: fixed; inset: 0; z-index: 90; background: rgba(5,4,6,.96); display: grid; place-items: center; touch-action: pan-y; }
+.lb[hidden] { display: none; }
+.lb img { max-width: 100vw; max-height: calc(100vh - 90px); max-height: calc(100dvh - 90px); object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.lb-count { position: absolute; top: calc(14px + env(safe-area-inset-top)); left: 16px; margin: 0; color: #ddd; font: 600 15px var(--font-body); }
+.lb-btn { position: absolute; width: 52px; height: 52px; display: grid; place-items: center; border: 0; background: rgba(255,255,255,.12); color: #fff; font: 400 34px/1 var(--font-body); cursor: pointer; border-radius: 50%; }
+.lb-btn:hover { background: var(--rose); color: var(--night); }
+.lb-btn:focus-visible { outline: 3px solid var(--rose); outline-offset: 2px; }
+.lb-close { top: calc(8px + env(safe-area-inset-top)); right: 12px; }
+.lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 600px) { .lb-prev, .lb-next { top: auto; bottom: calc(14px + env(safe-area-inset-bottom)); transform: none; } .lb-prev { left: 30%; } .lb-next { right: 30%; } }
+.lg-photos { display: inline-block; margin-top: 2px; font-size: 13px; font-weight: 700; color: var(--rose-ink); text-decoration: none; }
+.lg-photos:hover { text-decoration: underline; }
+.cup-photos { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; min-height: 44px; font-weight: 700; color: var(--rose-ink); }
 /* Choix des équipes suivies (notifications) */
 .notif-teams { grid-column: 1 / -1; border: 0; margin: 12px 0 0; padding: 0; min-width: 0; }
 .notif-teams[hidden] { display: none; }
@@ -1404,11 +1441,21 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   </div>
 
   <!-- ACTUALITÉS -->
+  <div data-page="photos" data-title="Photos" data-section="actualites">
+    <section class="page-hero"><div class="wrap">
+      <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="#accueil">Accueil</a></li><li><a href="#actualites">Actualités</a></li><li aria-current="page">Photos</li></ol></nav>
+      <h1 tabindex="-1" id="photos-h1">Les <em>photos</em></h1>
+      <p class="lead" id="photos-lead">Les matchs des Seniors en images, repris des albums de notre page Facebook.</p>
+    </div></section>
+    <section class="block"><div class="wrap" id="photos-page"></div></section>
+  </div>
+
   <div data-page="actualites" data-title="Actualités" data-section="actualites">
     <section class="page-hero"><div class="wrap">
       <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="#accueil">Accueil</a></li><li aria-current="page">Actualités</li></ol></nav>
       <h1 tabindex="-1">Les <em>actus</em></h1>
       <p class="lead">Les temps forts du club, repris de notre page Facebook.</p>
+      <a class="photos-cta" href="#photos">📸 Les photos des matchs <span aria-hidden="true">→</span></a>
     </div></section>
     <section class="block"><div class="wrap" id="news-page"></div></section>
   </div>
@@ -1636,6 +1683,14 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <div class="app-actions"><button type="button" class="app-later" id="notif-later">Plus tard</button><button type="button" class="app-go" id="notif-go">Activer</button></div>
 </div>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand" hidden>
+  <img id="lb-img" alt="">
+  <p class="lb-count" id="lb-count" aria-live="polite"></p>
+  <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Fermer">×</button>
+  <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Photo précédente">‹</button>
+  <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Photo suivante">›</button>
+</div>
+
 <footer>
   <div class="wrap">
     <div style="display:grid;gap:14px;align-content:start">
@@ -1646,7 +1701,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
       <button type="button" class="foot-app" id="foot-notif" hidden><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Recevoir les notifications</span></button>
     </div>
     <div><h2>Le club</h2><ul class="plain"><li><a href="#club">Présentation</a></li><li><a href="#histoire">Notre histoire</a></li><li><a href="#bureau">Le bureau</a></li><li><a href="#salles">Nos salles</a></li><li><a href="#partenaires">Nos partenaires</a></li><li><a href="#contact">Contact</a></li></ul></div>
-    <div><h2>Saison</h2><ul class="plain"><li><a href="#actualites">Actualités</a></li><li><a href="#agenda">Agenda</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#championnats">Championnats</a></li><li><a href="#entrainements">Entraînements</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
+    <div><h2>Saison</h2><ul class="plain"><li><a href="#actualites">Actualités</a></li><li><a href="#photos">Photos des matchs</a></li><li><a href="#agenda">Agenda</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#championnats">Championnats</a></li><li><a href="#entrainements">Entraînements</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
     <p class="legal">© 2026 HBC Hersin-Coupigny · Affilié à la Fédération Française de Handball</p>
   </div>
 </footer>
@@ -2610,6 +2665,7 @@ let assetsCap = null;
   db.collection("competitions").onSnapshot(snap => {
     LEAGUE = {}; snap.docs.forEach(d => LEAGUE[d.id] = d.data());
     refreshLeagues();
+    { const k = decodeURIComponent(location.hash.slice(1)); if ((k === "photos" || k.startsWith("photos-")) && $("#lb").hidden) renderPhotosPage(k); }
     if (!$("#scores-page").contains(document.activeElement)) renderScores();
   }, () => {});
   db.collection("rosters").onSnapshot(snap => {
@@ -2725,7 +2781,7 @@ let leagueTeam = null;
 function matchRow(m) {
   const done = isPlayed(m), o = done ? outcomeOf(m) : "";
   return `<li class="lg-match${done ? " played" : ""}">
-    <div class="lg-when"><b>J${esc(m.j)}</b><span>${esc(fmtMatchDate(m.date))}</span></div>
+    <div class="lg-when"><b>J${esc(m.j)}</b><span>${esc(fmtMatchDate(m.date))}</span>${leagueTeam && galOf(`${leagueTeam}-j${m.j}`) ? `<a class="lg-photos" href="#photos-${esc(leagueTeam)}-j${esc(m.j)}" aria-label="Photos du match contre ${esc(m.adv)}">📸 Photos</a>` : ""}</div>
     <div class="lg-opp"><span class="lg-venue ${m.dom ? "dom" : "ext"}" title="${m.dom ? "À domicile" : "À l'extérieur"}">${m.dom ? "Dom." : "Ext."}</span>${badge(m.adv, false)}<span class="lg-opp-name">${esc(m.adv)}</span></div>
     ${done ? `<span class="lg-score" aria-label="HBCH ${esc(m.nous)}, ${esc(m.adv)} ${m.forfait ? "forfait" : esc(m.eux)}" title="${m.forfait ? "Victoire par forfait" : ""}"><b class="us">${esc(m.nous)}</b><i>–</i><b>${m.forfait ? "FO" : esc(m.eux)}</b></span>
       <span class="lg-res ${o}" title="${OUTCOME_LABEL[o]}">${o}</span>` : `<span class="lg-score todo">à venir</span>${leagueTeam && m.date ? calButton(matchEvent(leagueTeam, m), true) : "<span></span>"}`}
@@ -2855,7 +2911,8 @@ function renderCup(el, id) {
       : `<div class="cup-score"><span class="cup-time">${m.date && m.date.length > 10 ? hhmm(new Date(m.date)) : "—"}</span></div>`;
     const body = `<div class="cup-match" aria-label="${esc(m.tour)} : ${m.dom ? "HBC Hersin contre " + m.adv : m.adv + " contre HBC Hersin"}${played ? `, ${m.nous} à ${m.eux} pour Hersin` : ""}">${m.dom ? us + mid + them : them.replace("cup-team r", "cup-team") + mid + us.replace('class="cup-team"', 'class="cup-team r"')}</div>
       <p class="cup-meta">${esc(longDate(m.date))}${m.date.length > 10 ? ` à ${hhmm(new Date(m.date))}` : ""} · ${esc(m.dom ? venueOf(L.equipe, m.dom, m.adv, m.salle) : "chez " + m.adv)}</p>
-      ${played ? `<span class="cup-res${won ? "" : " out"}">${won ? (m.forfait ? "Qualifiés · victoire par forfait" : "Qualifiés pour le tour suivant") : "Éliminés"}</span>` : ""}`;
+      ${played ? `<span class="cup-res${won ? "" : " out"}">${won ? (m.forfait ? "Qualifiés · victoire par forfait" : "Qualifiés pour le tour suivant") : "Éliminés"}</span>` : ""}
+      ${galOf("cdf-" + slugify(m.tour)) ? `<a class="cup-photos" href="#photos-cdf-${esc(slugify(m.tour))}">📸 Les photos du match <span aria-hidden="true">→</span></a>` : ""}`;
     return step(played ? (won ? "won" : "lost") : "next", played ? (won ? "✓" : "✕") : i + 1, m.tour, played ? (won ? "Victoire" : "Défaite") : "À venir", body);
   });
   const p = L.prochain;
@@ -3180,13 +3237,69 @@ function renderSponsors() {
   $("#sp-marquee").innerHTML = SPONSORS.map(p => item(p)).join("") + SPONSORS.map(p => item(p, true)).join("");
 }
 renderSponsors();
+/* ----- Galeries photos par match : #photos (liste) et #photos-<clé> (album) ----- */
+function GALERIES() { return (LEAGUE.galeries && LEAGUE.galeries.matchs) || {}; }
+function galOf(key) { const g = GALERIES()[key]; return g && (g.photos || []).length ? g : null; }
+const galScore = g => g.dom ? `Hersin ${g.nous}–${g.eux} ${g.adv}` : `${g.adv} ${g.eux}–${g.nous} Hersin`;
+const galOutcome = g => +g.nous > +g.eux ? "Victoire" : +g.nous < +g.eux ? "Défaite" : "Match nul";
+let galCurrent = null, lbIndex = 0, lbReturn = null;
+function renderPhotosPage(key) {
+  const el = $("#photos-page"), h1 = $("#photos-h1"), lead = $("#photos-lead");
+  const list = Object.entries(GALERIES()).filter(([, g]) => (g.photos || []).length).sort((a, b) => String(b[1].date).localeCompare(String(a[1].date)));
+  const albumKey = key.startsWith("photos-") ? key.slice(7) : null, g = albumKey ? galOf(albumKey) : null;
+  if (albumKey && g) {
+    galCurrent = g;
+    h1.innerHTML = `${esc(g.titre)}`;
+    lead.textContent = `${galScore(g)} · ${galOutcome(g)} · ${longDate(g.date)}`;
+    el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les matchs en photos</a>${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`}</div>
+      <p class="sub" style="margin-bottom:12px">${plural(g.photos.length, "photo")} · touchez une photo pour l'agrandir</p>
+      <ul class="gal-thumbs">${g.photos.map((p, i) => `<li><button type="button" data-lb="${i}" aria-label="Agrandir la photo ${i + 1} sur ${g.photos.length}"><img src="${blobSrc(p.photo)}" alt="" loading="lazy" decoding="async"></button></li>`).join("")}</ul>`;
+    return;
+  }
+  galCurrent = null;
+  h1.innerHTML = `Les <em>photos</em>`;
+  lead.textContent = "Les matchs des Seniors en images, repris des albums de notre page Facebook.";
+  el.innerHTML = !list.length ? `<p class="sub">Les premiers albums arrivent bientôt.</p>`
+    : `<ul class="gal-grid">${list.map(([k, g]) => `<li><a class="gal-card" href="#photos-${esc(k)}">
+        <span class="gc-img"><img src="${blobSrc(g.photos[0].photo)}" alt="" loading="lazy"><span class="gc-n">📸 ${g.photos.length}</span></span>
+        <span class="gc-body"><small>${esc(g.titre)}</small><b>${esc(galScore(g))}</b><span class="gc-date">${esc(galOutcome(g))} · ${esc(longDate(g.date))}</span></span></a></li>`).join("")}</ul>`;
+}
+function lbShow(i) {
+  const ph = galCurrent.photos, n = ph.length;
+  lbIndex = (i + n) % n;
+  $("#lb-img").src = blobSrc(ph[lbIndex].photo);
+  $("#lb-img").alt = `Photo ${lbIndex + 1} sur ${n} : ${galCurrent.titre}, ${galScore(galCurrent)}`;
+  $("#lb-count").textContent = `${lbIndex + 1} / ${n}`;
+  [1, -1].forEach(d => { const im = new Image(); im.src = blobSrc(ph[(lbIndex + d + n) % n].photo); });
+}
+function lbOpen(i) { lbReturn = document.activeElement; $("#lb").hidden = false; document.body.style.overflow = "hidden"; lbShow(i); $("#lb-close").focus(); }
+function lbClose() { $("#lb").hidden = true; document.body.style.overflow = ""; lbReturn?.focus(); }
+document.addEventListener("click", e => { const b = e.target.closest("[data-lb]"); if (b && galCurrent) lbOpen(+b.dataset.lb); });
+$("#lb-close").addEventListener("click", lbClose);
+$("#lb-prev").addEventListener("click", () => lbShow(lbIndex - 1));
+$("#lb-next").addEventListener("click", () => lbShow(lbIndex + 1));
+$("#lb").addEventListener("click", e => { if (e.target.id === "lb") lbClose(); });
+$("#lb").addEventListener("keydown", e => {
+  if (e.key === "Escape") lbClose();
+  else if (e.key === "ArrowLeft") lbShow(lbIndex - 1);
+  else if (e.key === "ArrowRight") lbShow(lbIndex + 1);
+  else if (e.key === "Tab") { const f = [$("#lb-close"), $("#lb-prev"), $("#lb-next")], k = f.indexOf(document.activeElement); e.preventDefault(); f[(k + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus(); }
+});
+// Glisser du doigt pour passer d'une photo à l'autre
+let lbX = null;
+$("#lb").addEventListener("touchstart", e => { lbX = e.touches[0].clientX; }, { passive: true });
+$("#lb").addEventListener("touchend", e => { if (lbX == null) return; const dx = e.changedTouches[0].clientX - lbX; if (Math.abs(dx) > 40) lbShow(lbIndex + (dx < 0 ? 1 : -1)); lbX = null; });
+addEventListener("hashchange", () => { if (!$("#lb").hidden) lbClose(); });
+
 const pages = [...document.querySelectorAll("[data-page]")];
 let first = true;
 function route() {
   const key = decodeURIComponent(location.hash.slice(1)) || "accueil";
   const team = byId[key], isPlayer = key.startsWith("joueur-");
   const champ = key.startsWith("championnat-") && byId[key.slice(12)]?.url ? byId[key.slice(12)] : null;
-  const name = team ? "team" : isPlayer ? "joueur" : champ ? "championnat" : pages.some(p => p.dataset.page === key) ? key : "accueil";
+  const isPhotos = key === "photos" || key.startsWith("photos-");
+  const name = team ? "team" : isPlayer ? "joueur" : champ ? "championnat" : isPhotos ? "photos" : pages.some(p => p.dataset.page === key) ? key : "accueil";
+  if (isPhotos) renderPhotosPage(key);
   if (champ) renderChampPage(champ.id);
   if (team) { renderTeam(team); refreshRosters(); refreshLeagues(); }
   if (isPlayer) renderPlayerPage(key); else currentPlayerKey = null;
