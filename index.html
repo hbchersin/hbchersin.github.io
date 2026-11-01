@@ -1181,20 +1181,27 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .mw-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
 .mw-head h3 { font: 800 22px/1 var(--font-display); text-transform: uppercase; margin: 0; }
 .mw-head span { color: var(--muted); font-size: 14px; }
+.mw-day h4 { margin: 0; padding: 8px 14px 2px; font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .12em; color: var(--rose-ink); }
 .mw-list { list-style: none; margin: 0; padding: 0; }
-.mw-list li { display: grid; grid-template-columns: 84px 1fr; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
-.mw-list li:last-child { border-bottom: 0; }
-.mw-when { font: 800 15px/1.2 var(--font-body); color: var(--rose-ink); text-transform: capitalize; }
-.mw-when small { display: block; font: 700 22px/1.1 var(--font-data); color: var(--ink); text-transform: none; margin-top: 2px; }
-.mw-what b { display: block; font-size: 16px; line-height: 1.25; }
-.mw-what .mw-team { display: block; font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.mw-what .where { display: block; font-size: 14px; color: var(--muted); margin-top: 3px; }
-.mw-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.mw-acts a, .mw-acts .cal-add summary { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 12px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 700 14px var(--font-body); background: var(--bg); }
-.mw-acts a:hover { border-color: var(--rose-ink); color: var(--rose-ink); }
-.mw-acts a.go { background: var(--rose); border-color: var(--rose); color: var(--night); }
+.mw-list li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 7px 14px; border-bottom: 1px solid var(--line); }
+.mw-day:last-of-type li:last-child { border-bottom: 0; }
+.mw-t { font: 700 17px/1 var(--font-data); color: var(--ink); font-variant-numeric: tabular-nums; }
+.mw-list li.dom .mw-t { color: var(--rose-ink); }
+.mw-what { display: block; min-width: 0; color: var(--ink); text-decoration: none; }
+.mw-what:hover b { color: var(--rose-ink); }
+.mw-what .mw-team { display: block; font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.mw-what b { display: block; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
+.mw-what .where { display: block; font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mw-acts { display: flex; gap: 6px; align-items: center; }
+.mw-acts .cal-add.compact summary { width: 38px; min-height: 0; }
+.mw-ico, .mw-acts .cal-add summary { display: inline-grid; place-items: center; width: 38px; height: 38px; min-height: 0; padding: 0; border: 1px solid var(--line); background: var(--bg); color: var(--ink); text-decoration: none; font-size: 17px; }
+.mw-ico:hover { border-color: var(--rose-ink); }
+.mw-ico.go { background: var(--rose); border-color: var(--rose); }
+.mw li.mw-x, .mw .mw-day.mw-x { display: none; }
+.mw.open li.mw-x { display: grid; }
+.mw.open .mw-day.mw-x { display: block; }
+.mw-more { display: block; width: 100%; padding: 10px 14px; border: 0; border-top: 1px solid var(--line); background: none; color: var(--rose-ink); font: 700 14px var(--font-body); text-align: left; cursor: pointer; }
 .mw-empty { padding: 14px 16px; color: var(--muted); font-size: 15px; }
-@media (max-width: 520px) { .mw-list li { grid-template-columns: 70px 1fr; gap: 10px; } }
 /* « Mon club » : les équipes choisies, en tête de l'accueil */
 .mc { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 20px 24px; }
 .mc[hidden] { display: none; }
@@ -1369,10 +1376,6 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .app-home .mw { margin-bottom: 10px; }
 .app-home .mw-head { padding: 8px 12px; }
 .app-home .mw-head h3 { font-size: 18px; }
-.app-home .mw-list li { grid-template-columns: 70px 1fr; gap: 10px; padding: 10px 12px; }
-.app-home .mw-what { min-width: 0; }
-.app-home .mw-what .where { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px; }
-.app-home .mw-acts { margin-top: 6px; }
 .app-home .mc-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding-bottom: 4px; }
 .app-home .mc-card { flex: 0 0 min(88%, 360px); scroll-snap-align: start; }
 .app-home .mc-grid:has(> li:only-child) .mc-card { flex-basis: 100%; }
@@ -3742,21 +3745,36 @@ function mwVenue(m) {
   const dest = home && VENUE_ADDR[v] ? VENUE_ADDR[v] : l.lat && l.lon ? `${l.lat},${l.lon}` : addr;
   return { name, addr, route: dest ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}` : "", home };
 }
+let mwOpen = false;
+const MW_KEEP = 4;
 function monWeekend(mine) {
   if (!mine.length) return "";
   const [from, to] = weekendBounds(), now = Date.now();
   const list = allMatches().filter(m => mine.includes(m.t.id) && m.when >= from && m.when < to && m.when.getTime() > now - 3 * 3600e3 && !isPlayed(m));
   const label = `${from.toLocaleDateString("fr-FR", { day: "numeric", month: "long" })} – ${new Date(to - 1).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}`;
-  const items = list.map(m => {
-    const v = mwVenue(m), hasTime = m.date.length > 10;
-    return `<li><span class="mw-when">${esc(m.when.toLocaleDateString("fr-FR", { weekday: "long" }))}<small>${hasTime ? esc(hhmm(m.when)) : "–"}</small></span>
-      <span class="mw-what"><span class="mw-team">${esc(m.t.name)} · ${m.dom ? "Domicile" : "Extérieur"}</span><b>${m.dom ? "Hersin – " + esc(m.adv) : esc(m.adv) + " – Hersin"}</b>
-        <span class="where">📍 ${esc(v.name)}${v.addr ? " · " + esc(v.addr) : ""}</span>
-        <span class="mw-acts">${v.route && !v.home ? `<a class="go" href="${esc(v.route)}" target="_blank" rel="noopener">🚗 Itinéraire<span class="sr-only"> vers ${esc(v.name)} (nouvel onglet)</span></a>` : v.route ? `<a href="${esc(v.route)}" target="_blank" rel="noopener">📍 Plan<span class="sr-only"> (nouvel onglet)</span></a>` : ""}${hasTime ? calButton(matchEvent(m.t.cup ? m.t.id : m.t.id, m), true) : ""}<a href="${matchHref(m)}">Le match →</a></span></span></li>`;
-  });
-  return `<div class="mw"><div class="mw-head"><h3>📅 Mon week-end</h3><span>${esc(label)}</span></div>
-    ${items.length ? `<ul class="mw-list">${items.join("")}</ul>` : `<p class="mw-empty">Pas de match ce week-end pour vos équipes. Profitez-en pour venir encourager les autres Tigres !</p>`}</div>`;
+  const days = [...new Set(list.map(m => m.when.toDateString()))];
+  let n = 0;
+  const html = days.map(d => {
+    const rows = list.filter(m => m.when.toDateString() === d).map(m => {
+      const v = mwVenue(m), hasTime = m.date.length > 10, more = n++ >= MW_KEEP && list.length > MW_KEEP + 1;
+      const route = v.route ? `<a class="mw-ico${v.home ? "" : " go"}" href="${esc(v.route)}" target="_blank" rel="noopener" aria-label="${v.home ? "Plan" : "Itinéraire"} vers ${esc(v.name)}${v.addr ? ", " + esc(v.addr) : ""} (nouvel onglet)" title="${v.home ? "Plan" : "Itinéraire"}">${v.home ? "📍" : "🚗"}</a>` : "";
+      return `<li class="${v.home ? "dom" : ""}${more ? " mw-x" : ""}"><span class="mw-t">${hasTime ? esc(hhmm(m.when)) : "–"}</span>
+        <a class="mw-what" href="${matchHref(m)}"><span class="mw-team">${esc(m.t.name)}${m.t.cup ? " · Coupe" : ""}</span><b>${m.dom ? "vs" : "à"} ${esc(m.adv)}</b><span class="where">${esc(v.name)}</span></a>
+        <span class="mw-acts">${route}${hasTime ? calButton(matchEvent(m.t.id, m), true) : ""}</span></li>`;
+    });
+    const allMore = rows.every(r => r.includes(" mw-x\""));
+    return `<div class="mw-day${allMore ? " mw-x" : ""}"><h4>${esc(new Date(d).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric" }))}</h4><ul class="mw-list">${rows.join("")}</ul></div>`;
+  }).join("");
+  const hidden = Math.max(0, list.length > MW_KEEP + 1 ? list.length - MW_KEEP : 0);
+  return `<div class="mw${mwOpen ? " open" : ""}"><div class="mw-head"><h3>📅 Mon week-end</h3><span>${esc(label)}${list.length ? ` · ${list.length} match${list.length > 1 ? "s" : ""}` : ""}</span></div>
+    ${list.length ? html + (hidden ? `<button type="button" class="mw-more" aria-expanded="${mwOpen}">${mwOpen ? "Réduire ▴" : `Voir mes ${hidden} autres matchs ▾`}</button>` : "") : `<p class="mw-empty">Pas de match ce week-end pour vos équipes. Profitez-en pour venir encourager les autres Tigres !</p>`}</div>`;
 }
+document.addEventListener("click", e => {
+  const b = e.target.closest(".mw-more"); if (!b) return;
+  mwOpen = !mwOpen; const box = b.closest(".mw"); box.classList.toggle("open", mwOpen);
+  const hidden = box.querySelectorAll("li.mw-x").length;
+  b.setAttribute("aria-expanded", mwOpen); b.textContent = mwOpen ? "Réduire ▴" : `Voir mes ${hidden} autres matchs ▾`;
+});
 
 /* ----- « Mon club » : les équipes choisies, en tête de l'accueil ----- */
 const MC_TEAMS = ["seniors-1", "seniors-2", "u18-france", "u18-region", "u18-departemental", "u15-region", "u15-departemental", "u13a", "u13b", "u13c", "u11"];
