@@ -1366,6 +1366,36 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   .marquee li[aria-hidden] { display: none; }
 }
 
+/* Jour de match (accueil) */
+.jdm[hidden] { display: none; }
+.jdm { position: relative; overflow: hidden; isolation: isolate; background: var(--night); color: var(--on-night); border-bottom: 4px solid var(--rose); }
+.jdm::before { content: ""; position: absolute; inset: -50%; z-index: -1; background: repeating-linear-gradient(118deg, transparent 0 46px, rgba(231,51,125,.16) 46px 64px); animation: jdm-slide 6s linear infinite; }
+.jdm::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 50% 55%, rgba(231,51,125,.45), transparent 62%); animation: jdm-glow 2.4s ease-in-out infinite alternate; }
+@keyframes jdm-slide { to { transform: translateX(68px); } }
+@keyframes jdm-glow { from { opacity: .55; } to { opacity: 1; } }
+.jdm .wrap { display: grid; justify-items: center; text-align: center; gap: 14px; padding-block: 26px 24px; }
+.jdm-kick { display: inline-flex; align-items: center; gap: 10px; font: 700 12px var(--font-body); letter-spacing: .24em; text-transform: uppercase; color: var(--rose); }
+.jdm-kick i { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); animation: jdm-ping 1.4s infinite; }
+@keyframes jdm-ping { 0% { box-shadow: 0 0 0 0 rgba(231,51,125,.7); } 70%, 100% { box-shadow: 0 0 0 12px rgba(231,51,125,0); } }
+.jdm h2 { font: 800 italic clamp(48px, 12vw, 84px)/.9 var(--font-display); text-transform: uppercase; color: var(--on-night); text-shadow: 0 6px 30px rgba(231,51,125,.5); }
+.jdm h2 em { color: var(--rose); }
+.jdm-duel { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; width: 100%; max-width: 520px; }
+.jdm-club { display: grid; justify-items: center; gap: 6px; min-width: 0; }
+.jdm-club img, .jdm-init { width: 76px; height: 76px; border-radius: 50%; object-fit: contain; }
+.jdm-club img.opp, .jdm-init { background: #fff; padding: 10px; }
+.jdm-init { display: grid; place-items: center; font: 800 26px var(--font-display); color: var(--night); }
+.jdm-club b { font: 800 17px/1.05 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+.jdm-vs { font: 800 44px var(--font-display); font-variant-numeric: tabular-nums; }
+.jdm-cd { display: flex; gap: 8px; }
+.jdm-cd span { display: grid; justify-items: center; min-width: 72px; padding: 8px 6px 6px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-bottom: 3px solid var(--rose); }
+.jdm-cd b { font: 800 38px/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.jdm-cd small { font: 600 10px var(--font-body); text-transform: uppercase; letter-spacing: .08em; color: var(--on-night-muted); margin-top: 3px; }
+.jdm-call { font: 800 18px var(--font-display); text-transform: uppercase; letter-spacing: .06em; }
+.jdm-acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.jdm-acts a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 16px; font: 700 14px var(--font-body); text-decoration: none; border: 1px solid rgba(255,255,255,.25); color: var(--on-night); }
+.jdm-acts a.go { background: var(--rose); border-color: var(--rose); color: var(--night); }
+.jdm-acts a:hover { border-color: var(--rose); }
+@media (prefers-reduced-motion: reduce) { .jdm::before, .jdm::after, .jdm-kick i { animation: none; } }
 /* Notre saison (page équipe) */
 .season-card[hidden] { display: none; }
 .season-card { margin-top: 16px; }
@@ -1517,6 +1547,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <!-- ACCUEIL -->
   <div data-page="accueil" data-title="Accueil">
     <button type="button" class="notif-band" id="notif-band" hidden><span class="nb-ico"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nb-txt"><b>Activez les notifications</b><span id="nb-sub">Résultats, actus et rappels des matchs des Tigres sur votre téléphone</span></span><span class="nb-go" aria-hidden="true">Activer →</span></button>
+    <section class="jdm" id="jdm" aria-labelledby="jdm-title" hidden></section>
     <section class="live" id="live" aria-labelledby="live-title" hidden></section>
     <section class="mc" id="mon-club" aria-labelledby="mc-title" hidden></section>
     <section class="page-hero hero">
@@ -3439,7 +3470,7 @@ function renderSeason(el, id) {
     </dl>`;
 }
 function refreshLeagues() {
-  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive();
+  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm();
   if (allMatches().length) document.documentElement.classList.remove("app-wait");
   document.querySelectorAll("[data-season]").forEach(el => renderSeason(el, el.dataset.season));
   setTimeout(tickCountdowns, 0);
@@ -3782,6 +3813,34 @@ $("#srch").addEventListener("keydown", e => {
 document.addEventListener("keydown", e => { if (e.key === "/" && !/input|textarea|select/i.test(document.activeElement.tagName) && $("#srch").hidden) { e.preventDefault(); srchOpen(); } });
 
 /* ----- Bandeau « Aujourd'hui » : matchs du jour, en cours, terminés (score en attente) et scores finaux ----- */
+/* ----- Mode « jour de match » : le jour d'un match à domicile des Seniors 1, jusqu'au coup d'envoi ----- */
+let jdmKey = "";
+function renderJdm() {
+  const el = $("#jdm"); if (!el) return;
+  const now = new Date();
+  const m = allMatches().find(x => x.t.id === "seniors-1" && x.dom && !isPlayed(x) && x.date.length > 10
+    && x.when.toDateString() === now.toDateString() && x.when > now && playsInHersin(x.t.id, x.dom, x.adv, x.salle));
+  if (!m) { if (!el.hidden) { el.hidden = true; el.innerHTML = ""; jdmKey = ""; } return; }
+  const key = m.date + m.adv + (m.salle || "");
+  if (key === jdmKey && !el.hidden) return;   // déjà affiché : le compte à rebours tourne tout seul
+  jdmKey = key;
+  const v = mwVenue(m), salle = v.name.replace(/^Salle /i, "");
+  const quand = m.when.getHours() >= 18 ? "Ce soir" : m.when.getHours() >= 12 ? "Cet après-midi" : "Ce matin";
+  el.hidden = false;
+  el.innerHTML = `<div class="wrap">
+    <p class="jdm-kick"><i aria-hidden="true"></i>Jour de match</p>
+    <h2 id="jdm-title">${quand},<br><em>${esc(salle)} !</em></h2>
+    <div class="jdm-duel">
+      <div class="jdm-club"><img src="logo-hbch.png" alt=""><b>Hersin</b></div>
+      <div class="jdm-vs">${hhmm(m.when)}</div>
+      <div class="jdm-club">${clubLogo(m.adv) ? `<img class="opp" src="${clubLogo(m.adv)}" alt="">` : `<span class="jdm-init" aria-hidden="true">${esc(clubInitials(m.adv))}</span>`}<b>${esc(m.adv)}</b></div>
+    </div>
+    <div class="jdm-cd" data-countdown="${esc(m.date)}" role="timer" aria-label="Coup d'envoi dans">${[["h", "heures"], ["min", "minutes"], ["s", "secondes"]].map(([u, l]) => `<span><b data-u="${u}">–</b><small>${l}</small></span>`).join("")}</div>
+    <p class="jdm-call">Tous en rose et noir 🐯</p>
+    <div class="jdm-acts">${v.route ? `<a class="go" href="${esc(v.route)}" target="_blank" rel="noopener">🚗 Itinéraire<span class="sr-only"> vers ${esc(v.name)} (nouvel onglet)</span></a>` : ""}<a href="${matchHref(m)}">Le match →</a></div>
+  </div>`;
+  tickCountdowns();
+}
 function renderLive() {
   const el = $("#live"); if (!el) return;
   const now = Date.now(), H = 3600e3, mine = mcGet();
@@ -3808,7 +3867,7 @@ function renderLive() {
         : `<span>${st === "soon" ? "Coup d'envoi " : "Coup d'envoi à "}${hhmm(m.when)} · ${m.dom ? "à domicile" : "à l'extérieur"}</span>`}</span>
     </a></li>`).join("")}</ul></div>`;
 }
-setInterval(() => { if (document.visibilityState === "visible") renderLive(); }, 60000);
+setInterval(() => { if (document.visibilityState === "visible") { renderLive(); renderJdm(); } }, 60000);
 
 /* ----- « Mon week-end » : les matchs du week-end de mes équipes, avec le lieu et l'itinéraire ----- */
 function weekendBounds(now = new Date()) {
