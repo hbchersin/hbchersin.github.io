@@ -3929,7 +3929,8 @@ function renderPhotosPage(key) {
     galCurrent = g;
     const isMatch = !!g.adv;
     h1.textContent = isMatch ? g.titre : galTeamLabel(g);
-    lead.textContent = isMatch ? `${galScore(g)} · ${galOutcome(g)} · ${longDate(g.date)}` : `${g.titre} · ${longDate(g.date)}`;
+    // Albums hors match : la date est celle de la publication Facebook, pas forcément celle de l'événement
+    lead.textContent = isMatch ? `${galScore(g)} · ${galOutcome(g)} · ${longDate(g.date)}` : `${g.titre} · publié le ${longDate(g.date)}`;
     const team = galTeamsOf(g)[0];
     el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les albums</a>${shareBtn(`📸 ${isMatch ? g.titre + " · " + galScore(g) : g.titre}`, "#photos-" + albumKey, "Partager l'album")}${GAL_TEAMS.some(t => t[0] === team) ? `<a href="#photos-equipe-${esc(team)}">Les albums ${esc(galTeamLabel({ equipes: [team] }))}</a>` : ""}${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${isMatch ? (g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`) : ""}</div>
       <p class="sub" style="margin-bottom:12px">${plural(g.photos.length, "photo")} · touchez une photo pour l'agrandir</p>
@@ -3946,7 +3947,7 @@ function renderPhotosPage(key) {
   el.innerHTML = nav + (!list.length ? `<p class="sub">Pas encore d'album pour cette équipe : ils arrivent dès que le club publie les photos sur Facebook.</p>`
     : `<p class="sub" style="margin-bottom:14px">${plural(list.length, "album")}</p><ul class="gal-grid">${list.map(([k, g]) => `<li><a class="gal-card" href="#photos-${esc(k)}">
         <span class="gc-img"><img src="${blobSrc(g.photos[0].photo)}" alt="" loading="lazy"><span class="gc-n">📸 ${g.photos.length}</span></span>
-        <span class="gc-body"><small>${esc(g.adv ? g.titre : galTeamLabel(g))}</small><b>${esc(g.adv ? galScore(g) : g.titre)}</b><span class="gc-date">${g.adv ? esc(galOutcome(g)) + " · " : ""}${esc(longDate(g.date))}</span></span></a></li>`).join("")}</ul>`);
+        <span class="gc-body"><small>${esc(g.adv ? g.titre : galTeamLabel(g))}</small><b>${esc(g.adv ? galScore(g) : g.titre)}</b><span class="gc-date">${g.adv ? esc(galOutcome(g)) + " · " + esc(longDate(g.date)) : "Publié le " + esc(longDate(g.date))}</span></span></a></li>`).join("")}</ul>`);
 }
 function lbShow(i) {
   const ph = galCurrent.photos, n = ph.length;
