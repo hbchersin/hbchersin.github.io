@@ -2875,7 +2875,7 @@ document.addEventListener("submit", async e => {
 
 /* ----- Agenda : events/<id> = { titre, type, date AAAA-MM-JJ, heure HH:MM, fin AAAA-MM-JJ, lieu, texte, lien, photo, createdAt } ----- */
 let EVENTS = [], eventsState = "loading", evEditing = null, evBusy = false;
-const EV_TYPES = ["Tournoi", "Loto", "Stage", "Soirée", "Assemblée générale", "Vie du club", "Autre"];
+const EV_TYPES = ["Match amical", "Tournoi", "Loto", "Stage", "Soirée", "Assemblée générale", "Vie du club", "Autre"];
 const todayIso = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 const evEnd = e => e.fin && e.fin > e.date ? e.fin : e.date;
 const upcomingEvents = () => EVENTS.filter(e => e.date && evEnd(e) >= todayIso()).sort((a, b) => (a.date + (a.heure || "")).localeCompare(b.date + (b.heure || "")));
