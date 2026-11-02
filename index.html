@@ -1366,6 +1366,74 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   .marquee li[aria-hidden] { display: none; }
 }
 
+/* Après-match (accueil) */
+.am[hidden] { display: none; }
+.am { position: relative; overflow: hidden; isolation: isolate; color: var(--on-night); border-bottom: 4px solid var(--rose); background: repeating-linear-gradient(118deg, transparent 0 46px, rgba(231,51,125,.12) 46px 64px), radial-gradient(ellipse at 50% 50%, rgba(231,51,125,.35), transparent 65%), var(--night); }
+.am-bg { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center 35%; }
+.am-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,12,.55), rgba(11,10,12,.78) 55%, rgba(11,10,12,.95)); }
+.am .wrap { display: grid; justify-items: center; text-align: center; gap: 12px; padding-block: 26px 24px; }
+.am-kick { font: 700 12px var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
+.am h2 { font: 800 italic clamp(50px, 13vw, 88px)/.9 var(--font-display); text-transform: uppercase; color: var(--on-night); text-shadow: 0 6px 30px rgba(231,51,125,.45); }
+.am h2 em { color: var(--rose); }
+.am-txt { font-size: 15px; color: #e9e3e7; }
+.am-txt b { color: var(--on-night); white-space: nowrap; }
+.am-acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.am-acts a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; font: 700 14px var(--font-body); text-decoration: none; border: 1px solid rgba(255,255,255,.25); color: var(--on-night); }
+.am-acts a.go { background: var(--rose); border-color: var(--rose); color: var(--night); }
+.sb { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; width: 100%; max-width: 480px; padding: 14px 10px; background: rgba(11,10,12,.55); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; }
+.sb > div { display: grid; justify-items: center; gap: 6px; text-align: center; min-width: 0; }
+.sb img, .sb .ini { width: 58px; height: 58px; border-radius: 50%; object-fit: contain; }
+.sb img.opp, .sb .ini { background: #fff; padding: 6px; }
+.sb .ini { display: grid; place-items: center; font: 800 20px var(--font-display); color: var(--night); }
+.sb b { font: 800 15px/1.05 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+.sb-n { display: flex; align-items: center; gap: 4px; font: 800 50px/1 var(--font-display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sb-n i { font-style: normal; color: #8a8290; }
+.sb-n .w { color: var(--rose); }
+/* Récap du lundi : bulle et lecteur façon story */
+.rc-row[hidden] { display: none; }
+.rc-row { background: var(--night); border-bottom: 1px solid var(--night-line); }
+.rc-row .wrap { padding-block: 10px; }
+.rc-bubble { display: flex; align-items: center; gap: 12px; width: 100%; padding: 4px 0; background: none; border: 0; color: var(--on-night); text-align: left; cursor: pointer; font: inherit; }
+.rc-ring { flex: none; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, #e7337d, #ff8fbf, #e7337d, #7a1f4a, #e7337d); }
+.rc-ring img { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--night); background: var(--night); }
+.rc-bubble.seen .rc-ring { background: #4a434c; }
+.rc-txt b { display: block; font: 800 19px/1.1 var(--font-display); text-transform: uppercase; }
+.rc-txt span { font-size: 13px; color: var(--on-night-muted); }
+.rc-bubble:not(.seen) .rc-txt span { color: var(--rose); font-weight: 700; }
+.rc-lock, .rc-lock body { overflow: hidden; }
+.rc-viewer { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; background: rgba(0,0,0,.92); }
+.rc-story { position: relative; width: min(100vw, 440px); height: min(100dvh, 860px); overflow: hidden; display: flex; flex-direction: column; color: #fff; background: repeating-linear-gradient(118deg, transparent 0 30px, rgba(231,51,125,.14) 30px 42px), radial-gradient(ellipse at 50% 40%, rgba(231,51,125,.45), transparent 65%), #0b0a0c; }
+@media (min-width: 480px) { .rc-story { border-radius: 18px; } }
+.rc-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.rc-bg.none { display: none; }
+.rc-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,12,.6) 0%, rgba(11,10,12,.12) 28%, rgba(11,10,12,.75) 60%, #0b0a0c 90%); }
+.rc-bars { position: relative; z-index: 2; display: flex; gap: 4px; padding: max(12px, env(safe-area-inset-top)) 12px 0; }
+.rc-bars i { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.35); overflow: hidden; }
+.rc-bars i.done u, .rc-bars i.on u { display: block; height: 100%; background: #fff; }
+.rc-bars i.on u { width: 100%; }
+.rc-viewer.auto .rc-bars i.on u { width: 0; animation: rc-fill 5.5s linear forwards; }
+.rc-viewer.paused .rc-bars i.on u { animation-play-state: paused; }
+@keyframes rc-fill { to { width: 100%; } }
+.rc-hd { position: relative; z-index: 3; display: flex; align-items: center; gap: 8px; padding: 10px 12px; font: 700 13px var(--font-body); }
+.rc-hd img { width: 30px; height: 30px; }
+.rc-hd span { color: rgba(255,255,255,.75); font-weight: 500; }
+.rc-x { margin-left: auto; width: 44px; height: 44px; border: 0; background: none; color: #fff; font-size: 22px; cursor: pointer; }
+.rc-zone { position: absolute; z-index: 1; top: 70px; bottom: 0; width: 34%; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.rc-zone.prev { left: 0; } .rc-zone.next { right: 0; width: 66%; }
+.rc-ct { position: relative; z-index: 2; margin-top: auto; padding: 0 22px max(30px, env(safe-area-inset-bottom)); display: grid; gap: 12px; pointer-events: none; }
+.rc-ct a { pointer-events: auto; }
+.rc-ct .k { font: 700 12px var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
+.rc-ct .t { font: 800 italic 58px/.9 var(--font-display); text-transform: uppercase; }
+.rc-ct .t em { color: var(--rose); }
+.rc-ct .p { font-size: 16px; line-height: 1.4; color: #e9e3e7; }
+.rc-ct .sb { max-width: none; }
+.rc-ct .pill { justify-self: start; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px; border-radius: 999px; background: #1f8a4c; color: #fff; font: 700 14px var(--font-body); text-decoration: none; }
+.rc-ct .pill.ghost { background: rgba(255,255,255,.12); }
+.rc-list { display: grid; gap: 8px; }
+.rc-list a { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; padding: 10px 12px; background: rgba(255,255,255,.07); border-radius: 10px; border-left: 3px solid var(--rose); color: #fff; text-decoration: none; font: 600 14px/1.3 var(--font-body); }
+.rc-list b { font: 800 22px var(--font-display); color: var(--rose); text-transform: capitalize; }
+.rc-list small { display: block; color: #cfc6cc; font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.rc-ct .cta { text-align: center; padding: 13px; border-radius: 999px; background: var(--rose); color: var(--night); font: 800 18px var(--font-display); text-transform: uppercase; letter-spacing: .04em; text-decoration: none; }
 /* Jour de match (accueil) */
 .jdm[hidden] { display: none; }
 .jdm { position: relative; overflow: hidden; isolation: isolate; background: var(--night); color: var(--on-night); border-bottom: 4px solid var(--rose); }
@@ -1547,7 +1615,9 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   <!-- ACCUEIL -->
   <div data-page="accueil" data-title="Accueil">
     <button type="button" class="notif-band" id="notif-band" hidden><span class="nb-ico"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nb-txt"><b>Activez les notifications</b><span id="nb-sub">Résultats, actus et rappels des matchs des Tigres sur votre téléphone</span></span><span class="nb-go" aria-hidden="true">Activer →</span></button>
+    <div class="rc-row" id="recap-bubble" hidden></div>
     <section class="jdm" id="jdm" aria-labelledby="jdm-title" hidden></section>
+    <section class="am" id="apres-match" aria-labelledby="am-title" hidden></section>
     <section class="live" id="live" aria-labelledby="live-title" hidden></section>
     <section class="mc" id="mon-club" aria-labelledby="mc-title" hidden></section>
     <section class="page-hero hero">
@@ -3470,7 +3540,7 @@ function renderSeason(el, id) {
     </dl>`;
 }
 function refreshLeagues() {
-  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm();
+  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm(); renderApresMatch(); renderRecapBubble();
   if (allMatches().length) document.documentElement.classList.remove("app-wait");
   document.querySelectorAll("[data-season]").forEach(el => renderSeason(el, el.dataset.season));
   setTimeout(tickCountdowns, 0);
@@ -3841,6 +3911,150 @@ function renderJdm() {
   </div>`;
   tickCountdowns();
 }
+/* ----- Après-match : le soir et le lendemain d'un match des Seniors 1 (championnat ou coupe) ----- */
+const albumKeyOf = m => m.t.cup ? "cdf-" + slugify(m.tour) : `${m.t.id}-j${m.j}`;
+const scoreSides = m => m.dom ? [["Hersin", "logo-hbch.png", true, m.nous], [m.adv, clubLogo(m.adv), false, m.eux]] : [[m.adv, clubLogo(m.adv), false, m.eux], ["Hersin", "logo-hbch.png", true, m.nous]];
+const sideHtml = ([n, logo, us]) => `<div>${logo ? `<img class="${us ? "us" : "opp"}" src="${logo}" alt="">` : `<span class="ini" aria-hidden="true">${esc(clubInitials(n))}</span>`}<b>${esc(us ? "Hersin" : n)}</b></div>`;
+const scoreHtml = m => { const [a, b] = scoreSides(m); const v = (x, us) => `<span class="${us ? "w" : ""}">${x[2] && m.forfait ? esc(x[3]) : esc(m.forfait && !x[2] ? "FO" : x[3])}</span>`;
+  return `<div class="sb">${sideHtml(a)}<p class="sb-n">${v(a, a[2])}<i>–</i>${v(b, b[2])}</p>${sideHtml(b)}</div>`; };
+function rankLine(id) {
+  const L = LEAGUE[id], table = L ? sortStandings(L.classement || []) : [], ours = table.find(r => r.nous);
+  return ours ? `${ordinal(table.indexOf(ours) + 1)} sur ${table.length} · ${plural(ours.pts, "pt")}` : "";
+}
+function resultTitle(m) {
+  const o = outcomeOf(m), diff = Math.abs(+m.nous - +m.eux);
+  if (m.t.cup) return o === "V" ? ["Qualifiés", "!"] : ["Fin de", "l'aventure"];
+  return o === "V" ? (diff >= 10 ? ["Carton", "plein !"] : ["Victoire", "!"]) : o === "N" ? ["Match", "nul"] : ["On se", "relève !"];
+}
+function resultText(m) {
+  const o = outcomeOf(m), diff = Math.abs(+m.nous - +m.eux), lieu = m.dom ? "à domicile" : "à l'extérieur";
+  if (m.t.cup) return o === "V" ? `${m.tour} gagné ${lieu}. Qualifiés pour la suite de l'aventure 🐯` : `Élimination au ${m.tour}. Bravo pour le parcours !`;
+  if (m.forfait) return o === "V" ? "Victoire par forfait." : "Match perdu par forfait.";
+  return o === "V" ? `Victoire de ${plural(diff, "but")} ${lieu}.` : o === "N" ? `Match nul ${lieu}.` : `Défaite de ${plural(diff, "but")} ${lieu}.`;
+}
+function renderApresMatch() {
+  const el = $("#apres-match"); if (!el) return;
+  const now = new Date();
+  const m = allMatches().filter(x => x.t.id === "seniors-1" && isPlayed(x) && x.when <= now && (() => { const e = new Date(x.when); e.setHours(0, 0, 0, 0); e.setDate(e.getDate() + 2); return now < e; })()).pop();
+  if (!m) { el.hidden = true; el.innerHTML = ""; return; }
+  const g = galOf(albumKeyOf(m)), bg = g ? blobSrc(g.photos[Math.min(1, g.photos.length - 1)].photo) : "";
+  const [t1, t2] = resultTitle(m), rank = m.t.cup ? "" : rankLine(m.t.id);
+  el.hidden = false; el.className = "am " + outcomeOf(m);
+  el.innerHTML = `${bg ? `<div class="am-bg" style="background-image:url('${esc(bg)}')" aria-hidden="true"></div>` : ""}<div class="wrap">
+    <p class="am-kick">${m.t.cup ? `Coupe de France · ${esc(m.tour)}` : `Prénationale · J${esc(m.j)}`} · ${esc(m.when.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }))}</p>
+    <h2 id="am-title">${esc(t1)} <em>${esc(t2)}</em></h2>
+    ${scoreHtml(m)}
+    <p class="am-txt">${esc(resultText(m))}${rank ? ` <b>${rank}</b>` : ""}</p>
+    <div class="am-acts">${g ? `<a class="go" href="#photos-${esc(albumKeyOf(m))}">📸 Les ${g.photos.length} photos du match</a>` : ""}<a href="${matchHref(m)}">${m.t.cup ? "Le parcours en coupe" : "Le classement"} →</a></div>
+  </div>`;
+}
+
+/* ----- Récap du lundi : le week-end des équipes suivies, en story (du lundi au mercredi) ----- */
+let rcSlides = [], rcIndex = 0, rcTimer = null, rcReturn = null, rcKey = "";
+const RC_MS = 5500;
+function recapData(now = new Date()) {
+  const dow = (now.getDay() + 6) % 7; if (dow > 2) return null;          // lundi, mardi, mercredi
+  const mon = new Date(now); mon.setHours(0, 0, 0, 0); mon.setDate(mon.getDate() - dow);
+  const fri = new Date(mon); fri.setDate(mon.getDate() - 3);
+  const mine = mcGet(), all = allMatches().filter(m => m.when >= fri && m.when < mon && isPlayed(m));
+  const order = m => TEAM_ORDER.indexOf(m.t.id) + (m.t.cup ? .5 : 0);
+  const list = (mine.length ? all.filter(m => mine.includes(m.t.id)) : all.filter(m => m.t.id === "seniors-1")).sort((a, b) => order(a) - order(b) || a.when - b.when);
+  if (!list.length) return null;
+  const nextFri = new Date(mon); nextFri.setDate(mon.getDate() + 4); const nextMon = new Date(mon); nextMon.setDate(mon.getDate() + 7);
+  const upcoming = allMatches().filter(m => m.when >= nextFri && m.when < nextMon && !isPlayed(m) && (mine.length ? mine.includes(m.t.id) : m.t.id === "seniors-1" || playsInHersin(m.t.id, m.dom, m.adv, m.salle)))
+    .sort((a, b) => (playsInHersin(b.t.id, b.dom, b.adv, b.salle) - playsInHersin(a.t.id, a.dom, a.adv, a.salle)) || a.when - b.when).slice(0, 4).sort((a, b) => a.when - b.when);
+  const base = mine.length ? list : all, wins = base.filter(m => outcomeOf(m) === "V").length;
+  const days = base.map(m => m.when).sort((a, b) => a - b);
+  return { key: String(mon.getTime()) + ":" + mine.join(","), mine, list, upcoming, wins, total: base.length, fri: days[0], sun: days[days.length - 1] };
+}
+const rcBg = m => { const g = galOf(albumKeyOf(m)); return g ? blobSrc(g.photos[Math.min(1, g.photos.length - 1)].photo) : PHOTOS[m.t.id] ? PHOTOS[m.t.id][0] : ""; };
+function recapSlides(d) {
+  const day = x => x.toLocaleDateString("fr-FR", { day: "numeric", month: "long" });
+  const cover = d.list.map(m => galOf(albumKeyOf(m))).find(Boolean), coverBg = cover ? blobSrc(cover.photos[0].photo) : rcBg(d.list[0]);
+  const names = [...new Set(d.list.map(m => m.t.cup ? byId[m.t.id].name : m.t.name))];
+  const out = [{ bg: coverBg, html: `<p class="k">${d.mine.length ? "Ton week-end des Tigres" : "Le week-end des Tigres"}</p>
+    <p class="t">${plural(d.wins, "victoire")}<br><em>sur ${plural(d.total, "match")}</em></p>
+    <p class="p">${esc(d.fri.toDateString() === d.sun.toDateString() ? day(d.sun) : d.fri.getMonth() === d.sun.getMonth() ? `${d.fri.getDate()} – ${day(d.sun)}` : `${day(d.fri)} – ${day(d.sun)}`)} · ${d.mine.length ? `${esc(names.join(", "))}, les équipes que tu suis.` : "Tout le club."}</p>` }];
+  d.list.forEach(m => {
+    const [t1, t2] = resultTitle(m), g = galOf(albumKeyOf(m)), rank = m.t.cup ? "" : rankLine(m.t.id);
+    out.push({ bg: rcBg(m), html: `<p class="k">${esc(m.t.cup ? byId[m.t.id].name + " · Coupe de France" : m.t.name + " · Championnat")}</p>
+      <p class="t">${esc(t1)} <em>${esc(t2)}</em></p>${scoreHtml(m)}
+      <p class="p">${esc(resultText(m))}${rank ? ` ${rank}.` : ""}</p>
+      ${g ? `<a class="pill" href="#photos-${esc(albumKeyOf(m))}" data-rc-go>📸 Voir les ${g.photos.length} photos</a>` : `<a class="pill ghost" href="${matchHref(m)}" data-rc-go>${m.t.cup ? "Le parcours" : "Le classement"} →</a>`}` });
+  });
+  if (d.upcoming.length) {
+    const home = d.upcoming.filter(m => playsInHersin(m.t.id, m.dom, m.adv, m.salle));
+    const salle = home.length ? mwVenue(home[0]).name.replace(/^Salle /i, "") : "";
+    out.push({ bg: "", html: `<p class="k">Prochain rendez-vous</p><p class="t">${salle ? `Retour à <em>${esc(salle)}</em>` : `Le week-end <em>prochain</em>`}</p>
+      <div class="rc-list">${d.upcoming.map(m => `<a href="${matchHref(m)}" data-rc-go><b>${esc(m.when.toLocaleDateString("fr-FR", { weekday: "short" }))}</b><span><small>${esc(m.t.name)} · ${esc(m.when.toLocaleDateString("fr-FR", { day: "numeric", month: "short" }))}</small>${esc(m.dom ? "Hersin – " + m.adv : m.adv + " – Hersin")}${m.date.length > 10 ? " · " + hhmm(m.when) : ""}</span></a>`).join("")}</div>
+      <a class="cta" href="#accueil" data-rc-go data-rc-weekend>Tout le programme</a>` });
+  }
+  return out;
+}
+function renderRecapBubble() {
+  const el = $("#recap-bubble"); if (!el) return;
+  const d = recapData();
+  if (!d) { el.hidden = true; el.innerHTML = ""; rcKey = ""; return; }
+  let seen = false; try { seen = localStorage.getItem("hbch-recap-vu") === d.key; } catch (e) {}
+  const sig = d.key + seen + d.wins + d.total;
+  if (sig === rcKey && !el.hidden) return; rcKey = sig;
+  el.hidden = false;
+  el.innerHTML = `<div class="wrap"><button type="button" class="rc-bubble${seen ? " seen" : ""}" data-rc-open aria-haspopup="dialog">
+    <span class="rc-ring"><img src="logo-hbch.png" alt=""></span>
+    <span class="rc-txt"><b>${d.mine.length ? "Ton week-end des Tigres" : "Le week-end des Tigres"}</b><span>${plural(d.wins, "victoire")} sur ${plural(d.total, "match")} · ${seen ? "revoir" : "à voir"} ▸</span></span></button></div>`;
+}
+function rcShow(i) {
+  const box = $("#rc-viewer"); if (!box) return;
+  rcIndex = Math.max(0, Math.min(i, rcSlides.length - 1));
+  const sl = rcSlides[rcIndex];
+  box.querySelector(".rc-bars").innerHTML = rcSlides.map((_, n) => `<i class="${n < rcIndex ? "done" : n === rcIndex ? "on" : ""}"><u></u></i>`).join("");
+  box.querySelector(".rc-bg").style.backgroundImage = sl.bg ? `url('${sl.bg}')` : "";
+  box.querySelector(".rc-bg").classList.toggle("none", !sl.bg);
+  box.querySelector(".rc-ct").innerHTML = sl.html;
+  box.querySelector(".rc-live").textContent = `Écran ${rcIndex + 1} sur ${rcSlides.length}`;
+  rcPlay();
+}
+function rcPlay() {
+  clearTimeout(rcTimer); const box = $("#rc-viewer"); if (!box) return;
+  const auto = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  box.classList.toggle("auto", auto); box.classList.remove("paused");
+  const bar = box.querySelector(".rc-bars .on u"); if (bar) { bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = ""; }
+  if (auto) rcTimer = setTimeout(() => rcIndex < rcSlides.length - 1 ? rcShow(rcIndex + 1) : rcClose(), RC_MS);
+}
+function rcOpen() {
+  const d = recapData(); if (!d) return;
+  rcSlides = recapSlides(d); rcReturn = document.activeElement;
+  try { localStorage.setItem("hbch-recap-vu", d.key); } catch (e) {}
+  document.body.insertAdjacentHTML("beforeend", `<div class="rc-viewer" id="rc-viewer" role="dialog" aria-modal="true" aria-label="Récap du week-end des Tigres">
+    <div class="rc-story"><div class="rc-bg"></div>
+      <div class="rc-bars" aria-hidden="true"></div>
+      <div class="rc-hd"><img src="logo-hbch.png" alt="">Les Tigres <span>· ${esc(new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "short" }))}</span>
+        <button type="button" class="rc-x" data-rc-close aria-label="Fermer le récap">✕</button></div>
+      <button type="button" class="rc-zone prev" data-rc-prev aria-label="Écran précédent"></button><button type="button" class="rc-zone next" data-rc-next aria-label="Écran suivant"></button>
+      <div class="rc-ct"></div><p class="rc-live sr-only" aria-live="polite"></p></div></div>`);
+  document.documentElement.classList.add("rc-lock");
+  rcShow(0); $("#rc-viewer .rc-x").focus();
+}
+function rcClose() {
+  clearTimeout(rcTimer); $("#rc-viewer")?.remove(); document.documentElement.classList.remove("rc-lock");
+  rcKey = ""; renderRecapBubble(); (rcReturn && rcReturn.isConnected ? rcReturn : $("#recap-bubble button"))?.focus?.();
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-rc-open]")) { rcOpen(); return; }
+  if (!$("#rc-viewer")) return;
+  if (e.target.closest("[data-rc-close]")) rcClose();
+  else if (e.target.closest("[data-rc-prev]")) rcShow(rcIndex - 1);
+  else if (e.target.closest("[data-rc-next]")) rcIndex < rcSlides.length - 1 ? rcShow(rcIndex + 1) : rcClose();
+  else if (e.target.closest("[data-rc-go]")) { const w = e.target.closest("[data-rc-weekend]"); rcClose(); if (w) setTimeout(() => $("#weekend")?.scrollIntoView({ block: "start" }), 50); }
+});
+document.addEventListener("keydown", e => {
+  if (!$("#rc-viewer")) return;
+  if (e.key === "Escape") rcClose(); else if (e.key === "ArrowRight") rcIndex < rcSlides.length - 1 ? rcShow(rcIndex + 1) : rcClose(); else if (e.key === "ArrowLeft") rcShow(rcIndex - 1);
+  else if (e.key === "Tab") { const f = [...$("#rc-viewer").querySelectorAll("button, a[href]")]; const i = f.indexOf(document.activeElement); if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); } }
+});
+// Appui long : pause (comme une story)
+document.addEventListener("pointerdown", e => { const z = e.target.closest("#rc-viewer .rc-zone"); if (!z) return; clearTimeout(rcTimer); $("#rc-viewer").classList.add("paused"); });
+document.addEventListener("pointerup", e => { const b = $("#rc-viewer"); if (!b || !b.classList.contains("paused")) return; b.classList.remove("paused"); });
 function renderLive() {
   const el = $("#live"); if (!el) return;
   const now = Date.now(), H = 3600e3, mine = mcGet();
@@ -3867,7 +4081,7 @@ function renderLive() {
         : `<span>${st === "soon" ? "Coup d'envoi " : "Coup d'envoi à "}${hhmm(m.when)} · ${m.dom ? "à domicile" : "à l'extérieur"}</span>`}</span>
     </a></li>`).join("")}</ul></div>`;
 }
-setInterval(() => { if (document.visibilityState === "visible") { renderLive(); renderJdm(); } }, 60000);
+setInterval(() => { if (document.visibilityState === "visible") { renderLive(); renderJdm(); renderApresMatch(); renderRecapBubble(); } }, 60000);
 
 /* ----- « Mon week-end » : les matchs du week-end de mes équipes, avec le lieu et l'itinéraire ----- */
 function weekendBounds(now = new Date()) {
@@ -3963,11 +4177,11 @@ document.addEventListener("submit", e => {
   e.preventDefault();
   const on = [...e.target.querySelectorAll("input:checked")].map(i => i.value);
   try { localStorage.setItem("hbch-equipes", on.join(",")); } catch (err) {}
-  mcPicking = false; renderMonClub();
+  mcPicking = false; renderMonClub(); renderRecapBubble();
   if (window.HBCH_NOTIF_TEAMS) window.HBCH_NOTIF_TEAMS(on);
   $("#mon-club .mc-edit")?.focus();
 });
-addEventListener("hbch-equipes", () => { if (!mcPicking) renderMonClub(); renderLive(); });
+addEventListener("hbch-equipes", () => { if (!mcPicking) renderMonClub(); renderLive(); renderRecapBubble(); });
 
 /* ----- Galeries photos par match : #photos (liste) et #photos-<clé> (album) ----- */
 function GALERIES() { return (LEAGUE.galeries && LEAGUE.galeries.matchs) || {}; }
