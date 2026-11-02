@@ -2401,6 +2401,7 @@ let currentPlayerKey = null, photoBusy = false;
 const STRUCTURE_LOGOS = [
   [/blaringhem/i, "logos-clubs/structure-blaringhem.jpg", "Logo de la section handball du lycée Louis Blaringhem"],
   [/jean bart/i, "logos-clubs/structure-jean-bart.jpg", "Logo du lycée Jean Bart de Dunkerque"],
+  [/anatole france/i, "logos-clubs/structure-anatole-france.jpg", "Logo de la section handball du collège Anatole France", true],
   [/p[ôo]le espoirs/i, "logos-clubs/structure-pole-espoirs.jpg", "Logo du Pôle Espoirs masculin Hauts-de-France (FFHandball)", true],
 ];
 const structureLogo = txt => { const f = STRUCTURE_LOGOS.find(([re]) => re.test(txt || "")); return f ? { src: f[1], alt: f[2], wide: !!f[3] } : null; };
