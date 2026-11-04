@@ -2442,8 +2442,8 @@ function photoCards(list, key, initialOnly) {
 function renderRoster(el, id) {
   if (editing && editing.id === id) return renderEditor(el);
   const r = teamRoster(id), list = sortedPlayers(id), split = hasPostes(id);
-  // Cartes avec photo : seniors, et toute catégorie dont au moins la moitié des joueurs a sa photo
-  const cards = id === "seniors" || list.filter(p => p.photo).length * 2 >= list.length;
+  // Cartes avec photo : seniors et U15 (initiales en attendant la photo), et toute catégorie dont au moins la moitié des joueurs a sa photo
+  const cards = id === "seniors" || id === "u15" || list.filter(p => p.photo).length * 2 >= list.length;
   let html = `<div class="roster-head"><h2>Effectif · ${esc(ROSTER_GROUPS[id])}</h2>${canEditRoster && rosterState === "ready" ? `<button type="button" class="btn-edit" data-edit="${id}">Modifier l'effectif</button>` : ""}</div>`;
   if (rosterState === "loading") html += `<p class="sub">Chargement de l'effectif…</p>`;
   else if (rosterState === "off") html += `<p class="sub">L'effectif n'est pas disponible pour le moment.</p>`;
