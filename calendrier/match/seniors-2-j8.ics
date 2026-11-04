@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Hersin-Coupigny//Site du club//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HBC Hersin – Seniors 2
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:seniors-2-j8@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 SO Calais HB 2 – HBC Hersin Seniors 2
+DTSTART:20261205T200000Z
+DTEND:20261205T220000Z
+LOCATION:Chez SO Calais HB 2
+DESCRIPTION:Excellence régionale masculine\, journée 8. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.fr/#championnat-seniors-2
+URL:https://hbchersin.fr/
+END:VEVENT
+END:VCALENDAR

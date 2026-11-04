@@ -85,6 +85,17 @@ DESCRIPTION:Excellence régionale masculine\, journée 7. Allez les Tigres
 URL:https://hbchersin.fr/
 END:VEVENT
 BEGIN:VEVENT
+UID:seniors-2-j8@hbchersin.github.io
+DTSTAMP:20260101T000000Z
+SUMMARY:🤾 SO Calais HB 2 – HBC Hersin Seniors 2
+DTSTART:20261205T200000Z
+DTEND:20261205T220000Z
+LOCATION:Chez SO Calais HB 2
+DESCRIPTION:Excellence régionale masculine\, journée 8. Allez les Tigres
+  ! Classement et résultats : https://hbchersin.fr/#championnat-seniors-2
+URL:https://hbchersin.fr/
+END:VEVENT
+BEGIN:VEVENT
 UID:seniors-2-j9@hbchersin.github.io
 DTSTAMP:20260101T000000Z
 SUMMARY:🤾 HBC Hersin Seniors 2 – Entente Sud Oise HBC Senlis B
