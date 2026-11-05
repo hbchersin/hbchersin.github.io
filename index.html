@@ -755,6 +755,10 @@ h3.roster-group::after { content: ""; flex: 1; height: 1px; background: var(--li
 .wk-r-tag { font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .08em; color: var(--on-night-muted); }
 .wk-prog-day a.dom .wk-r-tag { color: var(--rose); }
 .wk-prog-day a.dom .wk-r-time { color: var(--rose); }
+/* À domicile chez le partenaire (entente à Béthune, Alliance Artois à Billy-Montigny) : couleur à part */
+.wk-prog-day a.dom-ext .wk-r-time, .wk-prog-day a.dom-ext .wk-r-tag { color: #b98cff; }
+.wk-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 600 12px var(--font-body); color: var(--on-night-muted); }
+.wk-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
 .wk-last { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 14px; color: var(--on-night-muted); }
 .wk-last b { color: var(--on-night); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
 .wk-last a { display: inline-flex; gap: 6px; align-items: center; color: var(--on-night); text-decoration: none; }
@@ -1209,6 +1213,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .mw-day:last-of-type li:last-child { border-bottom: 0; }
 .mw-t { font: 700 17px/1 var(--font-data); color: var(--ink); font-variant-numeric: tabular-nums; }
 .mw-list li.dom .mw-t { color: var(--rose-ink); }
+.mw-list li.dom-ext .mw-t { color: #7c4dcc; }
 .mw-what { display: block; min-width: 0; color: var(--ink); text-decoration: none; }
 .mw-what:hover b { color: var(--rose-ink); }
 .mw-what .mw-team { display: block; font: 700 11px var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
@@ -3444,9 +3449,10 @@ function renderWeekend() {
     </a>${(() => { const sm = nextSeniorMatch(); return sm && sm !== star && star.t.id !== "seniors-1" ? `<a class="cd-strip" href="#championnat-seniors-1"><span>Prochain match de la Prénationale · ${esc(sm.adv)} · ${esc(sm.when.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }))} à ${hhmm(sm.when)}</span>${countdownHtml(sm.date, "Dans")}</a>` : ""; })()}` : `<div class="wk-poster"><p class="wk-kicker">Le week-end du club</p><h2 class="wk-rest-title">La saison continue</h2></div>`}
     ${rest.length ? `<div class="wk-prog">
       <h2 id="wk-title" class="wk-prog-title">Tout le programme <span>${wk.length} matchs · ${home} à Hersin</span></h2>
+      <p class="wk-legend"><span><i style="background:var(--rose)"></i>à Hersin</span>${wk.some(m => m.dom && !playsInHersin(m.t.id, m.dom, m.adv, m.salle)) ? `<span><i style="background:#b98cff"></i>à domicile chez le partenaire (entente, Alliance)</span>` : ""}<span><i style="background:var(--on-night)"></i>à l'extérieur</span></p>
       ${days.map(d => `<div class="wk-prog-day"><h3>${esc(d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric" }))}</h3>
         <ol class="plain">${rest.filter(m => m.when.toDateString() === d.toDateString()).map(m => `
-          <li><a href="${matchHref(m)}" class="${playsInHersin(m.t.id, m.dom, m.adv, m.salle) ? "dom" : ""}">
+          <li><a href="${matchHref(m)}" class="${playsInHersin(m.t.id, m.dom, m.adv, m.salle) ? "dom" : m.dom ? "dom-ext" : ""}">
             <span class="wk-r-time">${hhmm(m.when)}</span>
             <span class="wk-r-team">${esc(teamLabel(m.t))}</span>
             <span class="wk-r-opp">${m.dom ? "" : "à "}${clubLogo(m.adv) ? `<img src="${clubLogo(m.adv)}" alt="">` : ""}${esc(m.adv)}</span>
@@ -4129,7 +4135,7 @@ function monWeekend(mine) {
     const rows = list.filter(m => m.when.toDateString() === d).map(m => {
       const v = mwVenue(m), hasTime = m.date.length > 10, more = n++ >= MW_KEEP && list.length > MW_KEEP + 1;
       const route = v.route ? `<a class="mw-ico${v.home ? "" : " go"}" href="${esc(v.route)}" target="_blank" rel="noopener" aria-label="${v.home ? "Plan" : "Itinéraire"} vers ${esc(v.name)}${v.addr ? ", " + esc(v.addr) : ""} (nouvel onglet)" title="${v.home ? "Plan" : "Itinéraire"}">${v.home ? "📍" : "🚗"}</a>` : "";
-      return `<li class="${v.home ? "dom" : ""}${more ? " mw-x" : ""}"><span class="mw-t">${hasTime ? esc(hhmm(m.when)) : "–"}</span>
+      return `<li class="${v.home ? "dom" : m.dom ? "dom-ext" : ""}${more ? " mw-x" : ""}"><span class="mw-t">${hasTime ? esc(hhmm(m.when)) : "–"}</span>
         <a class="mw-what" href="${matchHref(m)}"><span class="mw-team">${esc(m.t.name)}${m.t.cup ? " · Coupe" : ""}</span><b>${m.dom ? "vs" : "à"} ${esc(m.adv)}</b><span class="where">${esc(v.name)}</span></a>
         <span class="mw-acts">${route}${hasTime ? calButton(matchEvent(m.t.id, m), true) : ""}</span></li>`;
     });
