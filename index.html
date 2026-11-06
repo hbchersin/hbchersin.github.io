@@ -1480,6 +1480,37 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .jdm-acts a.go { background: var(--rose); border-color: var(--rose); color: var(--night); }
 .jdm-acts a:hover { border-color: var(--rose); }
 @media (prefers-reduced-motion: reduce) { .jdm::before, .jdm::after, .jdm-kick i { animation: none; } }
+/* « Dans quelle équipe jouer ? » (page Nous rejoindre) */
+.fc { margin-top: 48px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); background: var(--night); color: var(--on-night); border-top: 4px solid var(--rose); }
+@media (max-width: 820px) { .fc { grid-template-columns: 1fr; } }
+.fc-ask { padding: 28px; display: grid; gap: 14px; align-content: start; }
+.fc-ask h2 { font-size: 34px; color: var(--on-night); }
+.fc-ask h2 em { color: var(--rose); font-style: normal; }
+.fc-form { display: grid; gap: 8px; }
+.fc-form > label { font-weight: 700; }
+.fc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.fc-row input[type=number] { width: 130px; min-width: 0; min-height: 48px; padding: 8px 12px; font: 800 24px var(--font-display); border: 2px solid var(--rose); background: #fff; color: #141114; }
+.fc-sex { display: flex; gap: 12px; border: 0; margin: 0; padding: 0; }
+.fc-sex label { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; font-weight: 600; cursor: pointer; }
+.fc-sex input { accent-color: var(--rose); width: 18px; height: 18px; }
+.fc-out { padding: 28px; background: var(--night-2); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.fc-hint { color: var(--on-night-muted); }
+.fc-cat { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.fc-cat b { font: 800 46px/1 var(--font-display); text-transform: uppercase; color: var(--rose); }
+.fc-cat span { color: var(--on-night-muted); }
+.fc-price { margin-left: auto; font: 800 26px var(--font-display); color: var(--on-night); }
+.fc-team { border-top: 1px solid var(--night-line); padding-top: 12px; display: grid; gap: 8px; }
+.fc-team h3 { font: 800 20px var(--font-display); text-transform: uppercase; color: var(--on-night); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.fc-team h3 small { font: 700 11px var(--font-body); letter-spacing: .08em; color: var(--rose); border: 1px solid var(--rose); padding: 2px 6px; }
+.fc-slots { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.fc-slots li { display: grid; grid-template-columns: 86px 1fr; gap: 8px; font-size: 15px; }
+.fc-slots b { color: var(--on-night); } .fc-slots span { color: var(--on-night-muted); }
+.fc-staff { font-size: 14px; color: var(--on-night-muted); }
+.fc-staff b { color: var(--on-night); font-weight: 600; }
+.fc-note { font-size: 14px; color: var(--on-night-muted); }
+.fc-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.fc-acts .btn { color: var(--on-night); border-color: var(--night-line); }
+.fc-acts .btn.solid { color: var(--night); }
 /* Notre saison (page équipe) */
 .season-card[hidden] { display: none; }
 .season-card { margin-top: 16px; }
@@ -2047,6 +2078,20 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
         </div>
         <figure class="ph"><img src="photos/equipe-u11.jpg" width="1600" height="1200" loading="lazy" alt="Les U11, filles et garçons en maillot rose et noir, posent sur deux rangées devant un but"><figcaption>Les U11, filles et garçons ensemble.</figcaption></figure>
       </div>
+      <section class="fc" id="ma-categorie" aria-labelledby="fc-title">
+        <div class="fc-ask">
+          <p class="eyebrow">Saison 2026-2027</p>
+          <h2 id="fc-title">Dans quelle équipe <em>jouer</em> ?</h2>
+          <form id="fc-form" class="fc-form" novalidate>
+            <label for="fc-year">Année de naissance</label>
+            <div class="fc-row"><input id="fc-year" type="number" inputmode="numeric" min="1940" max="2026" placeholder="ex. 2015" autocomplete="off">
+              <fieldset class="fc-sex"><legend class="sr-only">Fille ou garçon</legend>
+                <label><input type="radio" name="fc-sex" value="g" checked> Garçon</label><label><input type="radio" name="fc-sex" value="f"> Fille</label></fieldset>
+              <button type="submit" class="btn solid">Voir</button></div>
+          </form>
+        </div>
+        <div class="fc-out" id="fc-out" aria-live="polite"><p class="fc-hint">Indiquez l'année de naissance : le site vous dit la catégorie, les entraînements, les entraîneurs et le tarif.</p></div>
+      </section>
       <div class="head" style="margin-top:56px" id="tarifs"><p class="eyebrow">Saison 2026-2027</p><h2>Tarifs des licences</h2>
         <p class="sub">Chaque cotisation comprend <strong>la licence FFHandball</strong> et <strong>le tee-shirt du club</strong>.</p></div>
       <ul class="prices plain">
@@ -2309,6 +2354,50 @@ function renderTeam(t) {
     </div></section>`;
 }
 
+/* ----- « Dans quelle équipe jouer ? » : catégorie, entraînements, entraîneurs et tarif d'après l'année de naissance ----- */
+// Catégories FFHandball de la saison (même découpage que les tarifs) : décalages par rapport à l'année de fin de saison
+const FC_END = 2027;   // saison 2026-2027 (même découpage que les tarifs ; à avancer d'un an chaque saison)
+const FC_CATS = [
+  { key: "ecole", label: "École de hand", min: FC_END - 9, max: 9999, price: 90, teams: ["ecole"], mixte: true, sub: "Baby-hand, mini-hand et critérium" },
+  { key: "u11", label: "U11", min: FC_END - 11, max: FC_END - 10, price: 100, teams: ["u11"], mixte: true },
+  { key: "u13", label: "U13", min: FC_END - 13, max: FC_END - 12, price: 110, teams: ["u13a", "u13b", "u13c"], sub: "Trois équipes : le groupe s'entraîne ensemble" },
+  { key: "u15", label: "U15", min: FC_END - 15, max: FC_END - 14, price: 125, teams: ["u15-region", "u15-departemental"] },
+  { key: "u18", label: "U18", min: FC_END - 18, max: FC_END - 16, price: 140, teams: ["u18-region", "u18-departemental", "u18-france"] },
+  { key: "sen", label: "Seniors", min: 0, max: FC_END - 19, price: 165, teams: ["seniors-1", "seniors-2"] },
+];
+const FC_DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+function fcTeamHtml(id, over) {
+  const t = over ? { ...byId[id], ...over } : byId[id]; if (!t) return "";
+  const slots = slotsOf(id).sort((a, b) => FC_DAYS.indexOf(a[0]) - FC_DAYS.indexOf(b[0]));
+  return `<div class="fc-team"><h3>${esc(t.name)}${t.lvl ? `<small>${esc(t.lvl)}</small>` : ""}${t.badge ? `<small>${esc(t.badge === "entente" && t.note ? t.note : BADGES[t.badge][1])}</small>` : ""}</h3>
+    ${slots.length ? `<ul class="fc-slots">${slots.map(([d, a, b, , room]) => `<li><b>${d}</b><span>${fmtH(a)} – ${fmtH(b)} · salle ${esc(room)}</span></li>`).join("")}</ul>` : ""}
+    ${t.away ? `<p class="fc-note">${esc(t.away)}</p>` : ""}
+    ${t.staff && t.staff.length ? `<p class="fc-staff">Encadrement : <b>${t.staff.map(esc).join(", ")}</b></p>` : ""}
+    <div class="fc-acts"><a class="btn" href="#${over ? "equipes" : id}">${over ? "Les équipes U13" : "La page de l'équipe"} →</a></div></div>`;
+}
+function fcRender() {
+  const out = $("#fc-out"), y = +$("#fc-year").value, girl = document.querySelector('input[name="fc-sex"]:checked')?.value === "f";
+  if (!y || y < 1900 || y > new Date().getFullYear()) { out.innerHTML = `<p class="fc-hint">Indiquez une année de naissance sur 4 chiffres, par exemple 2015.</p>`; return; }
+  const c = FC_CATS.find(c => y >= c.min && y <= c.max);
+  const contact = `<a class="btn solid" href="#contact">Venir faire un essai</a>`;
+  let body;
+  if (c.key === "sen") {
+    body = `<div class="fc-cat"><b>Seniors</b><span>né${girl ? "e" : ""} en ${y}</span><span class="fc-price">${c.price}&nbsp;€</span></div>
+      ${girl ? `<p class="fc-note">Nos équipes seniors en championnat sont masculines. L'équipe <b>Loisirs</b> est mixte : hommes et femmes, pour le plaisir, sans compétition (105&nbsp;€).</p>${fcTeamHtml("loisirs")}`
+        : `${c.teams.map(id => fcTeamHtml(id)).join("")}<p class="fc-note">Envie de jouer sans compétition ? L'équipe <b>Loisirs</b> est mixte (105&nbsp;€).</p>${fcTeamHtml("loisirs")}`}`;
+  } else if (girl && !c.mixte) {
+    body = `<div class="fc-cat"><b>${c.label}</b><span>née en ${y}</span><span class="fc-price">${c.price}&nbsp;€</span></div>
+      <p class="fc-note">Nos équipes ${c.label} sont masculines. Contactez le club : nous vous dirons comment accueillir votre fille et vers quelle équipe l'orienter.</p>`;
+  } else {
+    body = `<div class="fc-cat"><b>${c.label}</b><span>${c.sub ? esc(c.sub) + " · " : ""}né${girl ? "e" : ""} en ${y}</span><span class="fc-price">${c.price}&nbsp;€</span></div>
+      ${c.teams.length > 1 && c.key !== "u13" ? `<p class="fc-note">Plusieurs équipes selon le niveau : les entraîneurs orientent chaque joueur après l'essai.</p>` : ""}
+      ${c.key === "u13" ? fcTeamHtml("u13a", { name: "U13", staff: [...new Set(c.teams.flatMap(id => byId[id]?.staff || []))] }) : c.teams.map(id => fcTeamHtml(id)).join("")}`;
+  }
+  out.innerHTML = body + `<div class="fc-acts">${contact}<a class="btn" href="#tarifs">Tous les tarifs</a></div>
+    <p class="fc-note">Essai gratuit. La cotisation comprend la licence FFHandball et le tee-shirt du club.</p>`;
+}
+document.addEventListener("submit", e => { if (e.target.id !== "fc-form") return; e.preventDefault(); fcRender(); });
+document.addEventListener("change", e => { if (e.target.name === "fc-sex" && $("#fc-year").value) fcRender(); });
 /* ----- Entraînements ----- */
 // Agenda de la semaine : une colonne par jour, une ligne par créneau
 const fmtH = t => t.replace(":", "h").replace("h00", "h");
