@@ -4453,15 +4453,22 @@ function openTeaser(m) {
   tzAudio = new Audio("photos/teaser/musique.mp3"); tzAudio.preload = "auto";
   setTimeout(() => el.querySelector(".tz-play")?.focus(), 50);
 }
-// Photos du teaser de ce match : le 1er teaser (Hersin – Biache, 7/11) prend le début des listes, le suivant la suite, etc.
+// Photos du teaser de ce match : d'abord celles choisies dans les albums de Prénationale les plus récents
+// (photos marquées "tz" par la tâche des albums : "g" = groupe/émotion, "a" = action), puis la sélection de départ,
+// qui tourne d'un teaser à l'autre (le 1er teaser, Hersin – Biache du 7/11, prend le début des listes).
 function tzPhotos(m) {
   const homes = allMatches().filter(x => x.t.id === "seniors-1" && !x.t.cup && x.dom && x.date >= "2026-11-07");
   const n = Math.max(0, homes.findIndex(x => x.date === m.date && x.adv === m.adv)), used = new Set();
-  const take = (list, count, start) => { const out = [];
-    for (let k = 0; out.length < count && k < list.length * 2; k++) { const x = list[(start + k) % list.length];
-      if (out.includes(x) || (x[2] && used.has(x[2]))) continue; if (x[2]) used.add(x[2]); out.push(x); }
+  const albums = Object.entries(LEAGUE.galeries?.matchs || {}).filter(([k, al]) => /^seniors-1-j\d+$/.test(k) && al.date && al.date < m.date)
+    .sort((x, y) => y[1].date.localeCompare(x[1].date));
+  const fresh = r => albums.flatMap(([, al]) => (al.photos || []).filter(p => p.photo && p.tz === r).map(p => [p.photo, isFinite(+p.x) ? +p.x : 50, p.n ? String(p.n) : ""]));
+  const rot = (list, st) => list.map((_, k) => list[(st + k) % list.length]);
+  const take = (list, count) => { const out = [];
+    for (const x of list) { if (out.length >= count) break;
+      if (out.some(o => o[0] === x[0]) || (x[2] && used.has(x[2]))) continue; if (x[2]) used.add(x[2]); out.push(x); }
+    while (out.length < count) out.push(list[out.length % list.length]);
     return out; };
-  const g = take(TZ_G, 3, n * 3), a = take(TZ_A, 7, n * 7);
+  const g = take([...fresh("g"), ...rot(TZ_G, n * 3)], 3), a = take([...fresh("a"), ...rot(TZ_A, n * 7)], 7);
   return [g[0], g[0], ...a, g[1], g[2]];   // intro, « demain soir », 4 du montage, duel, date, enjeu, 8e homme, final
 }
 function tzFit() {
