@@ -1517,6 +1517,20 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .fc-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
 .fc-acts .btn { color: var(--on-night); border-color: var(--night-line); }
 .fc-acts .btn.solid { color: var(--night); }
+/* Carte des salles (page Nos salles) : Leaflet + OpenStreetMap, chargés seulement sur cette page */
+.vmap-wrap { display: grid; gap: 8px; margin-bottom: 20px; }
+.vmap-wrap[hidden] { display: none; }
+.vmap { height: 340px; border: 1px solid var(--line); border-top: 4px solid var(--rose); background: var(--surface); z-index: 0; }
+@media (max-width: 600px) { .vmap { height: 280px; } }
+.vmap-note { font-size: 14px; color: var(--muted); }
+.vmap .leaflet-popup-content { margin: 12px 14px; font: 14px/1.4 var(--font-body); }
+.vmap .leaflet-popup-content b { display: block; font: 800 18px var(--font-display); text-transform: uppercase; margin-bottom: 2px; }
+.vmap .leaflet-popup-content a.v-go { margin-top: 8px; }
+.vm-pin { width: 34px; height: 34px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #e7337d; border: 3px solid #0b0a0c; box-shadow: 0 3px 8px rgba(0,0,0,.35); }
+.vm-pin span { display: block; transform: rotate(45deg); color: #fff; font: 800 13px/28px var(--font-display); text-align: center; }
+.v-acts { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.v-go { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 16px; background: var(--rose); color: #0b0a0c !important; font: 700 14px var(--font-body); text-decoration: none; }
+.v-go:hover { filter: brightness(1.08); }
 /* Notre saison (page équipe) */
 .season-card[hidden] { display: none; }
 .season-card { margin-top: 16px; }
@@ -1852,13 +1866,15 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
       <p class="lead">Les entraînements et les matchs à domicile ont lieu dans deux salles de Hersin-Coupigny.</p>
     </div></section>
     <section class="block"><div class="wrap">
+      <div class="vmap-wrap" id="vmap-wrap" hidden><div class="vmap" id="vmap" role="region" aria-label="Carte des deux salles du club"></div>
+        <p class="vmap-note">Les deux salles sont à 600 m l'une de l'autre. Touchez un repère pour l'itinéraire.</p></div>
       <div class="venues">
         <div class="card venue"><div class="venue-head"><img class="venue-photo" style="object-position:42% 55%" src="photos/salle-futura.jpg" width="1000" height="667" loading="lazy" alt="Façade en briques du complexe Futura, avec son toit arrondi bleu et l'inscription « Complexe Futura »"><div><h2>Complexe Futura</h2><p class="addr">Rue Romain Rolland<br>62530 Hersin-Coupigny</p></div></div>
           <p class="sub">Équipes qui s'y entraînent :</p><ul class="plain" id="v-futura"></ul>
-          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Complexe+Futura+rue+Romain+Rolland+Hersin-Coupigny" target="_blank" rel="noopener">Voir le complexe Futura sur la carte<span class="sr-only"> (nouvel onglet)</span> ↗</a></div>
+          <div class="v-acts"><a class="v-go" href="https://www.google.com/maps/dir/?api=1&destination=50.44711,2.64268" target="_blank" rel="noopener">🚗 Itinéraire<span class="sr-only"> vers le complexe Futura (nouvel onglet)</span></a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Complexe+Futura+rue+Romain+Rolland+Hersin-Coupigny" target="_blank" rel="noopener">Voir sur Google Maps<span class="sr-only"> (nouvel onglet)</span> ↗</a></div></div>
         <div class="card venue"><div class="venue-head"><img class="venue-photo" style="object-position:50% 50%" src="photos/salle-vivre.jpg" width="1000" height="667" loading="lazy" alt="La salle Vivre : un bâtiment en briques claires et bardage translucide, au bout d'une allée"><div><h2>Salle Vivre</h2><p class="addr">Rue Victor Hugo<br>62530 Hersin-Coupigny</p></div></div>
           <p class="sub">Équipes qui s'y entraînent :</p><ul class="plain" id="v-vivre"></ul>
-          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Salle+Vivre+rue+Victor+Hugo+Hersin-Coupigny" target="_blank" rel="noopener">Voir la salle Vivre sur la carte<span class="sr-only"> (nouvel onglet)</span> ↗</a></div>
+          <div class="v-acts"><a class="v-go" href="https://www.google.com/maps/dir/?api=1&destination=50.45108,2.63882" target="_blank" rel="noopener">🚗 Itinéraire<span class="sr-only"> vers la salle Vivre (nouvel onglet)</span></a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Salle+Vivre+rue+Victor+Hugo+Hersin-Coupigny" target="_blank" rel="noopener">Voir sur Google Maps<span class="sr-only"> (nouvel onglet)</span> ↗</a></div></div>
       </div>
     </div></section>
   </div>
@@ -4375,6 +4391,27 @@ addEventListener("hashchange", () => { if (!$("#lb").hidden) lbClose(); });
 
 const pages = [...document.querySelectorAll("[data-page]")];
 let first = true;
+/* ----- Carte des salles : Leaflet chargé à la première visite de la page (site public seulement ; ailleurs, les liens suffisent) ----- */
+const VENUES_MAP = [["Complexe Futura", "rue Romain Rolland", 50.44711, 2.64268, "F"], ["Salle Vivre", "rue Victor Hugo", 50.45108, 2.63882, "V"]];
+let vmapDone = false;
+function venueMap() {
+  if (vmapDone || !window.HBCH_PUBLIC) return; vmapDone = true;
+  const css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(css);
+  const js = document.createElement("script"); js.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
+  js.onload = () => {
+    $("#vmap-wrap").hidden = false;
+    const map = L.map("vmap", { scrollWheelZoom: false, tap: true });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+    const pts = VENUES_MAP.map(([name, rue, lat, lon, k]) => {
+      L.marker([lat, lon], { title: name, alt: name, icon: L.divIcon({ className: "", html: `<div class="vm-pin"><span>${k}</span></div>`, iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -32] }) })
+        .addTo(map).bindPopup(`<b>${esc(name)}</b>${esc(rue)}, Hersin-Coupigny<br><a class="v-go" href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}" target="_blank" rel="noopener">🚗 Itinéraire</a>`);
+      return [lat, lon];
+    });
+    map.fitBounds(pts, { padding: [50, 50], maxZoom: 16 });
+  };
+  js.onerror = () => { $("#vmap-wrap").hidden = true; };
+  document.head.appendChild(js);
+}
 function route() {
   const key = decodeURIComponent(location.hash.slice(1)) || "accueil";
   const team = byId[key], isPlayer = key.startsWith("joueur-");
@@ -4386,6 +4423,7 @@ function route() {
   if (team) { renderTeam(team); refreshRosters(); refreshLeagues(); }
   if (isPlayer) renderPlayerPage(key); else currentPlayerKey = null;
   if (key === "effectifs") refreshRosters();
+  if (key === "salles") setTimeout(venueMap, 0);
   if (key === "resultats") { wkrOffset = 0; renderResultsPage(); }
   pages.forEach(p => p.hidden = p.dataset.page !== name);
   document.body.classList.toggle("on-scores", name === "scores");
