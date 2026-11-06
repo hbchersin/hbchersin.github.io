@@ -92,8 +92,11 @@
   if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
   var MEDIA = {};
   window.HBCH_BLOB = function (id) { return "media/" + id + (MEDIA[id] || ".jpg"); };
+  var MINI = {};
+  window.HBCH_THUMB = function (id) { return MINI[id] ? "media/mini/" + id + ".jpg" : window.HBCH_BLOB(id); };
   function get(url) { return fetch(url, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }); }
-  var media = get("data/media.json").then(function (m) { MEDIA = m; });
+  var media = Promise.all([get("data/media.json"), fetch("data/media-mini.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })])
+    .then(function (r) { MEDIA = r[0]; (Array.isArray(r[1]) ? r[1] : []).forEach(function (id) { MINI[id] = 1; }); });
   var cache = {};
   function load(name) { return cache[name] || (cache[name] = media.then(function () { return get("data/" + name + ".json"); })); }
   var db = {
@@ -2434,11 +2437,14 @@ const SLIDES = [["seniors-1", "Seniors"], ["u11", "U11"], ["u13a", "U13"], ["u15
   ["u18-region", "U18 Région"], ["u18-departemental", "U18 Départemental"], ["u18-france", "U18 France"], ["loisirs", "Loisirs"]]
   .filter(([id]) => PHOTOS[id]);
 $("#slides").innerHTML = SLIDES.map(([id, label], i) => `
-  <a href="#${id}" class="${i ? "" : "on"}"${i ? ' tabindex="-1" aria-hidden="true"' : ""} aria-label="${esc(label)} : voir la page de l'équipe">${photoImg(id, i > 0)}<span class="name">${esc(label)}</span></a>`).join("");
+  <a href="#${id}" class="${i ? "" : "on"}"${i ? ' tabindex="-1" aria-hidden="true"' : ""} aria-label="${esc(label)} : voir la page de l'équipe">${i > 1 ? photoImg(id, true).replace(' src="', ' data-src="') : photoImg(id, i > 0)}<span class="name">${esc(label)}</span></a>`).join("");
 $("#sl-dots").innerHTML = SLIDES.map((_, i) => `<span class="${i ? "" : "on"}"></span>`).join("");
 let slide = 0, slideTimer = null, slidePaused = matchMedia("(prefers-reduced-motion: reduce)").matches, slideHold = false;
 function goSlide(i) {
   slide = (i + SLIDES.length) % SLIDES.length;
+  // Photos chargées au fil du défilement : celle affichée et la suivante (pas les 9 d'un coup)
+  const all = document.querySelectorAll("#slides img");
+  [slide, (slide + 1) % SLIDES.length].forEach(k => { const im = all[k]; if (im && im.dataset.src) { im.src = im.dataset.src; im.removeAttribute("data-src"); } });
   document.querySelectorAll("#slides a").forEach((a, k) => {
     a.classList.toggle("on", k === slide);
     k === slide ? (a.removeAttribute("tabindex"), a.removeAttribute("aria-hidden")) : (a.tabIndex = -1, a.setAttribute("aria-hidden", "true"));
@@ -2509,6 +2515,9 @@ const playerHref = (key, p) => `#joueur-${key}-${playerSlug(p)}`;
 // Fichiers envoyés depuis le site (photos) : servis par Claude, ou par la copie publique (HBCH_BLOB)
 const blobSrc = id => window.HBCH_BLOB ? window.HBCH_BLOB(id) : "/_blob/" + id;
 const photoSrc = p => p.photo ? blobSrc(p.photo) : "";
+// Miniature (site public : media/mini, 480 px) pour les vignettes ; la grande photo reste pour la fiche et l'agrandissement
+const thumbSrc = id => window.HBCH_THUMB ? window.HBCH_THUMB(id) : blobSrc(id);
+const photoThumb = p => p.photo ? thumbSrc(p.photo) : "";
 const initials = p => `${String(p.prenom || "?")[0] || ""}${String(p.nom || "")[0] || ""}`.toUpperCase();
 const sortedPlayers = key => (teamRoster(key).players || []).slice().sort(key === "seniors" ? byNumber : byName);
 // Cartes des jeunes : toutes de la même forme ; le poste est omis quand la liste est déjà groupée par poste
@@ -2516,7 +2525,7 @@ function playerCards(list, key, initialOnly, grouped) {
   return `<ul class="roster plain">${list.map(p => {
     const info = [hasYear(key) ? genLabel(p) : "", grouped ? "" : p.poste, p.main].filter(Boolean).map(esc).join(" · ");
     return `<li><a class="player nonum" href="${playerHref(key, p)}">
-      <div class="who">${p.photo ? `<img class="mini-photo" src="${photoSrc(p)}" alt="" loading="lazy">` : ""}<div><b>${esc(playerName(p, initialOnly))}</b><small>${info}</small><span class="pc-go">Voir sa fiche <span aria-hidden="true">→</span></span></div></div></a></li>`;
+      <div class="who">${p.photo ? `<img class="mini-photo" src="${photoThumb(p)}" alt="" loading="lazy" decoding="async">` : ""}<div><b>${esc(playerName(p, initialOnly))}</b><small>${info}</small><span class="pc-go">Voir sa fiche <span aria-hidden="true">→</span></span></div></div></a></li>`;
   }).join("")}</ul>`;
 }
 // Groupes de postes, dans l'ordre du terrain (de gauche à droite après le gardien)
@@ -2527,7 +2536,7 @@ function photoCards(list, key, initialOnly) {
   return `<ul class="pcards plain">${list.map(p => {
     const name = playerName(p, initialOnly), num = p.numero !== "" && p.numero != null;
     return `<li><a class="pcard" href="${playerHref(key, p)}">
-      <span class="pc-photo">${p.photo ? `<img src="${photoSrc(p)}" alt="" loading="lazy">` : `<span class="pc-empty" aria-hidden="true">${esc(initials(p))}</span>`}
+      <span class="pc-photo">${p.photo ? `<img src="${photoThumb(p)}" alt="" loading="lazy" decoding="async">` : `<span class="pc-empty" aria-hidden="true">${esc(initials(p))}</span>`}
         ${num ? `<span class="pc-num" aria-label="Numéro ${esc(p.numero)}">${esc(p.numero)}</span>` : ""}</span>
       <span class="pc-body"><b>${esc(name)}</b><small>${[hasYear(key) ? genLabel(p) : "", p.poste, p.main].filter(Boolean).map(esc).join(" · ")}</small><span class="pc-go">Voir sa fiche <span aria-hidden="true">→</span></span></span>
     </a></li>`;
@@ -3926,7 +3935,7 @@ function srchIndex() {
   Object.entries(ROSTERS).forEach(([key, r]) => (r.players || []).forEach(p => {
     const name = playerName(p, r.initialOnly);
     out.push({ kind: "Joueur", title: name, sub: [ROSTER_GROUPS[key], p.poste, p.numero !== "" && p.numero != null ? "n° " + p.numero : ""].filter(Boolean).join(" · "),
-      href: playerHref(key, p), img: p.photo ? photoSrc(p) : "", txt: srchNorm(r.initialOnly ? `${p.prenom} ${name}` : `${p.prenom} ${p.nom}`), w: 3 });
+      href: playerHref(key, p), img: p.photo ? photoThumb(p) : "", txt: srchNorm(r.initialOnly ? `${p.prenom} ${name}` : `${p.prenom} ${p.nom}`), w: 3 });
   }));
   TEAMS.forEach(t => out.push({ kind: "Équipe", title: t.name, sub: [t.comp || t.lvl, t.group].filter(Boolean).join(" · "), href: "#" + t.id, logo: teamLogo(t),
     txt: srchNorm(`${t.name} ${t.big || ""} ${t.suffix || ""} ${t.cat} ${t.group}`), extra: srchNorm((t.staff || []).join(" ")), staff: t.staff || [], w: 4 }));
@@ -4318,7 +4327,7 @@ function renderPhotosPage(key) {
     const team = galTeamsOf(g)[0];
     el.innerHTML = `<div class="gal-head"><a href="#photos">← Tous les albums</a>${shareBtn(`📸 ${isMatch ? g.titre + " · " + galScore(g) : g.titre}`, "#photos-" + albumKey, "Partager l'album")}${GAL_TEAMS.some(t => t[0] === team) ? `<a href="#photos-equipe-${esc(team)}">Les albums ${esc(galTeamLabel({ equipes: [team] }))}</a>` : ""}${g.lien ? `<a href="${esc(g.lien)}" target="_blank" rel="noopener">Voir la publication Facebook<span class="sr-only"> (nouvel onglet)</span> ↗</a>` : ""}${isMatch ? (g.titre.startsWith("Coupe") ? `<a href="#coupe-de-france">Le parcours en coupe →</a>` : `<a href="#championnat-${esc(g.equipe)}">Le championnat →</a>`) : ""}</div>
       <p class="sub" style="margin-bottom:12px">${plural(g.photos.length, "photo")} · touchez une photo pour l'agrandir</p>
-      <ul class="gal-thumbs">${g.photos.map((p, i) => `<li><button type="button" data-lb="${i}" aria-label="Agrandir la photo ${i + 1} sur ${g.photos.length}"><img src="${blobSrc(p.photo)}" alt="" loading="lazy" decoding="async"></button></li>`).join("")}</ul>`;
+      <ul class="gal-thumbs">${g.photos.map((p, i) => `<li><button type="button" data-lb="${i}" aria-label="Agrandir la photo ${i + 1} sur ${g.photos.length}"><img src="${thumbSrc(p.photo)}" alt="" loading="lazy" decoding="async"></button></li>`).join("")}</ul>`;
     return;
   }
   galCurrent = null;
@@ -4330,7 +4339,7 @@ function renderPhotosPage(key) {
   const nav = `<nav class="gal-filter" aria-label="Choisir une équipe"><a href="#photos"${filter ? "" : ' aria-current="page"'}>Toutes</a>${chips.map(([id, name]) => `<a href="#photos-equipe-${id}"${filter === id ? ' aria-current="page"' : ""}>${esc(name)} <span>${all.filter(([, g]) => galTeamsOf(g).includes(id)).length}</span></a>`).join("")}</nav>`;
   el.innerHTML = nav + (!list.length ? `<p class="sub">Pas encore d'album pour cette équipe : ils arrivent dès que le club publie les photos sur Facebook.</p>`
     : `<p class="sub" style="margin-bottom:14px">${plural(list.length, "album")}</p><ul class="gal-grid">${list.map(([k, g]) => `<li><a class="gal-card" href="#photos-${esc(k)}">
-        <span class="gc-img"><img src="${blobSrc(g.photos[0].photo)}" alt="" loading="lazy"><span class="gc-n">📸 ${g.photos.length}</span></span>
+        <span class="gc-img"><img src="${thumbSrc(g.photos[0].photo)}" alt="" loading="lazy" decoding="async"><span class="gc-n">📸 ${g.photos.length}</span></span>
         <span class="gc-body"><small>${esc(g.adv ? g.titre : galTeamLabel(g))}</small><b>${esc(g.adv ? galScore(g) : g.titre)}</b><span class="gc-date">${g.adv ? esc(galOutcome(g)) + " · " + esc(longDate(g.date)) : "Publié le " + esc(longDate(g.date))}</span></span></a></li>`).join("")}</ul>`);
 }
 function lbShow(i) {
