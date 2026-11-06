@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://hbchersin.fr/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/ecole/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u11/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u13a/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u13b/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u13c/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u15-region/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u15-departemental/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u18-region/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u18-departemental/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/u18-france/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/seniors-1/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/seniors-2/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hbchersin.fr/equipes/loisirs/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
