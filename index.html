@@ -1708,11 +1708,13 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 html.tz-open,html.tz-open body{overflow:hidden}
 .tz{position:fixed;inset:0;z-index:9999;background:#0b0a0c;color:#f6f1f4;font-family:Archivo,system-ui,sans-serif;overflow:hidden}
 .tz[hidden]{display:none}
-.tz-blur{position:absolute;inset:-40px;background:center/cover no-repeat url(photos/teaser/c6.jpg);filter:blur(28px) brightness(.35)}
+.tz-blur{position:absolute;inset:-40px;background:center/cover no-repeat;filter:blur(28px) brightness(.35)}
 .tz-stage{position:absolute;left:50%;top:50%;width:540px;height:960px;transform-origin:center;overflow:hidden;isolation:isolate;background:#0b0a0c}
 .tz-x{position:absolute;top:max(10px,env(safe-area-inset-top));right:10px;z-index:30;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font:700 22px/1 Archivo;cursor:pointer}
 .tz-x:focus-visible,.tz-play:focus-visible,.tz-skip:focus-visible,.tz-again:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.tz-start{position:absolute;inset:0;z-index:20;display:grid;place-items:center;align-content:center;gap:18px;text-align:center;padding:30px;background:linear-gradient(180deg,rgba(11,10,12,.55),rgba(11,10,12,.85)),center/cover url(photos/teaser/b1.jpg)}
+.tz-start{position:absolute;inset:0;z-index:20;display:grid;place-items:center;align-content:center;gap:18px;text-align:center;padding:30px;background:#0b0a0c center/cover no-repeat}
+.tz-start::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,10,12,.55),rgba(11,10,12,.85))}
+.tz-start{isolation:isolate}
 .tz.go .tz-start{display:none}
 .tz-start img{width:84px;height:84px}
 .tz-start .k{font:700 15px Archivo;letter-spacing:.3em;text-transform:uppercase;color:#e7337d}
@@ -1727,17 +1729,17 @@ html.tz-open,html.tz-open body{overflow:hidden}
 .tz .cam{position:absolute;inset:0;z-index:-3}
 .tz .ph{position:absolute;inset:0;opacity:0;background:center/cover no-repeat;filter:saturate(1.15) contrast(1.08)}
 .tz .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,12,.55),rgba(11,10,12,.42) 32%,rgba(11,10,12,.62) 62%,rgba(11,10,12,.95))}
-.tz .p0{background-image:url(photos/teaser/b1.jpg);transform-origin:50% 40%;animation:tz-ghost .7s .55s both}
-.tz .p1{background-image:url(photos/teaser/b1.jpg);transform-origin:50% 40%;animation:tz-kb 4.16s 1.3s both}
-.tz .p2{background-image:url(photos/teaser/m1.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 2.461s both}
-.tz .p3{background-image:url(photos/teaser/m2.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 3.042s both}
-.tz .p4{background-image:url(photos/teaser/m3.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 3.622s both}
-.tz .p5{background-image:url(photos/teaser/m4.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 4.202s both}
-.tz .p6{background-image:url(photos/teaser/b2.jpg);transform-origin:50% 22%;animation:tz-kb 5.32s 4.783s both}
-.tz .p7{background-image:url(photos/teaser/b3.jpg);transform-origin:50% 30%;animation:tz-kb 5.32s 7.105s both}
-.tz .p8{background-image:url(photos/teaser/b4.jpg);transform-origin:50% 22%;animation:tz-kb 5.32s 9.427s both}
-.tz .p9{background-image:url(photos/teaser/c5.jpg);transform-origin:50% 45%;animation:tz-kb 4.74s 11.749s both}
-.tz .p10{background-image:url(photos/teaser/c6.jpg);transform-origin:50% 35%;animation:tz-kb 88.51s 13.491s both}
+.tz .p0{transform-origin:50% 40%;animation:tz-ghost .7s .55s both}
+.tz .p1{transform-origin:50% 40%;animation:tz-kb 4.16s 1.3s both}
+.tz .p2{transform-origin:50% 30%;animation:tz-kb 3.60s 2.461s both}
+.tz .p3{transform-origin:50% 30%;animation:tz-kb 3.60s 3.042s both}
+.tz .p4{transform-origin:50% 30%;animation:tz-kb 3.60s 3.622s both}
+.tz .p5{transform-origin:50% 30%;animation:tz-kb 3.60s 4.202s both}
+.tz .p6{transform-origin:50% 22%;animation:tz-kb 5.32s 4.783s both}
+.tz .p7{transform-origin:50% 30%;animation:tz-kb 5.32s 7.105s both}
+.tz .p8{transform-origin:50% 22%;animation:tz-kb 5.32s 9.427s both}
+.tz .p9{transform-origin:50% 45%;animation:tz-kb 4.74s 11.749s both}
+.tz .p10{transform-origin:50% 35%;animation:tz-kb 88.51s 13.491s both}
 @keyframes tz-kb{0%{opacity:0;transform:scale(1.22)}4%{opacity:1;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
 @keyframes tz-ghost{0%,100%{opacity:0;transform:scale(1.3)}15%{opacity:.5}30%{opacity:.08}45%{opacity:.45}70%{opacity:.1}}
 .tz .pump{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% 45%,rgba(231,51,125,.38),transparent 65%);opacity:0;mix-blend-mode:screen;animation:tz-pump .5805s 1.3s infinite}
@@ -4369,6 +4371,10 @@ function renderJdm() {
 /* ----- Teaser des matchs des Seniors 1 à domicile -----
    S'ouvre quand on touche la notification de la veille (adresse ?teaser), sinon au premier passage dans l'appli
    entre l'envoi de cette notification (veille 18h30) et le coup d'envoi. Une seule fois par match. */
+/* Photos des teasers (matchs de Prénationale uniquement, choisies une à une) : [photo, cadrage horizontal en %, n° du joueur]
+   Chaque teaser prend les suivantes dans la liste : les photos changent d'un match à l'autre, sans le même joueur deux fois. */
+var TZ_G = [["9e07e9280104b34757ace9d49867e096",47], ["f4e53ab8736b6f984ade252f647dea11",53], ["125514541b182dd9a3c8d0c23757e4a6",59], ["8473dd6c1a6f0e202e3f942a949f9460",0], ["c57bb7883aeb35bced0038bb7797ff98",77], ["f8f9c09465d9870e630779442e5bb44f",75]];
+var TZ_A = [["dd75250fe76c2b9cf20a644facbc7a4f",75,"19"], ["98a6254f58701f46b6ea675393868d11",72,"71"], ["c76e373bbd6a3ebb4cc542d27f1a3530",21], ["93d415483cc5c5b9ed1cfcb3fc9d4e0a",59], ["73cd65c0d7c48b1299655c19d392b1ed",67,"26"], ["bbdc791944c79ee465d83cfd3bbf98bd",34,"28"], ["b78a1387b3d63a5d10ab5f3751f8da1c",72], ["54fab1018775595e59be76199252fba6",71], ["0e85263a1d34fded461a3bf75ef79dfc",23,"26"], ["ba340dea20c3e283f673ce114042d301",49], ["ac2e6012794cc1e117c600037edf7c73",48,"21"], ["bbd0089c44377bcd45d36e0725d9fd0e",1,"61"], ["a6fd545cf734c7e7dd8e61413c460457",34], ["8778aba5fd2059d6c0ecd38aca6acbe7",32,"17"], ["5d7ca9b568e506cf540e570ea8536ac5",73,"21"], ["ee7118a49f6e4cdb0d651dada0507da5",27], ["de14863412e59309e77ddb32b2fc2698",57,"26"], ["d2d97d64d5c602a070c5cc24cbf355ff",43], ["a3a7f71f5631b5d8a4f896ebcc6cc477",68], ["bbdcd38a97fb3569d9149ce384e9c88f",59,"21"], ["6f844d52fa81e298495ccb603449a311",77], ["f4aa34914d4910bb5b1fc94f4b71e952",50], ["46283665115e39d5ac16eba3a9974966",71], ["088f257f1634d150d63ebda3837227d9",75], ["70d6ee35dadd03caaa8f133f3441b5d4",55,"17"], ["7df2dc9a3c66aec9e17f1aa311ad4d4b",84], ["2f6f26dfd1268edbc75af2b9f3a73f41",0]];
 var TZ_KEY = "hbch-teaser-vu", TZ_WANTED = /[?&]teaser\b/.test(location.search);
 var tzDone = false, tzAudio = null, tzTimer = 0, tzM = null, tzBack = null;
 function tzStart(w) { const d = new Date(w); d.setDate(d.getDate() - 1); d.setHours(18, 30, 0, 0); return d; }
@@ -4416,10 +4422,11 @@ function openTeaser(m) {
   const card = (cls, name, r) => r ? `<div class="card ${cls}"><span>${esc(name)}</span><b>${ordinal(table.indexOf(r) + 1)}</b><span>${plural(r.pts, "pt")}</span>${form(r)}</div>` : "";
   const fo = String(ours?.forme || "").slice(-5), wins = (fo.match(/V/g) || []).length, rank = ours ? table.indexOf(ours) + 1 : 0;
   const note = wins >= 3 ? `${wins} victoires sur les<br><span class="rose">${fo.length} derniers matchs</span>` : rank && rank <= 3 ? `Le podium<br><span class="rose">se joue ici</span>` : `Chaque point<br><span class="rose">compte</span>`;
+  const ph = tzPhotos(m), bg = x => `background-image:url(${blobSrc(x[0])});background-position:${x[1]}% center`;
   tzBack = document.activeElement;
-  el.innerHTML = `<div class="tz-blur"></div>
+  el.innerHTML = `<div class="tz-blur" style="background-image:url(${blobSrc(ph[10][0])})"></div>
   <div class="tz-stage"><div class="sh">
-    <div class="cam">${Array.from({ length: 11 }, (_, i) => `<div class="ph p${i}"></div>`).join("")}</div><div class="pump"></div>
+    <div class="cam">${ph.map((x, i) => `<div class="ph p${i}" style="${bg(x)}"></div>`).join("")}</div><div class="pump"></div>
     <div class="scene s0"><p class="k">Prénationale · Journée ${esc(m.j || "")}</p><p class="t">Le choc à ${esc(salle)}</p></div>
     <div class="scene s1"><p class="big${w2.length > 6 ? " long" : ""}">${esc(w1)}<br><em>${esc(w2)}</em></p><p class="k">Les Tigres sont prêts</p></div>
     ${["On", "va", "tout", "donner"].map((w, i) => `<div class="word w${i}"><b>${w}</b></div>`).join("")}
@@ -4436,15 +4443,26 @@ function openTeaser(m) {
   </div>
   <div class="top"><img src="logo-hbch.png" alt="">HBC <em>Hersin</em></div><div class="vig"></div><div class="grain"></div>
   <button type="button" class="tz-again" data-tz="again">↻ Revoir</button></div>
-  <div class="tz-start"><img src="logo-hbch.png" alt=""><p class="k">Hersin – ${esc(opp1)}</p><h2>Le teaser<br><em>du match</em></h2>
+  <div class="tz-start" style="${bg(ph[0])}"><img src="logo-hbch.png" alt=""><p class="k">Hersin – ${esc(opp1)}</p><h2>Le teaser<br><em>du match</em></h2>
     <button type="button" class="tz-play" data-tz="play">▶ Lancer</button><p class="s">🔊 Monte le son !</p><button type="button" class="tz-skip" data-tz="close">Passer</button></div>
   <button type="button" class="tz-x" data-tz="close" aria-label="Fermer le teaser">✕</button>`;
   el.hidden = false; el.classList.remove("go");
   document.documentElement.classList.add("tz-open");
   tzFit(); tickCountdowns();
-  ["b1", "m1", "m2", "m3", "m4", "b2", "b3", "b4", "c5", "c6"].forEach(f => { new Image().src = `photos/teaser/${f}.jpg`; });
+  ph.forEach(x => { new Image().src = blobSrc(x[0]); });
   tzAudio = new Audio("photos/teaser/musique.mp3"); tzAudio.preload = "auto";
   setTimeout(() => el.querySelector(".tz-play")?.focus(), 50);
+}
+// Photos du teaser de ce match : le 1er teaser (Hersin – Biache, 7/11) prend le début des listes, le suivant la suite, etc.
+function tzPhotos(m) {
+  const homes = allMatches().filter(x => x.t.id === "seniors-1" && !x.t.cup && x.dom && x.date >= "2026-11-07");
+  const n = Math.max(0, homes.findIndex(x => x.date === m.date && x.adv === m.adv)), used = new Set();
+  const take = (list, count, start) => { const out = [];
+    for (let k = 0; out.length < count && k < list.length * 2; k++) { const x = list[(start + k) % list.length];
+      if (out.includes(x) || (x[2] && used.has(x[2]))) continue; if (x[2]) used.add(x[2]); out.push(x); }
+    return out; };
+  const g = take(TZ_G, 3, n * 3), a = take(TZ_A, 7, n * 7);
+  return [g[0], g[0], ...a, g[1], g[2]];   // intro, « demain soir », 4 du montage, duel, date, enjeu, 8e homme, final
 }
 function tzFit() {
   const st = $("#tz .tz-stage"); if (!st) return;
