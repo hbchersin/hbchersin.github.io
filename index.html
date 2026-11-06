@@ -1531,6 +1531,28 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .v-acts { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .v-go { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 16px; background: var(--rose); color: #0b0a0c !important; font: 700 14px var(--font-body); text-decoration: none; }
 .v-go:hover { filter: brightness(1.08); }
+/* Saisons passées */
+.ss-season { display: grid; gap: 14px; }
+.ss-season + .ss-season { margin-top: 32px; }
+.ss-season > h2 { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.ss-season > h2 small { font: 600 14px var(--font-body); color: var(--muted); text-transform: none; }
+.ss-arch { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.ss-a { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--rose); padding: 14px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.ss-a h3 { font: 800 22px/1 var(--font-display); text-transform: uppercase; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.ss-a h3 b { color: var(--rose-ink); font-size: 26px; }
+.ss-a h3 b sup { font-size: .5em; }
+.ss-a .ss-sub { font-size: 13px; color: var(--muted); }
+.ss-a .ss-rec { font: 700 14px var(--font-body); }
+.ss-a details summary { cursor: pointer; font-weight: 700; color: var(--rose-ink); min-height: 32px; display: flex; align-items: center; }
+.ss-a details[open] summary { margin-bottom: 6px; }
+.ss-a table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.ss-a td, .ss-a th { padding: 4px 5px; border-bottom: 1px solid var(--line); text-align: right; }
+.ss-a td:nth-child(2), .ss-a th:nth-child(2) { text-align: left; }
+.ss-a tr.us td { background: var(--night); color: var(--on-night); font-weight: 700; }
+.ss-a ol { margin: 0; padding-left: 20px; font-size: 14px; display: grid; gap: 2px; }
+.ss-a .ss-res { list-style: none; padding: 0; }
+.ss-a .ss-res li { display: flex; gap: 8px; align-items: center; font-size: 13.5px; }
+.ss-a .ss-res li b { margin-left: auto; font-variant-numeric: tabular-nums; }
 /* Notre saison (page équipe) */
 .season-card[hidden] { display: none; }
 .season-card { margin-top: 16px; }
@@ -1879,6 +1901,16 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
     </div></section>
   </div>
 
+  <!-- ARCHIVES DES SAISONS -->
+  <div data-page="saisons" data-title="Saisons passées" data-section="championnats">
+    <section class="page-hero"><div class="wrap">
+      <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="#accueil">Accueil</a></li><li><a href="#championnats">Championnats</a></li><li aria-current="page">Saisons passées</li></ol></nav>
+      <h1 tabindex="-1">Saisons <em>passées</em></h1>
+      <p class="lead">Classements finaux, résultats et meilleurs buteurs de chaque équipe, saison après saison.</p>
+    </div></section>
+    <section class="block"><div class="wrap" id="saisons-page"></div></section>
+  </div>
+
   <!-- COUPE DE FRANCE -->
   <div data-page="coupe-de-france" data-title="Coupe de France" data-section="championnats">
     <section class="page-hero"><div class="wrap">
@@ -2191,7 +2223,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
       <button type="button" class="foot-app" id="foot-notif" hidden><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 2.5a5 5 0 0 0-5 5v3.2L3.5 13.5h13L15 10.7V7.5a5 5 0 0 0-5-5ZM8 15.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Recevoir les notifications</span></button>
     </div>
     <div><h2>Le club</h2><ul class="plain"><li><a href="#club">Présentation</a></li><li><a href="#histoire">Notre histoire</a></li><li><a href="#bureau">Le bureau</a></li><li><a href="#salles">Nos salles</a></li><li><a href="#partenaires">Nos partenaires</a></li><li><a href="#contact">Contact</a></li></ul></div>
-    <div><h2>Saison</h2><ul class="plain"><li><a href="#actualites">Actualités</a></li><li><a href="#photos">Photos des matchs</a></li><li><a href="#agenda">Agenda</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#championnats">Championnats</a></li><li><a href="#entrainements">Entraînements</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
+    <div><h2>Saison</h2><ul class="plain"><li><a href="#actualites">Actualités</a></li><li><a href="#photos">Photos des matchs</a></li><li><a href="#agenda">Agenda</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#championnats">Championnats</a></li><li><a href="#saisons">Saisons passées</a></li><li><a href="#entrainements">Entraînements</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
     <nav class="foot-teams" aria-label="Pages des équipes"><span>Nos équipes :</span> <a href="equipes/seniors-1/">Seniors 1</a> · <a href="equipes/seniors-2/">Seniors 2</a> · <a href="equipes/u18-france/">U18 France</a> · <a href="equipes/u18-region/">U18 Région</a> · <a href="equipes/u18-departemental/">U18 Départ.</a> · <a href="equipes/u15-region/">U15 Région</a> · <a href="equipes/u15-departemental/">U15 Départ.</a> · <a href="equipes/u13a/">U13 A</a> · <a href="equipes/u13b/">U13 B</a> · <a href="equipes/u13c/">U13 C</a> · <a href="equipes/u11/">U11</a> · <a href="equipes/ecole/">École de hand</a> · <a href="equipes/loisirs/">Loisirs</a></nav>
     <p class="legal">© 2026 HBC Hersin-Coupigny · Affilié à la Fédération Française de Handball</p>
   </div>
@@ -3229,6 +3261,10 @@ let assetsCap = null;
       if (byId[k] && !$("#team-page").closest("[data-page]").hidden && !$("#team-page").querySelector("[href^='#photos-equipe-']")) { renderTeam(byId[k]); refreshRosters(); refreshLeagues(); } }
     if (!$("#scores-page").contains(document.activeElement)) renderScores();
   }, () => {});
+  db.collection("saisons").onSnapshot(snap => {
+    SAISONS = {}; snap.docs.forEach(d => SAISONS[d.id] = d.data()); saisonsState = "ready";
+    if (!$('[data-page="saisons"]')?.hidden) renderSaisons();
+  }, () => { saisonsState = "ready"; renderSaisons(); });
   db.collection("rosters").onSnapshot(snap => {
     ROSTERS = {}; snap.docs.forEach(d => ROSTERS[d.id] = d.data());
     rosterState = "ready";
@@ -3678,7 +3714,39 @@ function renderSeason(el, id) {
       ${big ? `<div><dt>Plus large victoire</dt><dd><a href="${matchHref(big)}">${esc(big.nous)}–${esc(big.eux)} ${big.dom ? "contre" : "à"} ${esc(big.adv)}</a> (+${big.nous - big.eux})</dd></div>` : ""}
     </dl>`;
 }
+/* ----- Saisons passées : archives (collection « saisons », une par équipe et par compétition / phase) ----- */
+let SAISONS = {}, saisonsState = "loading";
+function renderSaisons() {
+  const el = $("#saisons-page"); if (!el) return;
+  if (saisonsState === "loading") { el.innerHTML = `<p class="sub">Chargement des archives…</p>`; return; }
+  // Saison en cours : seulement les phases déjà terminées (le championnat en cours est sur la page Championnats)
+  const cur = id => (LEAGUE[id] || {}).titre;
+  const list = Object.entries(SAISONS).map(([id, a]) => ({ id, ...a }))
+    .filter(a => a.saison !== CUR_SEASON || (cur(a.equipe) && cur(a.equipe) !== a.titre));
+  if (!list.length) { el.innerHTML = `<div class="ss-season"><p class="sub" style="max-width:62ch">${CUR_SEASON.replace("-", " – ")} est la première saison du site. Chaque championnat est archivé automatiquement : dès qu'une phase ou une saison se termine, son classement final, ses résultats et ses meilleurs buteurs apparaîtront ici.</p>
+    <p><a class="btn" style="color:var(--ink)" href="#championnats">Les championnats en cours →</a></p></div>`; return; }
+  const seasons = [...new Set(list.map(a => a.saison))].sort().reverse();
+  const order = id => { const i = TEAM_ORDER.indexOf(id); return i < 0 ? (id.startsWith("cdf") ? .5 : 99) : i; };
+  el.innerHTML = seasons.map(sn => {
+    const items = list.filter(a => a.saison === sn).sort((a, b) => order(a.equipe) - order(b.equipe) || String(a.titre).localeCompare(b.titre));
+    return `<section class="ss-season"><h2>Saison ${esc(sn.replace("-", " – "))}${sn === CUR_SEASON ? `<small>phases terminées</small>` : ""}</h2><div class="ss-arch">${items.map(a => {
+      const t = byId[a.equipe] || (a.equipe === "cdf-seniors" ? { name: "Seniors · Coupe de France" } : { name: a.equipe });
+      const table = sortStandings(a.classement || []), ours = table.find(r => r.nous), pos = ours ? table.indexOf(ours) + 1 : null;
+      const played = (a.matchs || []).filter(isPlayed);
+      const rec = ours ? `${ours.g} V · ${ours.n} N · ${ours.p} D · ${ours.bp}–${ours.bc}` : "";
+      const res = m => `<li><span class="lg-res ${outcomeOf(m)}">${outcomeOf(m)}</span><span>${m.tour ? esc(m.tour) : "J" + esc(m.j)} · ${m.dom ? "contre" : "à"} ${esc(m.adv)}</span><b>${esc(m.nous)}–${m.forfait ? "FO" : esc(m.eux)}</b></li>`;
+      return `<article class="ss-a"><h3><span>${esc(t.name)}</span>${pos ? `<b>${ordinal(pos)}</b>` : ""}</h3>
+        <p class="ss-sub">${esc(a.titre || "")}${ours ? ` · ${plural(ours.pts, "pt")} · ${table.length} équipes` : ""}</p>
+        ${rec ? `<p class="ss-rec">${rec}</p>` : ""}
+        ${a.tours && a.tours.length ? `<ul class="ss-res">${a.tours.filter(isPlayed).map(res).join("")}</ul>` : ""}
+        ${a.buteurs && a.buteurs.length ? `<details><summary>Meilleurs buteurs</summary><ol>${a.buteurs.filter(b => !b.gb && b.b).slice(0, 5).map(b => `<li>${esc(b.nom)} · <b>${b.b}</b> buts en ${b.m} matchs</li>`).join("")}</ol></details>` : ""}
+        ${table.length ? `<details><summary>Classement final</summary><table><tr><th>#</th><th>Équipe</th><th>Pts</th><th>J</th><th>Diff</th></tr>${table.map((r, i) => `<tr class="${r.nous ? "us" : ""}"><td>${i + 1}</td><td>${esc(r.club)}</td><td><b>${r.pts}</b></td><td>${r.j}</td><td>${(r.bp - r.bc > 0 ? "+" : "") + (r.bp - r.bc)}</td></tr>`).join("")}</table></details>` : ""}
+        ${played.length ? `<details><summary>Résultats (${played.length})</summary><ul class="ss-res">${played.map(res).join("")}</ul></details>` : ""}
+      </article>`; }).join("")}</div></section>`;
+  }).join("");
+}
 function refreshLeagues() {
+  if (!$('[data-page="saisons"]')?.hidden) renderSaisons();
   renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm(); renderApresMatch(); renderRecapBubble();
   if (allMatches().length) document.documentElement.classList.remove("app-wait");
   document.querySelectorAll("[data-season]").forEach(el => renderSeason(el, el.dataset.season));
@@ -3770,7 +3838,7 @@ function renderChampPage(id) {
 const CHAMP_GROUPS = [["Seniors", ["sen"]], ["U18", ["u18"]], ["U15", ["u15"]], ["U13 · U11", ["u13", "u11"]]];
 $("#p-champ").innerHTML = CHAMP_GROUPS.map(([g, cats]) => `<div class="col"><p>${g}</p><ul class="plain">${TEAMS.filter(t => t.url && cats.includes(t.cat))
   .map(t => `<li><a href="#championnat-${t.id}">${esc(t.name)}<small>${esc(t.lvl || TIERS[t.tier - 1])}</small></a></li>`).join("")}${g === "Seniors" ? `<li><a href="#coupe-de-france">Coupe de France<small>Régionale · seniors</small></a></li>` : ""}</ul></div>`).join("")
-  + `<div class="all"><a href="#resultats">Résultats du week-end →</a><a href="#championnats">Toutes les affiches →</a></div>`;
+  + `<div class="all"><a href="#resultats">Résultats du week-end →</a><a href="#championnats">Toutes les affiches →</a><a href="#saisons">Saisons passées →</a></div>`;
 
 /* ----- Menus déroulants ----- */
 const drops = [...document.querySelectorAll("button.drop")];
@@ -4423,6 +4491,7 @@ function route() {
   if (team) { renderTeam(team); refreshRosters(); refreshLeagues(); }
   if (isPlayer) renderPlayerPage(key); else currentPlayerKey = null;
   if (key === "effectifs") refreshRosters();
+  if (key === "saisons") renderSaisons();
   if (key === "salles") setTimeout(venueMap, 0);
   if (key === "resultats") { wkrOffset = 0; renderResultsPage(); }
   pages.forEach(p => p.hidden = p.dataset.page !== name);
