@@ -1704,6 +1704,118 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   .poste-nav a { flex: none; }
   .poste-group { margin-top: 16px; }
 }
+/* ----- Teaser des matchs des Seniors 1 à domicile (montage calé sur la musique, ~103 BPM) ----- */
+html.tz-open,html.tz-open body{overflow:hidden}
+.tz{position:fixed;inset:0;z-index:9999;background:#0b0a0c;color:#f6f1f4;font-family:Archivo,system-ui,sans-serif;overflow:hidden}
+.tz[hidden]{display:none}
+.tz-blur{position:absolute;inset:-40px;background:center/cover no-repeat url(photos/teaser/c6.jpg);filter:blur(28px) brightness(.35)}
+.tz-stage{position:absolute;left:50%;top:50%;width:540px;height:960px;transform-origin:center;overflow:hidden;isolation:isolate;background:#0b0a0c}
+.tz-x{position:absolute;top:max(10px,env(safe-area-inset-top));right:10px;z-index:30;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font:700 22px/1 Archivo;cursor:pointer}
+.tz-x:focus-visible,.tz-play:focus-visible,.tz-skip:focus-visible,.tz-again:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.tz-start{position:absolute;inset:0;z-index:20;display:grid;place-items:center;align-content:center;gap:18px;text-align:center;padding:30px;background:linear-gradient(180deg,rgba(11,10,12,.55),rgba(11,10,12,.85)),center/cover url(photos/teaser/b1.jpg)}
+.tz.go .tz-start{display:none}
+.tz-start img{width:84px;height:84px}
+.tz-start .k{font:700 15px Archivo;letter-spacing:.3em;text-transform:uppercase;color:#e7337d}
+.tz-start h2{font:900 italic 64px/.9 "Barlow Condensed",sans-serif;text-transform:uppercase} .tz-start h2 em{color:#e7337d}
+.tz-play{display:inline-flex;align-items:center;gap:12px;min-height:64px;padding:0 30px;border:0;background:#e7337d;color:#0b0a0c;font:900 26px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 40px rgba(231,51,125,.5);animation:tz-pulse 1.2s ease-in-out infinite}
+@keyframes tz-pulse{50%{transform:scale(1.05)}}
+.tz-start p.s{font:600 16px Archivo;color:#cfc3cb}
+.tz-skip{background:none;border:0;color:#cfc3cb;font:600 16px Archivo;text-decoration:underline;cursor:pointer;padding:10px}
+.tz-again{position:absolute;bottom:max(14px,env(safe-area-inset-bottom));right:16px;z-index:12;background:none;border:0;color:#cfc3cb;font:600 15px Archivo;cursor:pointer;opacity:0;padding:10px}
+.tz:not(.go) .tz-stage *{animation:none!important}
+.tz .sh{position:absolute;inset:0}
+.tz .cam{position:absolute;inset:0;z-index:-3}
+.tz .ph{position:absolute;inset:0;opacity:0;background:center/cover no-repeat;filter:saturate(1.15) contrast(1.08)}
+.tz .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,12,.55),rgba(11,10,12,.42) 32%,rgba(11,10,12,.62) 62%,rgba(11,10,12,.95))}
+.tz .p0{background-image:url(photos/teaser/b1.jpg);transform-origin:50% 40%;animation:tz-ghost .7s .55s both}
+.tz .p1{background-image:url(photos/teaser/b1.jpg);transform-origin:50% 40%;animation:tz-kb 4.16s 1.3s both}
+.tz .p2{background-image:url(photos/teaser/m1.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 2.461s both}
+.tz .p3{background-image:url(photos/teaser/m2.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 3.042s both}
+.tz .p4{background-image:url(photos/teaser/m3.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 3.622s both}
+.tz .p5{background-image:url(photos/teaser/m4.jpg);transform-origin:50% 30%;animation:tz-kb 3.60s 4.202s both}
+.tz .p6{background-image:url(photos/teaser/b2.jpg);transform-origin:50% 22%;animation:tz-kb 5.32s 4.783s both}
+.tz .p7{background-image:url(photos/teaser/b3.jpg);transform-origin:50% 30%;animation:tz-kb 5.32s 7.105s both}
+.tz .p8{background-image:url(photos/teaser/b4.jpg);transform-origin:50% 22%;animation:tz-kb 5.32s 9.427s both}
+.tz .p9{background-image:url(photos/teaser/c5.jpg);transform-origin:50% 45%;animation:tz-kb 4.74s 11.749s both}
+.tz .p10{background-image:url(photos/teaser/c6.jpg);transform-origin:50% 35%;animation:tz-kb 88.51s 13.491s both}
+@keyframes tz-kb{0%{opacity:0;transform:scale(1.22)}4%{opacity:1;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
+@keyframes tz-ghost{0%,100%{opacity:0;transform:scale(1.3)}15%{opacity:.5}30%{opacity:.08}45%{opacity:.45}70%{opacity:.1}}
+.tz .pump{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% 45%,rgba(231,51,125,.38),transparent 65%);opacity:0;mix-blend-mode:screen;animation:tz-pump .5805s 1.3s infinite}
+@keyframes tz-pump{0%{opacity:1}60%,100%{opacity:0}}
+.tz .cam{animation:tz-beat .5805s 1.3s infinite}
+@keyframes tz-beat{0%{transform:scale(1.025)}45%,100%{transform:none}}
+.tz .grain{position:absolute;inset:-20%;z-index:6;pointer-events:none;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:tz-grain .5s steps(4) infinite}
+@keyframes tz-grain{0%{transform:translate(0,0)}25%{transform:translate(-4%,3%)}50%{transform:translate(3%,-5%)}75%{transform:translate(-2%,-2%)}}
+.tz .vig{position:absolute;inset:0;z-index:5;pointer-events:none;box-shadow:inset 0 0 160px 40px rgba(0,0,0,.75)}
+.tz .fl{position:absolute;inset:0;z-index:4;background:#fff;opacity:0;pointer-events:none}
+.tz .fl1{animation:tz-fl .32s 1.270s both} .tz .fl2{animation:tz-fl .3s 5.334s both} .tz .fl3{animation:tz-fl .3s 7.075s both} .tz .fl4{animation:tz-fl .3s 11.719s both} .tz .fl5{animation:tz-fl .4s 13.461s both}
+@keyframes tz-fl{0%{opacity:0}20%{opacity:.7}100%{opacity:0}}
+.tz .sh{animation:tz-shk .38s 1.3s both,tz-shk .38s 5.364s,tz-shk .38s 7.105s,tz-shk .38s 11.749s,tz-shk .45s 13.491s}
+@keyframes tz-shk{0%,100%{transform:none}20%{transform:translate(-8px,4px) rotate(-.4deg)}40%{transform:translate(7px,-5px)}60%{transform:translate(-4px,3px)}80%{transform:translate(2px,-1px)}}
+.tz .wipe{position:absolute;inset:0;z-index:5;background:#e7337d;transform:translateX(-120%) skewX(-14deg);animation:tz-wipe .55s cubic-bezier(.7,0,.3,1) 0.800s both}
+@keyframes tz-wipe{0%{transform:translateX(-120%) skewX(-14deg)}55%{transform:translateX(0) skewX(-14deg)}100%{transform:translateX(140%) skewX(-14deg)}}
+.tz .slash{position:absolute;left:-30%;right:-30%;height:26px;top:50%;z-index:4;background:#e7337d;transform:translateX(-120%) rotate(-14deg);opacity:.9}
+.tz .sl1{animation:tz-slash .4s 4.583s both} .tz .sl2{animation:tz-slash .4s 9.227s both} .tz .sl3{animation:tz-slash .4s 13.291s both}
+@keyframes tz-slash{from{transform:translateX(-120%) rotate(-14deg)}to{transform:translateX(120%) rotate(-14deg)}}
+.tz .scene{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:16px;text-align:center;padding:24px;opacity:0}
+.tz .k{font:700 13px Archivo;letter-spacing:.32em;text-transform:uppercase;color:#e7337d}
+.tz .big{font:900 italic 84px/.84 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+.tz .big.long{font-size:66px}
+.tz .big em,.tz .rose{color:#e7337d;font-style:italic}
+.tz .big span{display:block}
+.tz .k,.tz .big,.tz .where,.tz .note,.tz .club b,.tz .club span,.tz .word b{text-shadow:0 3px 18px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.7)}
+@keyframes tz-sc{0%{opacity:0}6%{opacity:1}90%{opacity:1}100%{opacity:0}}
+@keyframes tz-slam{0%{transform:scale(2.6);opacity:0;filter:blur(6px);text-shadow:-9px 0 rgba(0,240,255,.8),9px 0 rgba(255,0,90,.8)}55%{transform:scale(.93);opacity:1;filter:none}100%{transform:scale(1);opacity:1}}
+@keyframes tz-up{from{transform:translateY(26px);opacity:0}to{transform:none;opacity:1}}
+@keyframes tz-fade{from{opacity:0}to{opacity:1}}
+.tz .s0{animation:tz-sc 1.15s .15s both} .tz .s0 .k{font-size:15px;animation:tz-up .4s .2s both} .tz .s0 .t{font:800 italic 30px "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#cfc3cb;animation:tz-up .4s .5s both}
+.tz .s1{animation:tz-sc 1.211s 1.180s both} .tz .s1 .big{animation:tz-slam .42s 1.18s both} .tz .s1 .k{animation:tz-up .35s 1.881s both}
+.tz .word{position:absolute;inset:0;display:grid;place-items:center;opacity:0} .tz .word b{font:900 italic 150px/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;display:block}
+.tz .w3 b{color:#e7337d;font-size:124px}
+.tz .w0{animation:tz-sc .58s 2.411s both} .tz .w0 b{animation:tz-slam .38s 2.341s both}
+.tz .w1{animation:tz-sc .58s 2.992s both} .tz .w1 b{animation:tz-slam .38s 2.922s both}
+.tz .w2{animation:tz-sc .58s 3.572s both} .tz .w2 b{animation:tz-slam .38s 3.502s both}
+.tz .w3{animation:tz-sc .58s 4.152s both} .tz .w3 b{animation:tz-slam .38s 4.082s both}
+.tz .s2{animation:tz-sc 2.322s 4.783s both}
+.tz .duel{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;width:100%;max-width:420px}
+.tz .club{display:grid;justify-items:center;gap:10px} .tz .club img,.tz .club .ini{width:124px;height:124px;border-radius:50%;object-fit:contain;box-shadow:0 10px 40px rgba(0,0,0,.6)} .tz .club img.opp{background:#fff;padding:12px}
+.tz .club .ini{display:grid;place-items:center;background:#fff;color:#0b0a0c;font:900 44px "Barlow Condensed",sans-serif}
+.tz .club b{font:800 24px/1 "Barlow Condensed",sans-serif;text-transform:uppercase} .tz .club span{font:700 13px Archivo;color:#cfc3cb}
+.tz .l{animation:tz-inl .5s 4.783s both} .tz .r{animation:tz-inr .5s 4.783s both}
+.tz .vs{font:900 italic 64px "Barlow Condensed",sans-serif;color:#e7337d;animation:tz-slam .4s 5.244s both}
+.tz .s2 .k{animation:tz-up .35s 5.944s both}
+@keyframes tz-inl{from{transform:translateX(-150%) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes tz-inr{from{transform:translateX(150%) rotate(25deg);opacity:0}to{transform:none;opacity:1}}
+.tz .s3{animation:tz-sc 2.322s 6.985s both} .tz .s3 .big{font-size:104px}
+.tz .s3 .d1{animation:tz-slam .4s 6.985s both} .tz .s3 .d2{animation:tz-slam .4s 7.566s both}
+.tz .s3 .where{font:900 italic 50px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#e7337d;animation:tz-up .4s 8.216s both}
+.tz .s3 .k{animation:tz-up .35s 8.797s both}
+.tz .s4{animation:tz-sc 2.322s 9.427s both}
+.tz .vsrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:370px}
+.tz .card{background:rgba(11,10,12,.66);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);border-top:4px solid #e7337d;padding:14px 10px;display:grid;gap:4px;justify-items:center}
+.tz .card b{font:900 58px/1 "Barlow Condensed",sans-serif} .tz .card b sup{font-size:.45em} .tz .card span{font:700 13px Archivo;color:#cfc3cb}
+.tz .c1{animation:tz-up .4s 9.477s both} .tz .c2{animation:tz-up .4s 9.958s both}
+.tz .form{display:flex;gap:5px;justify-content:center} .tz .form i{width:20px;height:20px;display:grid;place-items:center;font:800 12px "Barlow Condensed",sans-serif;font-style:normal;color:#fff;opacity:0}
+.tz .form .V{background:#1f8a4c} .tz .form .D{background:#c0392b} .tz .form .N{background:#6b6f80}
+.tz .form i:nth-child(1){animation:tz-fade .12s 10.008s both}
+.tz .form i:nth-child(2){animation:tz-fade .12s 10.128s both}
+.tz .form i:nth-child(3){animation:tz-fade .12s 10.248s both}
+.tz .form i:nth-child(4){animation:tz-fade .12s 10.368s both}
+.tz .form i:nth-child(5){animation:tz-fade .12s 10.488s both}
+.tz .s4 .note{font:800 italic 26px/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase;animation:tz-slam .4s 10.468s both}
+.tz .s5{animation:tz-sc 1.742s 11.629s both} .tz .s5 .big{font-size:76px}
+.tz .s5 .a{animation:tz-slam .4s 11.629s both} .tz .s5 .b{animation:tz-slam .4s 12.21s both} .tz .s5 .k{animation:tz-up .35s 12.860s both}
+.tz .s6{animation:tz-fade .35s 13.411s both} .tz .s6 .big{font-size:66px;animation:tz-slam .45s 13.371s both}
+.tz .cd{display:flex;gap:8px;justify-content:center;animation:tz-up .4s 14.071s both}
+.tz .cd span{display:grid;justify-items:center;min-width:72px;padding:8px 6px 6px;background:rgba(11,10,12,.66);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);border-bottom:3px solid #e7337d}
+.tz .cd b{font:800 38px/1 "Barlow Condensed",sans-serif} .tz .cd small{font:600 10px Archivo;text-transform:uppercase;letter-spacing:.08em;color:#cfc3cb;margin-top:3px}
+.tz .acts{display:grid;gap:10px;width:100%;max-width:320px;animation:tz-up .4s 14.652s both}
+.tz .acts a,.tz .acts button{display:flex;justify-content:center;align-items:center;gap:8px;min-height:52px;font:800 19px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:#f6f1f4;border:1px solid rgba(255,255,255,.3);background:rgba(11,10,12,.45);cursor:pointer}
+.tz .acts .go{background:#e7337d;border-color:#e7337d;color:#0b0a0c}
+.tz .top{position:absolute;top:max(16px,env(safe-area-inset-top));left:0;right:0;display:flex;justify-content:center;align-items:center;gap:10px;font:800 18px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;opacity:0;animation:tz-fade .4s 1.3s both;z-index:7}
+.tz .top img{width:30px;height:30px} .tz .top em{color:#e7337d;font-style:normal}
+.tz.go .tz-again{animation:tz-fade .4s 15.813s both}
+@media (prefers-reduced-motion:reduce){.tz .tz-stage *{animation:none!important} .tz .scene,.tz .word,.tz .ph{opacity:0!important} .tz .s6,.tz .p10{opacity:1!important} .tz .s6 *,.tz .top{opacity:1!important} .tz .wipe,.tz .slash{display:none} .tz-play{animation:none}}
 </style>
 </head>
 <body>
@@ -3883,7 +3995,7 @@ document.addEventListener("click", e => {
 addEventListener("afterprint", () => document.documentElement.classList.remove("cal-printing"));
 function refreshLeagues() {
   if (!$('[data-page="saisons"]')?.hidden) renderSaisons();
-  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm(); renderApresMatch(); renderRecapBubble();
+  renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm(); renderApresMatch(); renderRecapBubble(); maybeTeaser();
   if (allMatches().length) document.documentElement.classList.remove("app-wait");
   document.querySelectorAll("[data-season]").forEach(el => renderSeason(el, el.dataset.season));
   setTimeout(tickCountdowns, 0);
@@ -4254,6 +4366,118 @@ function renderJdm() {
   </div>`;
   tickCountdowns();
 }
+/* ----- Teaser des matchs des Seniors 1 à domicile -----
+   S'ouvre quand on touche la notification de la veille (adresse ?teaser), sinon au premier passage dans l'appli
+   entre l'envoi de cette notification (veille 18h30) et le coup d'envoi. Une seule fois par match. */
+var TZ_KEY = "hbch-teaser-vu", TZ_WANTED = /[?&]teaser\b/.test(location.search);
+var tzDone = false, tzAudio = null, tzTimer = 0, tzM = null, tzBack = null;
+function tzStart(w) { const d = new Date(w); d.setDate(d.getDate() - 1); d.setHours(18, 30, 0, 0); return d; }
+function teaserMatch(force) {
+  const now = new Date();
+  return allMatches().find(x => x.t.id === "seniors-1" && !x.t.cup && x.dom && !isPlayed(x) && x.date.length > 10 && x.when > now
+    && playsInHersin(x.t.id, x.dom, x.adv, x.salle) && now >= (force ? new Date(x.when - 6 * 864e5) : tzStart(x.when)));
+}
+function maybeTeaser() {
+  if (tzDone || !allMatches().length) return;
+  tzDone = true;
+  const m = teaserMatch(TZ_WANTED); if (!m) return;
+  const key = m.date + m.adv;
+  let seen = false; try { seen = localStorage.getItem(TZ_KEY) === key; } catch (e) {}
+  if (TZ_WANTED || (IS_APP && !seen)) openTeaser(m);
+  if (TZ_WANTED) history.replaceState(null, "", location.pathname + location.hash);
+}
+function tzWhen(m) {
+  const day = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const n = Math.round((day(m.when) - day(new Date())) / 864e5), h = m.when.getHours();
+  const part = h >= 18 ? "soir" : h >= 12 ? "après-midi" : "matin";
+  if (n <= 0) return [part === "après-midi" ? "Cet" : "Ce", part];
+  if (n === 1) return ["Demain", part];
+  return [`J-${n}`, "avant le choc"];
+}
+function tzName(n) {
+  const w = String(n).replace(/\b(HBC|HB|HC|ASHB|Handball|Hand Ball|Club|Municipal|SG\d*|SM\d*|\d+)\b/gi, " ").replace(/^\s*Entente\s+/i, "").trim().split(/\s+/);
+  return [w[0] || n, w.slice(1).join(" ")];
+}
+function tzStanding(adv) {
+  const L = LEAGUE["seniors-1"], table = L ? sortStandings(L.classement || []) : [];
+  const k = slugify(adv), ours = table.find(r => r.nous), opp = table.find(r => !r.nous && (slugify(r.club) === k || slugify(r.club).includes(k) || k.includes(slugify(r.club))));
+  return { table, ours, opp };
+}
+function openTeaser(m) {
+  tzM = m;
+  try { localStorage.setItem(TZ_KEY, m.date + m.adv); } catch (e) {}
+  let el = $("#tz");
+  if (!el) { el = document.createElement("div"); el.id = "tz"; el.className = "tz"; el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); el.setAttribute("aria-label", "Teaser du match"); document.body.append(el); }
+  const v = mwVenue(m), salle = v.name.replace(/^(Salle|Complexe) /i, ""), [w1, w2] = tzWhen(m);
+  const jour = m.when.toLocaleDateString("fr-FR", { weekday: "long" });
+  const [opp1, opp2] = tzName(m.adv), logo = clubLogo(m.adv);
+  const { table, ours, opp } = tzStanding(m.adv);
+  const form = r => `<div class="form">${String(r.forme || "").slice(-5).split("").map(c => `<i class="${/[VDN]/.test(c) ? c : "N"}">${esc(c)}</i>`).join("")}</div>`;
+  const card = (cls, name, r) => r ? `<div class="card ${cls}"><span>${esc(name)}</span><b>${ordinal(table.indexOf(r) + 1)}</b><span>${plural(r.pts, "pt")}</span>${form(r)}</div>` : "";
+  const fo = String(ours?.forme || "").slice(-5), wins = (fo.match(/V/g) || []).length, rank = ours ? table.indexOf(ours) + 1 : 0;
+  const note = wins >= 3 ? `${wins} victoires sur les<br><span class="rose">${fo.length} derniers matchs</span>` : rank && rank <= 3 ? `Le podium<br><span class="rose">se joue ici</span>` : `Chaque point<br><span class="rose">compte</span>`;
+  tzBack = document.activeElement;
+  el.innerHTML = `<div class="tz-blur"></div>
+  <div class="tz-stage"><div class="sh">
+    <div class="cam">${Array.from({ length: 11 }, (_, i) => `<div class="ph p${i}"></div>`).join("")}</div><div class="pump"></div>
+    <div class="scene s0"><p class="k">Prénationale · Journée ${esc(m.j || "")}</p><p class="t">Le choc à ${esc(salle)}</p></div>
+    <div class="scene s1"><p class="big${w2.length > 6 ? " long" : ""}">${esc(w1)}<br><em>${esc(w2)}</em></p><p class="k">Les Tigres sont prêts</p></div>
+    ${["On", "va", "tout", "donner"].map((w, i) => `<div class="word w${i}"><b>${w}</b></div>`).join("")}
+    <div class="scene s2"><div class="duel"><div class="club l"><img src="logo-hbch.png" alt=""><b>Hersin</b><span>Les Tigres</span></div><span class="vs">VS</span>
+      <div class="club r">${logo ? `<img class="opp" src="${logo}" alt="">` : `<span class="ini">${esc(clubInitials(m.adv))}</span>`}<b>${esc(opp1)}</b><span>${esc(opp2)}</span></div></div><p class="k">Prénationale · J${esc(m.j || "")}</p></div>
+    <div class="scene s3"><p class="big"><span class="d1">${esc(jour)}</span><span class="d2 rose">${hhmm(m.when).replace("h00", "h")}</span></p><p class="where">Salle ${esc(salle)}</p><p class="k">Hersin-Coupigny</p></div>
+    <div class="scene s4"><p class="k">L'enjeu</p><div class="vsrow">${card("c1", "Hersin", ours)}${card("c2", opp1, opp)}</div><p class="note">${note}</p></div>
+    <div class="scene s5"><p class="big"><span class="a">Le 8<sup style="font-size:.5em">e</sup> homme</span><span class="b rose">c'est vous</span></p><p class="k">${esc(salle)} doit vibrer</p></div>
+    <div class="scene s6"><p class="big">Tous en rose<br><em>et noir</em> 🐯</p>
+      <div class="cd" data-countdown="${esc(m.date)}" role="timer" aria-label="Coup d'envoi dans">${(m.when - Date.now() >= 864e5 ? [["j", m.when - Date.now() >= 2 * 864e5 ? "jours" : "jour"], ["h", "heures"], ["min", "minutes"]] : [["h", "heures"], ["min", "minutes"], ["s", "secondes"]]).map(([u, l]) => `<span><b data-u="${u}">–</b><small>${l}</small></span>`).join("")}</div>
+      <div class="acts">${v.route ? `<a class="go" href="${esc(v.route)}" target="_blank" rel="noopener">🚗 Itinéraire<span class="sr-only"> vers ${esc(v.name)} (nouvel onglet)</span></a>` : ""}${navigator.share ? `<button type="button" data-tz="share">Partager le teaser</button>` : ""}<button type="button" data-tz="match">Le match →</button></div></div>
+    <div class="fl fl1"></div><div class="fl fl2"></div><div class="fl fl3"></div><div class="fl fl4"></div><div class="fl fl5"></div>
+    <div class="slash sl1"></div><div class="slash sl2"></div><div class="slash sl3"></div><div class="wipe"></div>
+  </div>
+  <div class="top"><img src="logo-hbch.png" alt="">HBC <em>Hersin</em></div><div class="vig"></div><div class="grain"></div>
+  <button type="button" class="tz-again" data-tz="again">↻ Revoir</button></div>
+  <div class="tz-start"><img src="logo-hbch.png" alt=""><p class="k">Hersin – ${esc(opp1)}</p><h2>Le teaser<br><em>du match</em></h2>
+    <button type="button" class="tz-play" data-tz="play">▶ Lancer</button><p class="s">🔊 Monte le son !</p><button type="button" class="tz-skip" data-tz="close">Passer</button></div>
+  <button type="button" class="tz-x" data-tz="close" aria-label="Fermer le teaser">✕</button>`;
+  el.hidden = false; el.classList.remove("go");
+  document.documentElement.classList.add("tz-open");
+  tzFit(); tickCountdowns();
+  ["b1", "m1", "m2", "m3", "m4", "b2", "b3", "b4", "c5", "c6"].forEach(f => { new Image().src = `photos/teaser/${f}.jpg`; });
+  tzAudio = new Audio("photos/teaser/musique.mp3"); tzAudio.preload = "auto";
+  setTimeout(() => el.querySelector(".tz-play")?.focus(), 50);
+}
+function tzFit() {
+  const st = $("#tz .tz-stage"); if (!st) return;
+  const vw = innerWidth, vh = innerHeight; let s, h = 960;
+  if (vh / vw >= 960 / 540) { s = vw / 540; h = vh / s; } else s = vh / 960;
+  st.style.height = h + "px"; st.style.transform = `translate(-50%,-50%) scale(${s})`;
+}
+function tzPlay() {
+  const el = $("#tz"); if (!el) return;
+  el.classList.remove("go"); void el.offsetWidth;
+  let started = false; const go = () => { if (started) return; started = true; el.classList.add("go"); };
+  if (tzAudio) { try { tzAudio.currentTime = 0; } catch (e) {} tzAudio.addEventListener("playing", go, { once: true }); tzAudio.play().catch(go); }
+  clearTimeout(tzTimer); tzTimer = setTimeout(go, 900);   // pas de son possible : on lance quand même
+  el.querySelector(".tz-x")?.focus();
+}
+function closeTeaser(toMatch) {
+  const el = $("#tz"); if (!el) return;
+  clearTimeout(tzTimer); if (tzAudio) { tzAudio.pause(); tzAudio = null; }
+  el.hidden = true; el.classList.remove("go"); el.innerHTML = "";
+  document.documentElement.classList.remove("tz-open");
+  if (toMatch && tzM) location.hash = matchHref(tzM).slice(1);
+  else if (tzBack && tzBack.focus) tzBack.focus();
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("#tz [data-tz]"); if (!b) return;
+  const a = b.dataset.tz;
+  if (a === "play" || a === "again") tzPlay();
+  else if (a === "close") closeTeaser(false);
+  else if (a === "match") closeTeaser(true);
+  else if (a === "share") navigator.share({ title: "Hersin – " + tzM.adv, text: "Le teaser du match 🔥🐯", url: "https://hbchersin.fr/?teaser" }).catch(() => {});
+});
+addEventListener("keydown", e => { if (e.key === "Escape" && $("#tz") && !$("#tz").hidden) closeTeaser(false); });
+addEventListener("resize", tzFit);
 /* ----- Après-match : le soir et le lendemain d'un match des Seniors 1 (championnat ou coupe) ----- */
 const albumKeyOf = m => m.t.cup ? "cdf-" + slugify(m.tour) : `${m.t.id}-j${m.j}`;
 const scoreSides = m => m.dom ? [["Hersin", "logo-hbch.png", true, m.nous], [m.adv, clubLogo(m.adv), false, m.eux]] : [[m.adv, clubLogo(m.adv), false, m.eux], ["Hersin", "logo-hbch.png", true, m.nous]];
