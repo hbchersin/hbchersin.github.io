@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page introuvable · HBC Hersin-Coupigny</title><meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<script>
+/* Adresse proche d'une page du site (ex. /u15-region, /resultats) : on y va directement */
+(function () {
+  var p = location.pathname.toLowerCase().replace(/\/+$/, "").split("/").pop();
+  var teams = ["seniors-1","seniors-2","u18-france","u18-region","u18-departemental","u15-region","u15-departemental","u13a","u13b","u13c","u11","ecole","loisirs"];
+  var pages = ["equipes","championnats","resultats","agenda","actualites","photos","entrainements","rejoindre","contact","partenaires","salles","histoire","club","bureau","saisons","coupe-de-france"];
+  if (teams.indexOf(p) >= 0) location.replace("/equipes/" + p + "/");
+  else if (pages.indexOf(p) >= 0) location.replace("/#" + p);
+})();
+</script>
+<style>
+:root { --night:#0b0a0c; --rose:#e7337d; --muted:#b8adb5 }
+* { box-sizing:border-box } html,body { height:100% }
+body { margin:0; background:var(--night); color:#f6f1f4; font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; display:grid; place-items:center; padding:24px max(16px,env(safe-area-inset-left)) }
+main { max-width:520px; width:100%; display:grid; gap:18px; text-align:center; justify-items:center }
+img { width:110px; height:110px }
+.code { font:800 clamp(72px,22vw,120px)/.9 system-ui,sans-serif; letter-spacing:-.04em; color:var(--rose); margin:0 }
+h1 { margin:0; font-size:26px; text-transform:uppercase; letter-spacing:.02em }
+p { margin:0; color:var(--muted) }
+.go { display:inline-block; background:var(--rose); color:var(--night); font-weight:800; text-transform:uppercase; letter-spacing:.04em; padding:14px 22px; text-decoration:none }
+ul { list-style:none; margin:6px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; justify-content:center }
+ul a { display:inline-block; padding:8px 14px; border:1px solid #3a333c; color:#f6f1f4; text-decoration:none; font-weight:600 }
+ul a:hover, ul a:focus-visible { border-color:var(--rose); color:var(--rose) }
+</style></head><body>
+<main>
+<a href="/"><img src="/logo-hbch.png" alt="HBC Hersin-Coupigny, retour à l'accueil" width="110" height="110"></a>
+<p class="code">404</p>
+<h1>Hors-jeu !</h1>
+<p>Cette page n'existe pas ou a changé d'adresse. Pas de panique, voici de quoi revenir dans le match.</p>
+<a class="go" href="/">Retour à l'accueil</a>
+<ul>
+<li><a href="/#equipes">Nos équipes</a></li><li><a href="/#resultats">Résultats</a></li><li><a href="/#championnats">Classements</a></li>
+<li><a href="/#agenda">Agenda</a></li><li><a href="/#photos">Photos</a></li><li><a href="/#rejoindre">Nous rejoindre</a></li><li><a href="/#contact">Contact</a></li>
+</ul>
+</main>
+</body></html>
