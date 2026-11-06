@@ -1553,6 +1553,38 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
 .ss-a .ss-res { list-style: none; padding: 0; }
 .ss-a .ss-res li { display: flex; gap: 8px; align-items: center; font-size: 13.5px; }
 .ss-a .ss-res li b { margin-left: auto; font-variant-numeric: tabular-nums; }
+/* Calendrier de la saison à imprimer (page équipe, site public) */
+.hero-share { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn-calp { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; background: none; border: 1px solid var(--night-line); color: var(--on-night); font: 700 14px var(--font-body); cursor: pointer; }
+.btn-calp:hover { border-color: var(--rose); color: var(--rose); }
+#cal-sheet { display: none; }
+@media print {
+  @page { size: A4; margin: 0; }
+  html.cal-printing, html.cal-printing body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+  html.cal-printing body > *:not(#cal-sheet) { display: none !important; }
+  html.cal-printing #cal-sheet { display: flex !important; }
+}
+.cs-sheet { box-sizing: border-box; width: 210mm; height: 295mm; overflow: hidden; padding: 11mm 12mm 9mm; background: #fff; color: #141114; flex-direction: column; gap: 4mm; font-family: var(--font-body); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.cs-head { display: grid; grid-template-columns: 24mm 1fr auto; gap: 5mm; align-items: center; border-bottom: 2mm solid #e7337d; padding-bottom: 3mm; }
+.cs-head img { width: 24mm; height: 24mm; }
+.cs-head h2 { font: 800 16mm/.85 var(--font-display); text-transform: uppercase; margin: 0; color: #141114; }
+.cs-head h2 em { display: block; font-style: italic; color: #e7337d; font-size: 8mm; line-height: 1.1; }
+.cs-head p { margin: 1.5mm 0 0; font: 600 3.4mm var(--font-body); color: #555; }
+.cs-season { text-align: right; font: 800 6mm/1.1 var(--font-display); text-transform: uppercase; }
+.cs-season small { display: block; font: 600 3mm var(--font-body); text-transform: none; color: #666; }
+.cs-tbl { width: 100%; border-collapse: collapse; font-size: 3.6mm; font-variant-numeric: tabular-nums; }
+.cs-tbl th { font: 700 2.8mm var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: #666; text-align: left; padding: 1.2mm 1.5mm; border-bottom: .5mm solid #141114; }
+.cs-tbl td { padding: 1.4mm 1.5mm; border-bottom: .2mm solid #ddd; vertical-align: middle; }
+.cs-tbl tr.dom td:nth-child(4) { font-weight: 800; color: #c2185b; }
+.cs-tbl tr.ph td { background: #fdf0f5; font: 800 3.4mm var(--font-display); text-transform: uppercase; letter-spacing: .08em; color: #c2185b; }
+.cs-tbl .cs-adv { display: flex; align-items: center; gap: 2mm; }
+.cs-tbl .cs-adv img { width: 6mm; height: 6mm; object-fit: contain; }
+.cs-tbl .cs-sc { text-align: right; font-weight: 800; white-space: nowrap; }
+.cs-res { display: inline-grid; place-items: center; width: 5mm; height: 5mm; color: #fff; font: 800 3.2mm var(--font-display); margin-left: 1.5mm; }
+.cs-res.V { background: #1f8a4c; } .cs-res.N { background: #6b6f80; } .cs-res.D { background: #c0392b; }
+.cs-foot { margin-top: auto; display: flex; justify-content: space-between; gap: 6mm; align-items: flex-end; border-top: .5mm solid #141114; padding-top: 2.5mm; font-size: 3.2mm; color: #444; }
+.cs-foot b { font: 800 5mm var(--font-display); text-transform: uppercase; color: #141114; }
+.cs-foot b em { color: #e7337d; font-style: normal; }
 /* Notre saison (page équipe) */
 .season-card[hidden] { display: none; }
 .season-card { margin-top: 16px; }
@@ -2386,7 +2418,7 @@ function renderTeam(t) {
         <h1 tabindex="-1">${esc(t.big)}${t.suffix ? ` <em>${esc(t.suffix)}</em>` : ""}</h1>
         <div class="meta">${tagsHtml(t)}</div>
         ${t.note ? `<p class="lead">${esc(t.note)}</p>` : ""}
-        <div class="hero-share">${shareBtn(`${t.name} · HBC Hersin-Coupigny`, "#" + t.id, "Partager")}</div>
+        <div class="hero-share">${shareBtn(`${t.name} · HBC Hersin-Coupigny`, "#" + t.id, "Partager")}${t.url && window.HBCH_PUBLIC ? `<button type="button" class="btn-calp" data-cal-print="${t.id}"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M5 7V2.5h10V7M5 14H3V8.5a1.5 1.5 0 0 1 1.5-1.5h11A1.5 1.5 0 0 1 17 8.5V14h-2M5 11.5h10v6H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Calendrier à imprimer</button>` : ""}</div>
       </div>${t.badge ? `<figure><img src="${BADGES[t.badge][0]}" width="120" height="120" alt="${BADGES[t.badge][2]}"><figcaption>${BADGES[t.badge][1]}</figcaption></figure>` : ""}</div>
     </div></section>
     <section class="block"><div class="wrap">
@@ -3745,6 +3777,40 @@ function renderSaisons() {
       </article>`; }).join("")}</div></section>`;
   }).join("");
 }
+/* ----- Calendrier de la saison à imprimer (une feuille A4 par équipe, pour le frigo) ----- */
+function calSheet(id) {
+  const t = byId[id], L = LEAGUE[id] || {};
+  const logo = t.badge ? BADGES[t.badge][0] : "logo-hbch.png";
+  const us = t.badge === "alliance" ? "Alliance Artois" : t.badge === "entente" ? (t.note || "").replace(/^Entente /, "") : "Hersin";
+  const rows = (L.matchs || []).map(m => ({ ...m, t, when: m.date ? new Date(m.date) : null }));
+  const cup = id === "seniors-1" ? ((LEAGUE["cdf-seniors"] || {}).tours || []).map(m => ({ ...m, cup: true, when: m.date ? new Date(m.date) : null })) : [];
+  const all = [...rows, ...cup].sort((a, b) => (a.when ? a.when.getTime() : 9e15 + (a.j || 0)) - (b.when ? b.when.getTime() : 9e15 + (b.j || 0)));
+  const day = d => d ? d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" }).replace(/\./g, "") : "à fixer";
+  const line = m => {
+    const played = isPlayed(m), o = played ? outcomeOf(m) : "", home = m.dom;
+    const where = home ? (playsInHersin(id, true, m.adv, m.salle) ? (SALLES[m.salle] ? SALLES[m.salle].replace("salle ", "") : "Domicile") : venueTag(id, true, m.adv, m.salle)) : "Extérieur";
+    return `<tr class="${home ? "dom" : ""}"><td>${m.cup ? "Coupe" : "J" + esc(m.j)}</td><td>${esc(day(m.when))}</td><td>${m.when && m.date.length > 10 ? hhmm(m.when) : ""}</td><td>${esc(where)}</td>
+      <td><span class="cs-adv">${clubLogo(m.adv) ? `<img src="${clubLogo(m.adv)}" alt="">` : ""}${esc(m.adv)}${m.cup ? ` <small>(${esc(m.tour)})</small>` : ""}</span></td>
+      <td class="cs-sc">${played ? `${m.dom ? `${esc(m.nous)}–${m.forfait ? "FO" : esc(m.eux)}` : `${m.forfait ? "FO" : esc(m.eux)}–${esc(m.nous)}`}<span class="cs-res ${o}">${o}</span>` : ""}</td></tr>`;
+  };
+  const slots = slotsOf(id).map(([d, a, b, , room]) => `${d} ${fmtH(a)}–${fmtH(b)} (${room})`).join(" · ");
+  return `<div class="cs-sheet">
+    <div class="cs-head"><img src="${logo}" alt=""><div><h2>${esc(t.big)}${t.suffix ? `<em>${esc(t.suffix)}</em>` : ""}</h2><p>${esc(L.titre || t.comp || "")}${t.note ? " · " + esc(t.note) : ""}</p></div>
+      <div class="cs-season">Saison<br>${esc(CUR_SEASON.replace("-", "–"))}<small>Domicile en rose</small></div></div>
+    <table class="cs-tbl"><tr><th></th><th>Date</th><th>Heure</th><th>Lieu</th><th>Adversaire</th><th style="text-align:right">Score</th></tr>${all.map(line).join("")}</table>
+    ${slots ? `<p style="font-size:3.4mm;margin:0"><b>Entraînements :</b> ${esc(slots)}</p>` : t.away ? `<p style="font-size:3.4mm;margin:0"><b>Entraînements :</b> ${esc(t.away)}</p>` : ""}
+    <div class="cs-foot"><div><b>Horaires à jour sur <em>hbchersin.fr</em></b><br>Les dates peuvent changer : vérifiez sur le site ou l'appli des Tigres. Les scores s'affichent tout seuls.</div><div>${esc(us === "Hersin" ? "HBC Hersin-Coupigny" : us)}<br>Imprimé le ${esc(new Date().toLocaleDateString("fr-FR"))}</div></div>
+  </div>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-cal-print]"); if (!b) return;
+  let box = $("#cal-sheet"); if (!box) { box = document.createElement("div"); box.id = "cal-sheet"; document.body.appendChild(box); }
+  box.innerHTML = calSheet(b.dataset.calPrint);
+  document.documentElement.classList.add("cal-printing");
+  const imgs = [...box.querySelectorAll("img")].filter(i => !i.complete);
+  Promise.all(imgs.map(i => new Promise(r => { i.onload = i.onerror = r; }))).then(() => setTimeout(() => window.print(), 50));
+});
+addEventListener("afterprint", () => document.documentElement.classList.remove("cal-printing"));
 function refreshLeagues() {
   if (!$('[data-page="saisons"]')?.hidden) renderSaisons();
   renderWeekend(); renderResultsPage(); renderMonClub(); renderLive(); renderJdm(); renderApresMatch(); renderRecapBubble();
