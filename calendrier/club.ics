@@ -563,7 +563,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u18-region-j5@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin U18 Région – HBC Crépy-en-Valois
+SUMMARY:🤾 HBC Hersin U18 Région – HBC Crépy-en-Valois (32-28)
 DTSTART:20261108T131500Z
 DTEND:20261108T151500Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
@@ -634,7 +634,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u18-departemental-j4@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin U18 Départemental – ASHB Carvin
+SUMMARY:🤾 HBC Hersin U18 Départemental – ASHB Carvin (35-30)
 DTSTART:20261108T100000Z
 DTEND:20261108T120000Z
 LOCATION:À domicile\, Béthune
@@ -839,7 +839,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u13a-j3@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin U13 A – Team Lensoise de Handball
+SUMMARY:🤾 HBC Hersin U13 A – Team Lensoise de Handball (60-1)
 DTSTART:20261108T150000Z
 DTEND:20261108T170000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
@@ -1015,7 +1015,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u11-j3@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin U11 – HBC Courrières
+SUMMARY:🤾 HBC Hersin U11 – HBC Courrières (27-3)
 DTSTART:20261108T100000Z
 DTEND:20261108T120000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
