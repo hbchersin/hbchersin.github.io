@@ -518,7 +518,7 @@ a.player:hover b { color: var(--rose-ink); }
 /* Fiche joueur : une carte par compétition */
 .cs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 0; }
 .cs { border: 1px solid var(--line); border-top: 4px solid var(--rose); padding: 16px 18px 18px; display: grid; gap: 14px; align-content: start; background: var(--surface); }
-.cs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
 .cs-head h3 { font: 800 22px/1.1 var(--font-display); text-transform: uppercase; margin: 0; }
 .cs-head span { font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); white-space: nowrap; }
 .cs-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; }
@@ -1565,11 +1565,11 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--night-line); pa
   html.cal-printing #cal-sheet { display: flex !important; }
 }
 .cs-sheet { box-sizing: border-box; width: 210mm; height: 295mm; overflow: hidden; padding: 11mm 12mm 9mm; background: #fff; color: #141114; flex-direction: column; gap: 4mm; font-family: var(--font-body); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-.cs-head { display: grid; grid-template-columns: 24mm 1fr auto; gap: 5mm; align-items: center; border-bottom: 2mm solid #e7337d; padding-bottom: 3mm; }
-.cs-head img { width: 24mm; height: 24mm; }
-.cs-head h2 { font: 800 16mm/.85 var(--font-display); text-transform: uppercase; margin: 0; color: #141114; }
-.cs-head h2 em { display: block; font-style: italic; color: #e7337d; font-size: 8mm; line-height: 1.1; }
-.cs-head p { margin: 1.5mm 0 0; font: 600 3.4mm var(--font-body); color: #555; }
+.cal-head { display: grid; grid-template-columns: 24mm 1fr auto; gap: 5mm; align-items: center; border-bottom: 2mm solid #e7337d; padding-bottom: 3mm; }
+.cal-head img { width: 24mm; height: 24mm; }
+.cal-head h2 { font: 800 16mm/.85 var(--font-display); text-transform: uppercase; margin: 0; color: #141114; }
+.cal-head h2 em { display: block; font-style: italic; color: #e7337d; font-size: 8mm; line-height: 1.1; }
+.cal-head p { margin: 1.5mm 0 0; font: 600 3.4mm var(--font-body); color: #555; }
 .cs-season { text-align: right; font: 800 6mm/1.1 var(--font-display); text-transform: uppercase; }
 .cs-season small { display: block; font: 600 3mm var(--font-body); text-transform: none; color: #666; }
 .cs-tbl { width: 100%; border-collapse: collapse; font-size: 3.6mm; font-variant-numeric: tabular-nums; }
@@ -3979,7 +3979,7 @@ function calSheet(id) {
   };
   const slots = slotsOf(id).map(([d, a, b, , room]) => `${d} ${fmtH(a)}–${fmtH(b)} (${room})`).join(" · ");
   return `<div class="cs-sheet">
-    <div class="cs-head"><img src="${logo}" alt=""><div><h2>${esc(t.big)}${t.suffix ? `<em>${esc(t.suffix)}</em>` : ""}</h2><p>${esc(L.titre || t.comp || "")}${t.note ? " · " + esc(t.note) : ""}</p></div>
+    <div class="cal-head"><img src="${logo}" alt=""><div><h2>${esc(t.big)}${t.suffix ? `<em>${esc(t.suffix)}</em>` : ""}</h2><p>${esc(L.titre || t.comp || "")}${t.note ? " · " + esc(t.note) : ""}</p></div>
       <div class="cs-season">Saison<br>${esc(CUR_SEASON.replace("-", "–"))}<small>Domicile en rose</small></div></div>
     <table class="cs-tbl"><tr><th></th><th>Date</th><th>Heure</th><th>Lieu</th><th>Adversaire</th><th style="text-align:right">Score</th></tr>${all.map(line).join("")}</table>
     ${slots ? `<p style="font-size:3.4mm;margin:0"><b>Entraînements :</b> ${esc(slots)}</p>` : t.away ? `<p style="font-size:3.4mm;margin:0"><b>Entraînements :</b> ${esc(t.away)}</p>` : ""}
