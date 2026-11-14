@@ -805,7 +805,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u15-departemental-j5@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 Meg'Handball – HBC Hersin U15 Départemental
+SUMMARY:🤾 Meg'Handball – HBC Hersin U15 Départemental (19-24)
 DTSTART:20261114T140000Z
 DTEND:20261114T160000Z
 LOCATION:Chez Meg'Handball
@@ -917,7 +917,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u13b-j4@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin U13 B – SO Calais HB 1
+SUMMARY:🤾 HBC Hersin U13 B – SO Calais HB 1 (29-28)
 DTSTART:20261114T140000Z
 DTEND:20261114T160000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
