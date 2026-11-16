@@ -4391,7 +4391,7 @@ var tzDone = false, tzAudio = null, tzTimer = 0, tzM = null, tzBack = null;
 function tzStart(w) { const d = new Date(w); d.setDate(d.getDate() - 1); d.setHours(18, 30, 0, 0); return d; }
 function teaserMatch(force) {
   const now = new Date();
-  return allMatches().find(x => x.t.id === "seniors-1" && !x.t.cup && x.dom && !isPlayed(x) && x.date.length > 10 && x.when > now
+  return allMatches().find(x => x.t.id === "seniors-1" && x.dom && !isPlayed(x) && x.date.length > 10 && x.when > now
     && playsInHersin(x.t.id, x.dom, x.adv, x.salle) && now >= (force ? new Date(x.when - 6 * 864e5) : tzStart(x.when)));
 }
 function maybeTeaser() {
@@ -4431,6 +4431,7 @@ function openTeaser(m) {
   const { table, ours, opp } = tzStanding(m.adv);
   const form = r => `<div class="form">${String(r.forme || "").slice(-5).split("").map(c => `<i class="${/[VDN]/.test(c) ? c : "N"}">${esc(c)}</i>`).join("")}</div>`;
   const card = (cls, name, r) => r ? `<div class="card ${cls}"><span>${esc(name)}</span><b>${ordinal(table.indexOf(r) + 1)}</b><span>${plural(r.pts, "pt")}</span>${form(r)}</div>` : "";
+  const cupName = m.t.cup ? "Coupe de France" : "", comp = cupName ? `${cupName} · ${m.tour || ""}` : `Prénationale · J${m.j || ""}`;
   const fo = String(ours?.forme || "").slice(-5), wins = (fo.match(/V/g) || []).length, rank = ours ? table.indexOf(ours) + 1 : 0;
   const note = wins >= 3 ? `${wins} victoires sur les<br><span class="rose">${fo.length} derniers matchs</span>` : rank && rank <= 3 ? `Le podium<br><span class="rose">se joue ici</span>` : `Chaque point<br><span class="rose">compte</span>`;
   const ph = tzPhotos(m), bg = x => `background-image:url(${blobSrc(x[0])});background-position:${x[1]}% center`;
@@ -4438,13 +4439,13 @@ function openTeaser(m) {
   el.innerHTML = `<div class="tz-blur" style="background-image:url(${blobSrc(ph[10][0])})"></div>
   <div class="tz-stage"><div class="sh">
     <div class="cam">${ph.map((x, i) => `<div class="ph p${i}" style="${bg(x)}"></div>`).join("")}</div><div class="pump"></div>
-    <div class="scene s0"><p class="k">Prénationale · Journée ${esc(m.j || "")}</p><p class="t">Le choc à ${esc(salle)}</p></div>
+    <div class="scene s0"><p class="k">${cupName ? esc(comp) : `Prénationale · Journée ${esc(m.j || "")}`}</p><p class="t">${cupName ? "La coupe" : "Le choc"} à ${esc(salle)}</p></div>
     <div class="scene s1"><p class="big${w2.length > 6 ? " long" : ""}">${esc(w1)}<br><em>${esc(w2)}</em></p><p class="k">Les Tigres sont prêts</p></div>
     ${["On", "va", "tout", "donner"].map((w, i) => `<div class="word w${i}"><b>${w}</b></div>`).join("")}
     <div class="scene s2"><div class="duel"><div class="club l"><img src="logo-hbch.png" alt=""><b>Hersin</b><span>Les Tigres</span></div><span class="vs">VS</span>
-      <div class="club r">${logo ? `<img class="opp" src="${logo}" alt="">` : `<span class="ini">${esc(clubInitials(m.adv))}</span>`}<b>${esc(opp1)}</b><span>${esc(opp2)}</span></div></div><p class="k">Prénationale · J${esc(m.j || "")}</p></div>
+      <div class="club r">${logo ? `<img class="opp" src="${logo}" alt="">` : `<span class="ini">${esc(clubInitials(m.adv))}</span>`}<b>${esc(opp1)}</b><span>${esc(opp2)}</span></div></div><p class="k">${esc(comp)}</p></div>
     <div class="scene s3"><p class="big"><span class="d1">${esc(jour)}</span><span class="d2 rose">${hhmm(m.when).replace("h00", "h")}</span></p><p class="where">Salle ${esc(salle)}</p><p class="k">Hersin-Coupigny</p></div>
-    <div class="scene s4"><p class="k">L'enjeu</p><div class="vsrow">${card("c1", "Hersin", ours)}${card("c2", opp1, opp)}</div><p class="note">${note}</p></div>
+    <div class="scene s4"><p class="k">L'enjeu</p>${cupName ? `<p class="note">Pas de match retour<br><span class="rose">tout se joue sur un match</span></p>` : `<div class="vsrow">${card("c1", "Hersin", ours)}${card("c2", opp1, opp)}</div><p class="note">${note}</p>`}</div>
     <div class="scene s5"><p class="big"><span class="a">Le 8<sup style="font-size:.5em">e</sup> homme</span><span class="b rose">c'est vous</span></p><p class="k">${esc(salle)} doit vibrer</p></div>
     <div class="scene s6"><p class="big">Tous en rose<br><em>et noir</em> 🐯</p>
       <div class="cd" data-countdown="${esc(m.date)}" role="timer" aria-label="Coup d'envoi dans">${(m.when - Date.now() >= 864e5 ? [["j", m.when - Date.now() >= 2 * 864e5 ? "jours" : "jour"], ["h", "heures"], ["min", "minutes"]] : [["h", "heures"], ["min", "minutes"], ["s", "secondes"]]).map(([u, l]) => `<span><b data-u="${u}">–</b><small>${l}</small></span>`).join("")}</div>
@@ -4468,7 +4469,7 @@ function openTeaser(m) {
 // (photos marquées "tz" par la tâche des albums : "g" = groupe/émotion, "a" = action), puis la sélection de départ,
 // qui tourne d'un teaser à l'autre (le 1er teaser, Hersin – Biache du 7/11, prend le début des listes).
 function tzPhotos(m) {
-  const homes = allMatches().filter(x => x.t.id === "seniors-1" && !x.t.cup && x.dom && x.date >= "2026-11-07");
+  const homes = allMatches().filter(x => x.t.id === "seniors-1" && x.dom && x.date >= "2026-11-07");   // championnat et coupe
   const n = Math.max(0, homes.findIndex(x => x.date === m.date && x.adv === m.adv)), used = new Set();
   const albums = Object.entries(LEAGUE.galeries?.matchs || {}).filter(([k, al]) => /^seniors-1-j\d+$/.test(k) && al.date && al.date < m.date)
     .sort((x, y) => y[1].date.localeCompare(x[1].date));
