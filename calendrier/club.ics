@@ -220,7 +220,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:cdf-seniors-2e-tour@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin Seniors – HBC Bully les Mines
+SUMMARY:🤾 HBC Hersin Seniors – HBC Bully les Mines (33-20)
 DTSTART:20261122T160000Z
 DTEND:20261122T180000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
@@ -733,7 +733,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:u15-region-j7@hbchersin.github.io
 DTSTAMP:20260101T000000Z
-SUMMARY:🤾 HBC Hersin U15 Région – Amiens Handball Club
+SUMMARY:🤾 HBC Hersin U15 Région – Amiens Handball Club (26-29)
 DTSTART:20261121T163000Z
 DTEND:20261121T183000Z
 LOCATION:Complexe Futura\, rue Romain Rolland\, 62530 Hersin-Coupigny
